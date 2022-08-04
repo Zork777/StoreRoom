@@ -7,9 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		998113C0289B102200E5C5CE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998113BF289B102200E5C5CE /* SettingViewController.swift */; };
+		998113C2289B10BA00E5C5CE /* GenerateTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998113C1289B10BA00E5C5CE /* GenerateTestData.swift */; };
+		998113C4289C36D800E5C5CE /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998113C3289C36D800E5C5CE /* CoreData.swift */; };
+		998113C6289C37ED00E5C5CE /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998113C5289C37ED00E5C5CE /* Error.swift */; };
+		998113C8289C3A0C00E5C5CE /* Variable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998113C7289C3A0C00E5C5CE /* Variable.swift */; };
+		998113CF289C3AEB00E5C5CE /* EntityBoxs+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998113C9289C3AEB00E5C5CE /* EntityBoxs+CoreDataClass.swift */; };
+		998113D0289C3AEB00E5C5CE /* EntityBoxs+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998113CA289C3AEB00E5C5CE /* EntityBoxs+CoreDataProperties.swift */; };
+		998113D1289C3AEB00E5C5CE /* EntityRooms+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998113CB289C3AEB00E5C5CE /* EntityRooms+CoreDataClass.swift */; };
+		998113D2289C3AEB00E5C5CE /* EntityRooms+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998113CC289C3AEB00E5C5CE /* EntityRooms+CoreDataProperties.swift */; };
+		998113D3289C3AEB00E5C5CE /* EntityThings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998113CD289C3AEB00E5C5CE /* EntityThings+CoreDataClass.swift */; };
+		998113D4289C3AEB00E5C5CE /* EntityThings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998113CE289C3AEB00E5C5CE /* EntityThings+CoreDataProperties.swift */; };
+		998113D6289C420400E5C5CE /* AlertWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998113D5289C420400E5C5CE /* AlertWindow.swift */; };
 		9996135B289B008200B721D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9996135A289B008200B721D4 /* AppDelegate.swift */; };
 		9996135D289B008200B721D4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9996135C289B008200B721D4 /* SceneDelegate.swift */; };
-		9996135F289B008200B721D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9996135E289B008200B721D4 /* ViewController.swift */; };
+		9996135F289B008200B721D4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9996135E289B008200B721D4 /* MainViewController.swift */; };
 		99961362289B008200B721D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99961360289B008200B721D4 /* Main.storyboard */; };
 		99961365289B008200B721D4 /* StoreRoom.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 99961363289B008200B721D4 /* StoreRoom.xcdatamodeld */; };
 		99961367289B008600B721D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99961366289B008600B721D4 /* Assets.xcassets */; };
@@ -37,10 +49,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		998113BF289B102200E5C5CE /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingViewController.swift; path = StoreRoom/View/SettingViewController.swift; sourceTree = SOURCE_ROOT; };
+		998113C1289B10BA00E5C5CE /* GenerateTestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GenerateTestData.swift; path = StoreRoom/View/GenerateTestData.swift; sourceTree = SOURCE_ROOT; };
+		998113C3289C36D800E5C5CE /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoreData.swift; path = StoreRoom/Model/CoreData.swift; sourceTree = SOURCE_ROOT; };
+		998113C5289C37ED00E5C5CE /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		998113C7289C3A0C00E5C5CE /* Variable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variable.swift; sourceTree = "<group>"; };
+		998113C9289C3AEB00E5C5CE /* EntityBoxs+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityBoxs+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		998113CA289C3AEB00E5C5CE /* EntityBoxs+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityBoxs+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		998113CB289C3AEB00E5C5CE /* EntityRooms+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityRooms+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		998113CC289C3AEB00E5C5CE /* EntityRooms+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityRooms+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		998113CD289C3AEB00E5C5CE /* EntityThings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityThings+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		998113CE289C3AEB00E5C5CE /* EntityThings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityThings+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		998113D5289C420400E5C5CE /* AlertWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertWindow.swift; sourceTree = "<group>"; };
 		99961357289B008200B721D4 /* StoreRoom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreRoom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9996135A289B008200B721D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9996135C289B008200B721D4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9996135E289B008200B721D4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9996135E289B008200B721D4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		99961361289B008200B721D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		99961364289B008200B721D4 /* StoreRoom.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StoreRoom.xcdatamodel; sourceTree = "<group>"; };
 		99961366289B008600B721D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -101,14 +125,14 @@
 		99961359289B008200B721D4 /* StoreRoom */ = {
 			isa = PBXGroup;
 			children = (
+				9996138D289B00D700B721D4 /* CoreData */,
+				99961390289B010E00B721D4 /* Controller */,
+				9996138F289B010400B721D4 /* View */,
+				9996138E289B00F300B721D4 /* Model */,
 				9996135A289B008200B721D4 /* AppDelegate.swift */,
 				9996135C289B008200B721D4 /* SceneDelegate.swift */,
-				9996135E289B008200B721D4 /* ViewController.swift */,
-				99961360289B008200B721D4 /* Main.storyboard */,
 				99961366289B008600B721D4 /* Assets.xcassets */,
-				99961368289B008600B721D4 /* LaunchScreen.storyboard */,
 				9996136B289B008600B721D4 /* Info.plist */,
-				99961363289B008200B721D4 /* StoreRoom.xcdatamodeld */,
 			);
 			path = StoreRoom;
 			sourceTree = "<group>";
@@ -128,6 +152,50 @@
 				99961380289B008600B721D4 /* StoreRoomUITestsLaunchTests.swift */,
 			);
 			path = StoreRoomUITests;
+			sourceTree = "<group>";
+		};
+		9996138D289B00D700B721D4 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				998113C9289C3AEB00E5C5CE /* EntityBoxs+CoreDataClass.swift */,
+				998113CA289C3AEB00E5C5CE /* EntityBoxs+CoreDataProperties.swift */,
+				998113CB289C3AEB00E5C5CE /* EntityRooms+CoreDataClass.swift */,
+				998113CC289C3AEB00E5C5CE /* EntityRooms+CoreDataProperties.swift */,
+				998113CD289C3AEB00E5C5CE /* EntityThings+CoreDataClass.swift */,
+				998113CE289C3AEB00E5C5CE /* EntityThings+CoreDataProperties.swift */,
+				99961363289B008200B721D4 /* StoreRoom.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		9996138E289B00F300B721D4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				998113C1289B10BA00E5C5CE /* GenerateTestData.swift */,
+				998113C3289C36D800E5C5CE /* CoreData.swift */,
+				998113C7289C3A0C00E5C5CE /* Variable.swift */,
+				998113C5289C37ED00E5C5CE /* Error.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9996138F289B010400B721D4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				99961360289B008200B721D4 /* Main.storyboard */,
+				99961368289B008600B721D4 /* LaunchScreen.storyboard */,
+				998113D5289C420400E5C5CE /* AlertWindow.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		99961390289B010E00B721D4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				998113BF289B102200E5C5CE /* SettingViewController.swift */,
+				9996135E289B008200B721D4 /* MainViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,9 +330,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				99961365289B008200B721D4 /* StoreRoom.xcdatamodeld in Sources */,
-				9996135F289B008200B721D4 /* ViewController.swift in Sources */,
+				998113D2289C3AEB00E5C5CE /* EntityRooms+CoreDataProperties.swift in Sources */,
+				998113C4289C36D800E5C5CE /* CoreData.swift in Sources */,
+				998113C0289B102200E5C5CE /* SettingViewController.swift in Sources */,
+				998113D3289C3AEB00E5C5CE /* EntityThings+CoreDataClass.swift in Sources */,
+				998113D4289C3AEB00E5C5CE /* EntityThings+CoreDataProperties.swift in Sources */,
+				998113D1289C3AEB00E5C5CE /* EntityRooms+CoreDataClass.swift in Sources */,
+				998113D0289C3AEB00E5C5CE /* EntityBoxs+CoreDataProperties.swift in Sources */,
+				998113C8289C3A0C00E5C5CE /* Variable.swift in Sources */,
+				9996135F289B008200B721D4 /* MainViewController.swift in Sources */,
 				9996135B289B008200B721D4 /* AppDelegate.swift in Sources */,
+				998113CF289C3AEB00E5C5CE /* EntityBoxs+CoreDataClass.swift in Sources */,
+				998113D6289C420400E5C5CE /* AlertWindow.swift in Sources */,
 				9996135D289B008200B721D4 /* SceneDelegate.swift in Sources */,
+				998113C2289B10BA00E5C5CE /* GenerateTestData.swift in Sources */,
+				998113C6289C37ED00E5C5CE /* Error.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +527,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -475,6 +556,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
