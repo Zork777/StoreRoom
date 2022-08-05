@@ -32,17 +32,66 @@ class TestData {
                   Object(name: "Мангал", image: #imageLiteral(resourceName: "мангал.jpg")),
                   Object(name: "Свитер", image: #imageLiteral(resourceName: "свитер.jpg")),
                   Object(name: "сумка", image: #imageLiteral(resourceName: "сумка.jpg")),
-                  Object(name: "Джинсы", image: #imageLiteral(resourceName: "джинсы.jpeg"))]
+                  Object(name: "Джинсы", image: #imageLiteral(resourceName: "джинсы.jpeg")),
+                  Object(name: "toy1", image: #imageLiteral(resourceName: "toy1.jpg")),
+                  Object(name: "toy2", image: #imageLiteral(resourceName: "toy2.jpg"))]
     let base = BaseCoreData()
     
     init(){
-        saveData()
+        
     }
     
-    func saveData(){
-        for thing in things{
-            base.saveObject(objectForSave: thing, base: .things)
+///чистим всю базу
+    func clearBase(){
+        base.deleteAllCoreBases()
+        debugPrint("base is clear")
+    }
+    
+    ///Сохраняем кладовки
+    func saveRoom(){
+        for room in rooms{
+            base.saveObject(objectForSave: room, base: .rooms)
         }
+        debugPrint("saved rooms...")
+    }
+    
+    ///Сохраняем ящики
+    func saveBox(){
+        do {
+            let roomsObject = try base.fetchContext(base: .rooms, predicate: nil)
+            if !roomsObject.isEmpty{
+                for box in boxs{
+                    base.saveObject(objectForSave: box, base: .boxs, boxOrRoom: roomsObject.randomElement()!)
+                }
+            }
+            else{
+                showMessage(message: #function + "result fetch is null")
+            }
+        }
+        catch {
+            showMessage(message: ValidationError.failedSaveOrder.localizedDescription)
+        }
+        debugPrint("saved boxs...")
     }
 
+    func saveThing(){
+        do {
+            let roomsObject = try base.fetchContext(base: .rooms, predicate: nil)
+            let boxObject = try base.fetchContext(base: .boxs, predicate: nil)
+            if !roomsObject.isEmpty || !boxObject.isEmpty{
+                for thing in things{
+                    base.saveObject(objectForSave: thing, base: .things,
+                                    boxOrRoom:  Bool.random() ? roomsObject.randomElement()! : boxObject.randomElement()!)
+                }
+            }
+            else{
+                showMessage(message: #function + "result fetch is null")
+            }
+        }
+        catch {
+            showMessage(message: ValidationError.failedSaveOrder.localizedDescription)
+        }
+        debugPrint("saved things...")
+    }
+    
 }

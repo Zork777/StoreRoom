@@ -37,8 +37,34 @@
                     <view key="view" contentMode="scaleToFill" id="cJk-wn-4rx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9uj-L2-ubU">
+                                <rect key="frame" x="16" y="104" width="382" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="SaveTestData"/>
+                                <connections>
+                                    <action selector="buttonSaveTestData:" destination="8UV-m7-Nb8" eventType="touchUpInside" id="MC0-Ws-QHU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ja7-QB-PWN">
+                                <rect key="frame" x="16" y="151" width="382" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="ClearBase"/>
+                                <connections>
+                                    <action selector="buttonClearBase:" destination="8UV-m7-Nb8" eventType="touchUpInside" id="nl6-vY-Mqs"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="zGv-hj-E0e"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ja7-QB-PWN" firstAttribute="top" secondItem="9uj-L2-ubU" secondAttribute="bottom" constant="16" id="K1v-vo-GCp"/>
+                            <constraint firstItem="Ja7-QB-PWN" firstAttribute="leading" secondItem="zGv-hj-E0e" secondAttribute="leading" constant="16" id="KQi-2l-J3J"/>
+                            <constraint firstItem="9uj-L2-ubU" firstAttribute="leading" secondItem="zGv-hj-E0e" secondAttribute="leading" constant="16" id="Poe-DY-uCy"/>
+                            <constraint firstItem="9uj-L2-ubU" firstAttribute="top" secondItem="zGv-hj-E0e" secondAttribute="top" constant="16" id="fXF-Et-kGo"/>
+                            <constraint firstItem="zGv-hj-E0e" firstAttribute="trailing" secondItem="9uj-L2-ubU" secondAttribute="trailing" constant="16" id="g8h-oQ-Rsp"/>
+                            <constraint firstItem="zGv-hj-E0e" firstAttribute="trailing" secondItem="Ja7-QB-PWN" secondAttribute="trailing" constant="16" id="jC8-NE-Dth"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Настройки" id="w0q-4K-qYD"/>
                 </viewController>

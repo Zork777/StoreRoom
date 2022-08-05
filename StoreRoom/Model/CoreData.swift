@@ -14,7 +14,7 @@ class BaseCoreData {
     let context: NSManagedObjectContext
     
     ///Название  base
-    enum Bases: String{
+    enum Bases: String, CaseIterable{
         case boxs = "EntityBoxs"
         case rooms = "EntityRooms"
         case things = "EntityThings"
@@ -65,13 +65,15 @@ class BaseCoreData {
 //        var object: NSManagedObject
 //        switch base {
 //        case .boxs:
-//            object = NSEntityDescription.insertNewObject(forEntityName: base.rawValue,
+//            let object = NSEntityDescription.insertNewObject(forEntityName: base.rawValue,
 //                                                             into: context) as! EntityBoxs
+//            object.name = objectForSave.name
+//            object.image = objectForSave.image.jpegData(compressionQuality: 1)
 //        case .rooms:
-//            object = NSEntityDescription.insertNewObject(forEntityName: base.rawValue,
+//            let object = NSEntityDescription.insertNewObject(forEntityName: base.rawValue,
 //                                                             into: context) as! EntityBoxs
 //        case .things:
-//            object = NSEntityDescription.insertNewObject(forEntityName: base.rawValue,
+//            let object = NSEntityDescription.insertNewObject(forEntityName: base.rawValue,
 //                                                             into: context) as! EntityBoxs
 //
 //        }
@@ -86,6 +88,36 @@ class BaseCoreData {
         }
     }
 
+    func saveObject(objectForSave: Object, base: Bases, boxOrRoom: NSManagedObject) {
+                switch base {
+                case .boxs:
+                    let object = NSEntityDescription.insertNewObject(forEntityName: base.rawValue,
+                                                                     into: context) as! EntityBoxs
+                    object.name = objectForSave.name
+                    object.image = objectForSave.image.jpegData(compressionQuality: 1)
+                    object.boxToRoom = boxOrRoom as? EntityRooms
+                case .rooms:
+                    return
+                case .things:
+                    let object = NSEntityDescription.insertNewObject(forEntityName: base.rawValue,
+                                                                     into: context) as! EntityThings
+                    object.name = objectForSave.name
+                    object.image = objectForSave.image.jpegData(compressionQuality: 1)
+                    if boxOrRoom.entity.name == Bases.boxs.rawValue {
+                        object.thingToBox = boxOrRoom as? EntityBoxs
+                    }
+                    else {
+                        object.thingToRoom = boxOrRoom as? EntityRooms
+                    }
+        
+                }
+        do {
+            try self.saveContext()
+        }
+        catch{
+            showMessage(message: error.localizedDescription)
+        }
+    }
     
     func deleteObject(object: NSManagedObject) throws{
         do{
@@ -110,6 +142,20 @@ class BaseCoreData {
         }
         let objects = try context.fetch(fetchRequest)
         return objects as! [NSManagedObject]
+    }
+    
+///удаление всей базы
+    func deleteAllCoreBases() {
+        let base = BaseCoreData()
+        for baseName in Bases.allCases {
+            do{
+                try base.deleteContext(base: baseName, predicate: nil)
+                try base.saveContext()
+            }
+            catch{
+                showMessage(message: "fatal clear base \(baseName.rawValue)")
+            }
+        }
     }
     
 ///удаление по выборке

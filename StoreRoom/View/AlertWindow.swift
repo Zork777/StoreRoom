@@ -29,7 +29,7 @@ func showMessage(message: String) {
     dialog.addAction(action)
     let vc = UIApplication.topViewController()
     vc?.present(dialog, animated: true)
-    print (message)
+    debugPrint (message)
 }
 
 extension UIApplication {

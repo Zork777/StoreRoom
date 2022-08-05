@@ -8,7 +8,18 @@
 import UIKit
 
 class SettingViewController: UIViewController {
-
+    let test = TestData()
+    
+    @IBAction func buttonSaveTestData(_ sender: Any) {
+        test.saveRoom()
+        test.saveBox()
+        test.saveThing()
+    }
+    
+    @IBAction func buttonClearBase(_ sender: Any) {
+        test.clearBase()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
