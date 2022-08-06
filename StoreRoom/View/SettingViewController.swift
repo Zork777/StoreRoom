@@ -11,9 +11,9 @@ class SettingViewController: UIViewController {
     let test = TestData()
     
     @IBAction func buttonSaveTestData(_ sender: Any) {
-        test.saveRoom()
-        test.saveBox()
-        test.saveThing()
+        test.saveTestRooms()
+        test.saveTestBoxs()
+        test.saveTestThings()
     }
     
     @IBAction func buttonClearBase(_ sender: Any) {

@@ -10,25 +10,14 @@ import CoreData
 
 
 class BaseCoreData {
-    let persistentContainer: NSPersistentContainer
-    let context: NSManagedObjectContext
+    private let persistentContainer: NSPersistentContainer
+    private let context: NSManagedObjectContext
     
     ///Название  base
     enum Bases: String, CaseIterable{
         case boxs = "EntityBoxs"
         case rooms = "EntityRooms"
         case things = "EntityThings"
-        
-//        func nameBase (base: Bases) -> AnyObject{
-//            switch base {
-//            case .rooms:
-//                return EntityRooms.self
-//            case .things:
-//                return EntityThings.self
-//            case .boxs:
-//                return EntityBoxs.self
-//            }
-//        }
     }
     
     
@@ -46,7 +35,7 @@ class BaseCoreData {
         context = self.persistentContainer.viewContext
         }
     
-    func saveContext () throws{
+   private func saveContext () throws{
           if context.hasChanges {
               do {
                   try context.save()
@@ -61,22 +50,7 @@ class BaseCoreData {
       }
 
 ///Сохранение объекта в core
-    func saveObject(objectForSave: Object, base: Bases) {
-//        var object: NSManagedObject
-//        switch base {
-//        case .boxs:
-//            let object = NSEntityDescription.insertNewObject(forEntityName: base.rawValue,
-//                                                             into: context) as! EntityBoxs
-//            object.name = objectForSave.name
-//            object.image = objectForSave.image.jpegData(compressionQuality: 1)
-//        case .rooms:
-//            let object = NSEntityDescription.insertNewObject(forEntityName: base.rawValue,
-//                                                             into: context) as! EntityBoxs
-//        case .things:
-//            let object = NSEntityDescription.insertNewObject(forEntityName: base.rawValue,
-//                                                             into: context) as! EntityBoxs
-//
-//        }
+    func saveObject(objectForSave: Object, base: Bases) throws {
         let object = NSEntityDescription.insertNewObject(forEntityName: base.rawValue, into: context)
         object.setValue(objectForSave.name, forKey: "name") //name = objectForSave.name
         object.setValue(objectForSave.image.jpegData(compressionQuality: 1), forKey: "image") //object.image = objectForSave.image.jpegData(compressionQuality: 1)
@@ -85,6 +59,7 @@ class BaseCoreData {
         }
         catch{
             showMessage(message: error.localizedDescription)
+            throw ValidationError.failedSavingInCoreData
         }
     }
 
@@ -130,7 +105,7 @@ class BaseCoreData {
     }
 
     
-///запрос к  базе
+///поисковый запрос к  базе
     func fetchContext (base: Bases, predicate: NSPredicate?) throws -> [NSManagedObject]{
         let entityDescription = NSEntityDescription.entity(forEntityName: base.rawValue, in: context)
 
