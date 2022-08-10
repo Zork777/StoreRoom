@@ -2,7 +2,7 @@
 //  EntityBoxs+CoreDataProperties.swift
 //  StoreRoom
 //
-//  Created by Евгений Захаров on 04.08.2022.
+//  Created by Евгений Захаров on 08.08.2022.
 //
 //
 
@@ -16,8 +16,9 @@ extension EntityBoxs {
         return NSFetchRequest<EntityBoxs>(entityName: "EntityBoxs")
     }
 
-    @NSManaged public var name: String?
     @NSManaged public var image: Data?
+    @NSManaged public var name: String?
+    @NSManaged public var imageSmall: Data?
     @NSManaged public var boxToRoom: EntityRooms?
     @NSManaged public var boxToThing: NSSet?
 

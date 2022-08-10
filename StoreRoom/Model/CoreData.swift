@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 
 class BaseCoreData {
@@ -52,8 +53,9 @@ class BaseCoreData {
 ///Сохранение объекта в core
     func saveObject(objectForSave: Object, base: Bases) throws {
         let object = NSEntityDescription.insertNewObject(forEntityName: base.rawValue, into: context)
-        object.setValue(objectForSave.name, forKey: "name") //name = objectForSave.name
-        object.setValue(objectForSave.image.jpegData(compressionQuality: 1), forKey: "image") //object.image = objectForSave.image.jpegData(compressionQuality: 1)
+        object.setValue(objectForSave.name, forKey: "name")
+        object.setValue(objectForSave.imageData, forKey: "image")
+        object.setValue(objectForSave.imageDataSmall, forKey: "imageSmall")
         do {
             try self.saveContext()
         }
@@ -63,13 +65,15 @@ class BaseCoreData {
         }
     }
 
+    ///Сохранение объекта в core со связкой с коробкой или кладовкой
     func saveObject(objectForSave: Object, base: Bases, boxOrRoom: NSManagedObject) {
                 switch base {
                 case .boxs:
                     let object = NSEntityDescription.insertNewObject(forEntityName: base.rawValue,
                                                                      into: context) as! EntityBoxs
                     object.name = objectForSave.name
-                    object.image = objectForSave.image.jpegData(compressionQuality: 1)
+                    object.image = objectForSave.imageData
+                    object.imageSmall = objectForSave.imageDataSmall
                     object.boxToRoom = boxOrRoom as? EntityRooms
                 case .rooms:
                     return
@@ -77,7 +81,8 @@ class BaseCoreData {
                     let object = NSEntityDescription.insertNewObject(forEntityName: base.rawValue,
                                                                      into: context) as! EntityThings
                     object.name = objectForSave.name
-                    object.image = objectForSave.image.jpegData(compressionQuality: 1)
+                    object.image = objectForSave.imageData
+                    object.imageSmall = objectForSave.imageDataSmall
                     if boxOrRoom.entity.name == Bases.boxs.rawValue {
                         object.thingToBox = boxOrRoom as? EntityBoxs
                     }
@@ -94,6 +99,8 @@ class BaseCoreData {
         }
     }
     
+    
+///удаление объекта из core
     func deleteObject(object: NSManagedObject) throws{
         do{
             context.delete(object)
@@ -147,16 +154,38 @@ class BaseCoreData {
         }
     }
     
-///find things by name
-    func getThingsByName(name: String) -> [EntityThings]?{
-        let predicate =  NSPredicate(format: "name == %@", name)
-        if let fetchResults = try? fetchContext(base: .things, predicate: predicate){
-            return fetchResults as? [EntityThings]
+///find object by name
+    func findObjectByName(name: String, base: Bases) -> [Any]?{
+        let predicate =  NSPredicate(format: "name like %@", name)
+        if let fetchResults = try? fetchContext(base: base, predicate: predicate){
+            switch base {
+            case .boxs:
+                return fetchResults as? [EntityBoxs]
+            case .rooms:
+                return fetchResults as? [EntityRooms]
+            case .things:
+                return fetchResults as? [EntityThings]
+            }
+            
         }
         else{
             return nil
         }
     }
+    
+///конверитруем oбъект из coreBase в itemCollection
+//    func objectToItemCollection(objects: [NSManagedObject]) -> [ItemCollection] {
+//        var items = [ItemCollection]()
+//    
+//        for object in objects {
+//            let objectEntity = object as! EntityThings
+//            
+//            items.append(ItemCollection(name: objectEntity.name!, image: UIImage(data: objectEntity.image!)!))
+//        }
+//        return items
+//    }
+
+    
   
 }
 

@@ -68,6 +68,33 @@ class StoreRoomTests: XCTestCase {
         XCTAssertNil(toy.thingToRoom)
     }
     
+    ///прверка поиска объектов по имени
+    func testFindThingByName(){
+        testSaveThingInBox() // записываем toy
+        guard let room = try! testBase.fetchContext(base: .rooms, predicate: nil).first else {fatalError()} //записываем босоножки
+        XCTAssertNoThrow(testBase.saveObject(objectForSave: testThingShoes!, base: .things, boxOrRoom: room))
+        
+        //поиск существующих объектов
+        var objectShoes = testBase.findObjectByName(name: "босоножки", base: .things)
+        XCTAssertFalse(objectShoes!.isEmpty)
+        var objectToy = testBase.findObjectByName(name: "toy1", base: .things)
+        XCTAssertFalse(objectToy!.isEmpty)
+        var objectRoom = testBase.findObjectByName(name: "Кладовка1", base: .rooms)
+        XCTAssertFalse(objectRoom!.isEmpty)
+        var objectBox = testBase.findObjectByName(name: "Контейнер с игрушками", base: .boxs)
+        XCTAssertFalse(objectBox!.isEmpty)
+        
+        //поиск ложных объектов
+        objectShoes = testBase.findObjectByName(name: "бооножки", base: .things)
+        XCTAssertTrue(objectShoes!.isEmpty)
+        objectToy = testBase.findObjectByName(name: "to1", base: .things)
+        XCTAssertTrue(objectToy!.isEmpty)
+        objectRoom = testBase.findObjectByName(name: "Клаовка1", base: .rooms)
+        XCTAssertTrue(objectRoom!.isEmpty)
+        objectBox = testBase.findObjectByName(name: "Контейнер с  игрушками", base: .boxs)
+        XCTAssertTrue(objectBox!.isEmpty)
+    }
+    
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.

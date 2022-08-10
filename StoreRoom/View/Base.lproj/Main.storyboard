@@ -8,23 +8,50 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--места хранения-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="StoreRoom" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dO5-YR-2BL">
+                                <rect key="frame" x="16" y="104" width="382" height="742"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CWm-OX-NVo">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="BS0-TG-mhO"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="ldG-3n-2qa"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dO5-YR-2BL" secondAttribute="bottom" constant="16" id="16Q-Ia-F34"/>
+                            <constraint firstItem="dO5-YR-2BL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="DwN-63-QjI"/>
+                            <constraint firstItem="dO5-YR-2BL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="eJv-Zb-FWV"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dO5-YR-2BL" secondAttribute="trailing" constant="16" id="xvi-yI-wGB"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="p6P-5o-DBK">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="gearshape" catalog="system" style="done" id="uZV-jm-vFK">
+                    <navigationItem key="navigationItem" title="места хранения" id="p6P-5o-DBK">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="gearshape" catalog="system" style="done" id="uZV-jm-vFK">
                             <connections>
                                 <segue destination="8UV-m7-Nb8" kind="show" id="lGW-Rb-cd2"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="cyR-Ct-F25"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="collectionViewStoreRoom" destination="dO5-YR-2BL" id="1dh-Rf-53e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
