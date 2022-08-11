@@ -6,11 +6,13 @@
 //
 
 import XCTest
+import CoreData
 @testable import StoreRoom
 
 class StoreRoomTests: XCTestCase {
     let testBase = TestData()
     var testThingToy: Object?
+    var testThingHelmet: Object?
     var testThingShoes: Object?
     var testRoom: Object?
     var testBox: Object?
@@ -20,6 +22,7 @@ class StoreRoomTests: XCTestCase {
         testBase.clearBase()
         testThingToy = testBase.testThings[9] //name: "toy1", image: "toy1.jpg"
         testThingShoes = testBase.testThings[0] //name: "Босоножки", image: #imageLiteral(resourceName: "shoes2.jpg")
+        testThingHelmet = testBase.testThings[4] //name: "Каска", image: #imageLiteral(resourceName: "каска.jpg")
         testRoom = testBase.testRooms[0] //name: "Кладовка1", image: #imageLiteral(resourceName: "1.jpg")
         testBox = testBase.testBoxs[3] //name: "Контейнер с игрушкам", image: #imageLiteral(resourceName: "box4.jpg")
     }
@@ -32,7 +35,7 @@ class StoreRoomTests: XCTestCase {
     func testSaveRoom(){
         XCTAssertNoThrow(try testBase.saveObject(objectForSave: testRoom!, base: .rooms))
         guard let room = try! testBase.fetchContext(base: .rooms, predicate: nil).first as? EntityRooms else {fatalError()}
-        XCTAssertEqual(room.name, "Кладовка1")
+        XCTAssertEqual(room.name, testRoom?.name)
     }
     
     //Запись коробки с привязкой к кладовке
@@ -41,8 +44,8 @@ class StoreRoomTests: XCTestCase {
         guard let room = try! testBase.fetchContext(base: .rooms, predicate: nil).first else {fatalError()}
         XCTAssertNoThrow(testBase.saveObject(objectForSave: testBox!, base: .boxs, boxOrRoom: room))
         guard let box = try! testBase.fetchContext(base: .boxs, predicate: nil).first as? EntityBoxs else {fatalError()}
-        XCTAssertTrue(box.name == String("Контейнер с игрушками"))
-        XCTAssertEqual(box.boxToRoom?.name, "Кладовка1")
+        XCTAssertTrue(box.name == testBox?.name)
+        XCTAssertEqual(box.boxToRoom?.name, testRoom?.name)
     }
     
     //Запись вещи с привязкой к кладовке
@@ -52,7 +55,7 @@ class StoreRoomTests: XCTestCase {
         guard let room = try! testBase.fetchContext(base: .rooms, predicate: nil).first else {fatalError()}
         XCTAssertNoThrow(testBase.saveObject(objectForSave: testThingShoes!, base: .things, boxOrRoom: room))
         guard let shoes = try! testBase.fetchContext(base: .things, predicate: nil).first as? EntityThings else {fatalError()}
-        XCTAssertEqual(shoes.thingToRoom?.name, "Кладовка1")
+        XCTAssertEqual(shoes.thingToRoom?.name, testRoom?.name)
         XCTAssertNil(shoes.thingToBox)
     }
     
@@ -63,8 +66,8 @@ class StoreRoomTests: XCTestCase {
         guard let box = try! testBase.fetchContext(base: .boxs, predicate: nil).first else {fatalError()}
         XCTAssertNoThrow(testBase.saveObject(objectForSave: testThingToy!, base: .things, boxOrRoom: box))
         guard let toy = try! testBase.fetchContext(base: .things, predicate: nil).first as? EntityThings else {fatalError()}
-        XCTAssertTrue(toy.thingToBox?.name == String("Контейнер с игрушками"))
-        XCTAssertEqual(toy.thingToBox?.boxToRoom?.name, "Кладовка1")
+        XCTAssertTrue(toy.thingToBox?.name == testBox?.name)
+        XCTAssertEqual(toy.thingToBox?.boxToRoom?.name, testRoom?.name)
         XCTAssertNil(toy.thingToRoom)
     }
     
@@ -75,24 +78,41 @@ class StoreRoomTests: XCTestCase {
         XCTAssertNoThrow(testBase.saveObject(objectForSave: testThingShoes!, base: .things, boxOrRoom: room))
         
         //поиск существующих объектов
-        var objectShoes = testBase.findObjectByName(name: "босоножки", base: .things)
+        var objectShoes = testBase.findObjectByNameOrID(name: testThingShoes?.name, base: .things)
         XCTAssertFalse(objectShoes!.isEmpty)
-        var objectToy = testBase.findObjectByName(name: "toy1", base: .things)
+        var objectToy = testBase.findObjectByNameOrID(name: testThingToy?.name, base: .things)
         XCTAssertFalse(objectToy!.isEmpty)
-        var objectRoom = testBase.findObjectByName(name: "Кладовка1", base: .rooms)
+        var objectRoom = testBase.findObjectByNameOrID(name: testRoom?.name, base: .rooms)
         XCTAssertFalse(objectRoom!.isEmpty)
-        var objectBox = testBase.findObjectByName(name: "Контейнер с игрушками", base: .boxs)
+        var objectBox = testBase.findObjectByNameOrID(name: testBox?.name, base: .boxs)
         XCTAssertFalse(objectBox!.isEmpty)
         
         //поиск ложных объектов
-        objectShoes = testBase.findObjectByName(name: "бооножки", base: .things)
+        objectShoes = testBase.findObjectByNameOrID(name: "бооножки", base: .things)
         XCTAssertTrue(objectShoes!.isEmpty)
-        objectToy = testBase.findObjectByName(name: "to1", base: .things)
+        objectToy = testBase.findObjectByNameOrID(name: "to1", base: .things)
         XCTAssertTrue(objectToy!.isEmpty)
-        objectRoom = testBase.findObjectByName(name: "Клаовка1", base: .rooms)
+        objectRoom = testBase.findObjectByNameOrID(name: "Клаовка1", base: .rooms)
         XCTAssertTrue(objectRoom!.isEmpty)
-        objectBox = testBase.findObjectByName(name: "Контейнер с  игрушками", base: .boxs)
+        objectBox = testBase.findObjectByNameOrID(name: "Контейнер с  игрушками", base: .boxs)
         XCTAssertTrue(objectBox!.isEmpty)
+    }
+    
+    // извлекаем содержимое комнаты
+    func testFetchContent(){
+        testSaveThingInBox() // создаем room создаем box с привязкой к room и записываем toy в box
+        guard let room = try! testBase.fetchContext(base: .rooms, predicate: nil).first else {fatalError()}
+        XCTAssertNoThrow(testBase.saveObject(objectForSave: testThingShoes!, base: .things, boxOrRoom: room)) //записываем босоножки в room
+        XCTAssertNoThrow(testBase.saveObject(objectForSave: testThingHelmet!, base: .things, boxOrRoom: room)) //записываем шлем в room
+        
+        let roomId = room.value(forKey: "id") as! UUID
+        guard let objectRooms = testBase.findObjectByNameOrID(name: nil, id: roomId, base: .rooms)?[0] as? EntityRooms else {
+                                                                                    XCTAssertTrue(false)
+                                                                                    return}
+        guard let contentRoom = objectRooms.roomToThing?.map({$0 as! EntityThings}) else {
+                                                                                    XCTAssertTrue(false)
+                                                                                    return}
+        XCTAssertTrue (contentRoom.first?.value(forKey: "name") as? String == testThingShoes?.name)
     }
     
     func testExample() throws {

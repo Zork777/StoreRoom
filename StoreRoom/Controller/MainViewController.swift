@@ -16,6 +16,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     private var rooms: [ItemCollection]?
     let base = BaseCoreData()
     var sizeCell: CGSize?
+    var selectRoom: Int = 0
     
     private let itemsPerRow: CGFloat = 1
     private let sectionInsets = UIEdgeInsets(
@@ -50,7 +51,8 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print ("select")
+        selectRoom = indexPath.row
+        performSegue(withIdentifier: "gotoContentView", sender: nil)
     }
     
     
@@ -77,5 +79,17 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let widthPerItem = availableWidth / itemsPerRow
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //MARK: переход содержимое коробки/кладовки
+        if let destination = segue.destination as? ViewControllerContent {
+            if let roomName = rooms?[selectRoom].name {
+                destination.title = roomName
+                
+                }
+            }
+    }
 }
+
+
 

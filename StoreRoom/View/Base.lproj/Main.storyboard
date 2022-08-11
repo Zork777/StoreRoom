@@ -51,11 +51,28 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionViewStoreRoom" destination="dO5-YR-2BL" id="1dh-Rf-53e"/>
+                        <segue destination="wJr-pi-20S" kind="show" identifier="gotoContentView" id="phE-In-Hpk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="67.633928571428569"/>
+        </scene>
+        <!--View Controller Content-->
+        <scene sceneID="T8o-LT-f90">
+            <objects>
+                <viewController id="wJr-pi-20S" customClass="ViewControllerContent" customModule="StoreRoom" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="g5S-Yx-Dzq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="jlP-7k-g9d"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="3ID-aD-yzt"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rgQ-gt-LgN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2057" y="802"/>
         </scene>
         <!--Настройки-->
         <scene sceneID="UuH-Eh-vax">

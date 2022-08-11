@@ -12,9 +12,11 @@ import UIKit
 struct ItemCollection {
     var name: String
     var image: UIImage
+    var id: UUID
 }
 
 struct Object {
+    var id: UUID = UUID()
     var name: String
     var image: UIImage
     var imageData: Data?{

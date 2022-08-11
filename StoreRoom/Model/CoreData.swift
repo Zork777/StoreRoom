@@ -19,6 +19,7 @@ class BaseCoreData {
         case boxs = "EntityBoxs"
         case rooms = "EntityRooms"
         case things = "EntityThings"
+        case main = "EntityMain"
     }
     
     
@@ -50,12 +51,14 @@ class BaseCoreData {
           }
       }
 
-///Сохранение объекта в core
+    
+///Сохранение объекта в base core data
     func saveObject(objectForSave: Object, base: Bases) throws {
         let object = NSEntityDescription.insertNewObject(forEntityName: base.rawValue, into: context)
         object.setValue(objectForSave.name, forKey: "name")
         object.setValue(objectForSave.imageData, forKey: "image")
         object.setValue(objectForSave.imageDataSmall, forKey: "imageSmall")
+        object.setValue(UUID(), forKey: "id")
         do {
             try self.saveContext()
         }
@@ -75,7 +78,9 @@ class BaseCoreData {
                     object.image = objectForSave.imageData
                     object.imageSmall = objectForSave.imageDataSmall
                     object.boxToRoom = boxOrRoom as? EntityRooms
-                case .rooms:
+                    object.id = UUID()
+                    
+                case .rooms, .main:
                     return
                 case .things:
                     let object = NSEntityDescription.insertNewObject(forEntityName: base.rawValue,
@@ -83,6 +88,7 @@ class BaseCoreData {
                     object.name = objectForSave.name
                     object.image = objectForSave.imageData
                     object.imageSmall = objectForSave.imageDataSmall
+                    object.id = UUID()
                     if boxOrRoom.entity.name == Bases.boxs.rawValue {
                         object.thingToBox = boxOrRoom as? EntityBoxs
                     }
@@ -154,18 +160,23 @@ class BaseCoreData {
         }
     }
     
-///find object by name
-    func findObjectByName(name: String, base: Bases) -> [Any]?{
-        let predicate =  NSPredicate(format: "name like %@", name)
+///find object by name or ID
+    func findObjectByNameOrID(name: String?, id: UUID = UUID(), base: Bases) -> [NSManagedObject]?{
+        var predicate: NSPredicate?
+        if name != nil {predicate = NSPredicate(format: "name like %@", name!)}
+            else{predicate = NSPredicate(format: "id == %@", id as CVarArg)}
         if let fetchResults = try? fetchContext(base: base, predicate: predicate){
-            switch base {
-            case .boxs:
-                return fetchResults as? [EntityBoxs]
-            case .rooms:
-                return fetchResults as? [EntityRooms]
-            case .things:
-                return fetchResults as? [EntityThings]
-            }
+            return fetchResults
+//            switch base {
+//            case .boxs:
+//                return fetchResults as? [EntityBoxs]
+//            case .rooms:
+//                return fetchResults as? [EntityRooms]
+//            case .things:
+//                return fetchResults as? [EntityThings]
+//            case .main:
+//                return fetchResults as? [EntityMain]
+//            }
             
         }
         else{
@@ -173,22 +184,41 @@ class BaseCoreData {
         }
     }
     
-///конверитруем oбъект из coreBase в itemCollection
-//    func objectToItemCollection(objects: [NSManagedObject]) -> [ItemCollection] {
-//        var items = [ItemCollection]()
-//    
-//        for object in objects {
-//            let objectEntity = object as! EntityThings
-//            
-//            items.append(ItemCollection(name: objectEntity.name!, image: UIImage(data: objectEntity.image!)!))
-//        }
-//        return items
-//    }
-
-    
+///содержимое коробки или кладовки
+    func contentBox(base: Bases, id: UUID) -> [NSManagedObject]?{
+        var key:String = ""
+        if let objectBox = findObjectByNameOrID(name: nil, id: id, base: base), objectBox.count == 1 {
+            switch base {
+            case .boxs:
+                key = "boxToThing"
+            case .rooms:
+                key = "roomToThing"
+            case .things, .main:
+                break
+            }
+            let result = objectBox[0].value(forKey: key) as! [NSManagedObject]
+            return result
+        }
+        return nil
+    }
   
 }
 
 
+extension EntityRooms {
+    func convertToItemCollection() -> ItemCollection{
+        return ItemCollection(name: self.name, image: UIImage(data: self.image!)!, id: self.id)
+    }
+}
 
+extension EntityBoxs {
+    func convertToItemCollection() -> ItemCollection{
+        return ItemCollection(name: self.name, image: UIImage(data: self.image!)!, id: self.id)
+    }
+}
 
+extension EntityThings {
+    func convertToItemCollection() -> ItemCollection{
+        return ItemCollection(name: self.name, image: UIImage(data: self.image!)!, id: self.id)
+    }
+}
