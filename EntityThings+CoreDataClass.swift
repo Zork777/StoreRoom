@@ -10,6 +10,10 @@ import Foundation
 import CoreData
 
 @objc(EntityThings)
-public class EntityThings: NSManagedObject {
+public class EntityThings: NSManagedObject, Comparable {
+    public static func < (lhs: EntityThings, rhs: EntityThings) -> Bool {
+        return lhs.name > rhs.name
+    }
+    
 
 }

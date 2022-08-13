@@ -17,7 +17,10 @@ class CollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
         labelName.font = .preferredFont(forTextStyle: .headline)
-        image.contentMode = .scaleToFill
+        labelName.baselineAdjustment = .alignCenters
+        labelName.textAlignment = .center
+        labelName.adjustsFontSizeToFitWidth = true
+        image.contentMode = .scaleAspectFit
         image.layer.cornerRadius = cornerRadius
         
         contentView.layer.cornerRadius = cornerRadius

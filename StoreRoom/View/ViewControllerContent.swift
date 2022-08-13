@@ -8,25 +8,22 @@
 import UIKit
 
 class ViewControllerContent: UIViewController {
-
-//    var titleName: String?
+    
+    var idBoxOrRoom: UUID? = nil
+    private var things: [ItemCollection]?
+    private let base = BaseCoreData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        title = titleName ?? ""
-
-        // Do any additional setup after loading the view.
+        
+        if idBoxOrRoom != nil {
+                showMessage(message: ValidationError.notFoundIdRoom.localizedDescription)
+                fatalError()}
+        things = base.contentBoxRoom(idBoxOrRoom: idBoxOrRoom!)?.map({ EntityThings in
+                                                                EntityThings.convertToItemCollection()})
+        
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

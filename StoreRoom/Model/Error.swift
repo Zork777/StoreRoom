@@ -11,6 +11,7 @@ enum ValidationError: LocalizedError {
     case failedSavingInCoreData
     case failedDeleteInCoreData
     case failedMarkOrderForDelete
+    case notFoundIdRoom
     
     var errorDescription: String? {
         switch self {
@@ -20,6 +21,8 @@ enum ValidationError: LocalizedError {
             return "failed delete in Core Data"
         case .failedMarkOrderForDelete:
             return "failed mark delete order"
+        case .notFoundIdRoom:
+            return "id room or box is null"
         }
     }
 }

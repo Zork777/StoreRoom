@@ -15,15 +15,8 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     private let idCell = "ItemCell"
     private var rooms: [ItemCollection]?
     let base = BaseCoreData()
-    var sizeCell: CGSize?
+    var calculateSizeCell: CalculateSizeCell?
     var selectRoom: Int = 0
-    
-    private let itemsPerRow: CGFloat = 1
-    private let sectionInsets = UIEdgeInsets(
-                                              top: 16.0,
-                                              left: 16.0,
-                                              bottom: 16.0,
-                                              right: 16.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +25,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.collectionViewStoreRoom.register(UINib(nibName: "CollectionViewCell", bundle: nil ), forCellWithReuseIdentifier: idCell)
         
         //MARK: рассчет размера ячейки
-        sizeCell = calculateSizeCell()
+        calculateSizeCell = CalculateSizeCell(itemsPerRow: 1, widthView: collectionViewStoreRoom.bounds.width)
         
         rooms = try! base.fetchContext(base: .rooms, predicate: nil).map{$0 as! EntityRooms}.map{$0.convertToItemCollection()}
     }
@@ -46,7 +39,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let cell = collectionViewStoreRoom.dequeueReusableCell(withReuseIdentifier: idCell, for: indexPath) as! CollectionViewCell
         guard let room = rooms?[indexPath.row] else {return cell}
         cell.labelName.text = room.name
-        cell.image.image = room.image.preparingThumbnail(of: sizeCell ?? calculateSizeCell())
+        cell.image.image = room.image.preparingThumbnail(of: calculateSizeCell!.sizeCell ?? calculateSizeCell!.calculateSizeCell())
         return cell
     }
     
@@ -57,7 +50,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-      return sizeCell ?? calculateSizeCell()
+        return calculateSizeCell!.sizeCell ?? calculateSizeCell!.calculateSizeCell()
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -65,27 +58,19 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-      return sectionInsets
+        return calculateSizeCell!.sectionInsets
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
       return 16
     }
     
-///MARK: рассчет размера ячейки
-    func calculateSizeCell() -> CGSize{
-        let paddingSpace = sectionInsets.left * (itemsPerRow) + sectionInsets.right
-        let availableWidth = collectionViewStoreRoom.bounds.width - paddingSpace
-        let widthPerItem = availableWidth / itemsPerRow
-        return CGSize(width: widthPerItem, height: widthPerItem)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //MARK: переход содержимое коробки/кладовки
-        if let destination = segue.destination as? ViewControllerContent {
-            if let roomName = rooms?[selectRoom].name {
-                destination.title = roomName
-                
+        if let destination = segue.destination as? CollectionViewControllerContent { //ViewControllerContent
+            if let id = rooms?[selectRoom].id {
+                destination.idBoxOrRoom = id
+                destination.title = rooms?[selectRoom].name
                 }
             }
     }

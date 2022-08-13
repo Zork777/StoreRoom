@@ -167,37 +167,30 @@ class BaseCoreData {
             else{predicate = NSPredicate(format: "id == %@", id as CVarArg)}
         if let fetchResults = try? fetchContext(base: base, predicate: predicate){
             return fetchResults
-//            switch base {
-//            case .boxs:
-//                return fetchResults as? [EntityBoxs]
-//            case .rooms:
-//                return fetchResults as? [EntityRooms]
-//            case .things:
-//                return fetchResults as? [EntityThings]
-//            case .main:
-//                return fetchResults as? [EntityMain]
-//            }
-            
         }
         else{
             return nil
         }
     }
+
+///извлекаем все коробки в кладовке
+    func boxInRoom(idRoom: UUID) -> [EntityBoxs]?{
+        guard let objectRoom = findObjectByNameOrID(name: nil, id: idRoom, base: .rooms)?.first as? EntityRooms else {return nil}
+        guard let content = objectRoom.roomToBox?.map({$0 as! EntityBoxs}) else {return nil}
+        return content
+    }
     
 ///содержимое коробки или кладовки
-    func contentBox(base: Bases, id: UUID) -> [NSManagedObject]?{
-        var key:String = ""
-        if let objectBox = findObjectByNameOrID(name: nil, id: id, base: base), objectBox.count == 1 {
-            switch base {
-            case .boxs:
-                key = "boxToThing"
-            case .rooms:
-                key = "roomToThing"
-            case .things, .main:
-                break
-            }
-            let result = objectBox[0].value(forKey: key) as! [NSManagedObject]
-            return result
+    func contentBoxRoom(idBoxOrRoom: UUID) -> [EntityThings]?{
+        let objectRoom = findObjectByNameOrID(name: nil, id: idBoxOrRoom, base: .rooms)?.first as? EntityRooms
+        let objectBox = findObjectByNameOrID(name: nil, id: idBoxOrRoom, base: .boxs)?.first as? EntityBoxs
+        if objectRoom != nil {
+            guard let content = objectRoom!.roomToThing?.map({$0 as! EntityThings}) else {return nil}
+            return content
+        }
+        if objectBox != nil {
+            guard let content = objectBox!.boxToThing?.map({$0 as! EntityThings}) else {return nil}
+            return content
         }
         return nil
     }
