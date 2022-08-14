@@ -93,11 +93,17 @@ class CollectionViewControllerContent: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectThing = indexPath.row
         switch indexPath.section{
         case 0:
             print ("show box")
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let destination = storyBoard.instantiateViewController(withIdentifier: "CollectionViewControllerContent") as! CollectionViewControllerContent
+            let id = boxs[selectThing].id
+            destination.idBoxOrRoom = id
+            destination.title = boxs[selectThing].name
+            present(destination, animated: true)
         case 1:
-            selectThing = indexPath.row
             performSegue(withIdentifier: "gotoShowThing", sender: nil)
         default:
             break
@@ -141,5 +147,11 @@ class CollectionViewControllerContent: UICollectionViewController {
             destination.label = things[selectThing].name
             destination.image = things[selectThing].image
             }
+        if let destination = segue.destination as? CollectionViewControllerContent {
+            let id = boxs[selectThing].id
+            destination.idBoxOrRoom = id
+            destination.title = boxs[selectThing].name
+        }
     }
 }
+

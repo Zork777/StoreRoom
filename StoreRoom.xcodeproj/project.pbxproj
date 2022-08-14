@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9901717628A405C900862B29 /* ImageResize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9901717528A405C900862B29 /* ImageResize.swift */; };
-		9901717828A41A0100862B29 /* ViewControllerContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9901717728A41A0100862B29 /* ViewControllerContent.swift */; };
 		990171B128A55D2600862B29 /* EntityBoxs+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990171A928A55D2600862B29 /* EntityBoxs+CoreDataClass.swift */; };
 		990171B228A55D2600862B29 /* EntityBoxs+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990171AA28A55D2600862B29 /* EntityBoxs+CoreDataProperties.swift */; };
 		990171B328A55D2600862B29 /* EntityRooms+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990171AB28A55D2600862B29 /* EntityRooms+CoreDataClass.swift */; };
@@ -59,7 +58,6 @@
 
 /* Begin PBXFileReference section */
 		9901717528A405C900862B29 /* ImageResize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageResize.swift; path = StoreRoom/Controller/ImageResize.swift; sourceTree = SOURCE_ROOT; };
-		9901717728A41A0100862B29 /* ViewControllerContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerContent.swift; path = StoreRoom/View/ViewControllerContent.swift; sourceTree = SOURCE_ROOT; };
 		990171A928A55D2600862B29 /* EntityBoxs+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityBoxs+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		990171AA28A55D2600862B29 /* EntityBoxs+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityBoxs+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		990171AB28A55D2600862B29 /* EntityRooms+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityRooms+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
@@ -217,7 +215,6 @@
 			children = (
 				99A200EE28A8472E007859F2 /* ViewControllerShowThing.swift */,
 				99A200EA28A8076F007859F2 /* CollectionViewControllerContent.swift */,
-				9901717728A41A0100862B29 /* ViewControllerContent.swift */,
 				996CD82628A30801000D933D /* CollectionViewCell.swift */,
 				998113BF289B102200E5C5CE /* SettingViewController.swift */,
 				9996135E289B008200B721D4 /* MainViewController.swift */,
@@ -372,7 +369,6 @@
 				998113C8289C3A0C00E5C5CE /* Variable.swift in Sources */,
 				990171B228A55D2600862B29 /* EntityBoxs+CoreDataProperties.swift in Sources */,
 				9996135F289B008200B721D4 /* MainViewController.swift in Sources */,
-				9901717828A41A0100862B29 /* ViewControllerContent.swift in Sources */,
 				9996135B289B008200B721D4 /* AppDelegate.swift in Sources */,
 				990171B328A55D2600862B29 /* EntityRooms+CoreDataClass.swift in Sources */,
 				99A200EF28A8472E007859F2 /* ViewControllerShowThing.swift in Sources */,
