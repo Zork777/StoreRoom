@@ -9,7 +9,7 @@ import UIKit
 
 private let reuseIdentifier = "ItemCell"
 
-class CollectionViewControllerContent: UICollectionViewController {
+class CollectionViewControllerContent: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet var collectionViewThings: UICollectionView!
     var idBoxOrRoom: UUID? = nil
@@ -32,30 +32,21 @@ class CollectionViewControllerContent: UICollectionViewController {
             things = entityThings.map({ EntityThings in EntityThings.convertToItemCollection()})
         }
 
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
         self.collectionView!.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
         calculateSizeCell = CalculateSizeCell(itemsPerRow: 2, widthView: collectionViewThings.bounds.width)
-        // Do any additional setup after loading the view.
+        
+        view.backgroundColor = .white
+        collectionViewThings.translatesAutoresizingMaskIntoConstraints = false
+        collectionViewThings.sizeToFit()
+        collectionViewThings.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        collectionViewThings.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        collectionViewThings.topAnchor.constraint(equalTo: view.topAnchor , constant: 16).isActive = true
+        collectionViewThings.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16).isActive = true
+
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
-
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 2
     }
 
@@ -70,6 +61,7 @@ class CollectionViewControllerContent: UICollectionViewController {
             return 0
         }
     }
+    
     
     
 //    override func indexTitles(for collectionView: UICollectionView) -> [String]? {
@@ -95,21 +87,32 @@ class CollectionViewControllerContent: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectThing = indexPath.row
         switch indexPath.section{
+            
+            //выбор коробки
         case 0:
-            print ("show box")
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let destination = storyBoard.instantiateViewController(withIdentifier: "CollectionViewControllerContent") as! CollectionViewControllerContent
             let id = boxs[selectThing].id
             destination.idBoxOrRoom = id
             destination.title = boxs[selectThing].name
-            present(destination, animated: true)
+            show (destination, sender: true)
+            
+            // выбор вещи
         case 1:
             performSegue(withIdentifier: "gotoShowThing", sender: nil)
         default:
             break
         }
     }
-
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.init(top: CGFloat(8), left: .zero, bottom: .zero, right: .zero)
+    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return CGFloat(1)
+//    }
+    
     // MARK: UICollectionViewDelegate
 
     /*
@@ -147,11 +150,11 @@ class CollectionViewControllerContent: UICollectionViewController {
             destination.label = things[selectThing].name
             destination.image = things[selectThing].image
             }
-        if let destination = segue.destination as? CollectionViewControllerContent {
-            let id = boxs[selectThing].id
-            destination.idBoxOrRoom = id
-            destination.title = boxs[selectThing].name
-        }
+//        if let destination = segue.destination as? CollectionViewControllerContent {
+//            let id = boxs[selectThing].id
+//            destination.idBoxOrRoom = id
+//            destination.title = boxs[selectThing].name
+//        }
     }
 }
 
