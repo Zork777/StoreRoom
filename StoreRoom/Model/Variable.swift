@@ -15,6 +15,7 @@ struct ItemCollection {
     var id: UUID
 }
 
+//данные объекта для сохранения в кладовке или коробке или сама коробка
 struct Object {
     var id: UUID = UUID()
     var name: String

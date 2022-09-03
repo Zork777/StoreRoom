@@ -34,6 +34,7 @@
 		99961375289B008600B721D4 /* StoreRoomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99961374289B008600B721D4 /* StoreRoomTests.swift */; };
 		9996137F289B008600B721D4 /* StoreRoomUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9996137E289B008600B721D4 /* StoreRoomUITests.swift */; };
 		99961381289B008600B721D4 /* StoreRoomUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99961380289B008600B721D4 /* StoreRoomUITestsLaunchTests.swift */; };
+		999ACD3828C28B3A00CFF235 /* GetPhotoCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999ACD3728C28B3A00CFF235 /* GetPhotoCamera.swift */; };
 		99A200EB28A8076F007859F2 /* CollectionViewControllerContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A200EA28A8076F007859F2 /* CollectionViewControllerContent.swift */; };
 		99A200ED28A812F8007859F2 /* CalculateSizeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A200EC28A812F8007859F2 /* CalculateSizeCell.swift */; };
 		99A200EF28A8472E007859F2 /* ViewControllerShowThing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A200EE28A8472E007859F2 /* ViewControllerShowThing.swift */; };
@@ -88,6 +89,7 @@
 		9996137A289B008600B721D4 /* StoreRoomUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoreRoomUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9996137E289B008600B721D4 /* StoreRoomUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRoomUITests.swift; sourceTree = "<group>"; };
 		99961380289B008600B721D4 /* StoreRoomUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRoomUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		999ACD3728C28B3A00CFF235 /* GetPhotoCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPhotoCamera.swift; sourceTree = "<group>"; };
 		99A200EA28A8076F007859F2 /* CollectionViewControllerContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollectionViewControllerContent.swift; path = StoreRoom/View/CollectionViewControllerContent.swift; sourceTree = SOURCE_ROOT; };
 		99A200EC28A812F8007859F2 /* CalculateSizeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateSizeCell.swift; sourceTree = "<group>"; };
 		99A200EE28A8472E007859F2 /* ViewControllerShowThing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerShowThing.swift; path = StoreRoom/View/ViewControllerShowThing.swift; sourceTree = SOURCE_ROOT; };
@@ -215,6 +217,7 @@
 			children = (
 				99A200EE28A8472E007859F2 /* ViewControllerShowThing.swift */,
 				99A200EA28A8076F007859F2 /* CollectionViewControllerContent.swift */,
+				999ACD3728C28B3A00CFF235 /* GetPhotoCamera.swift */,
 				996CD82628A30801000D933D /* CollectionViewCell.swift */,
 				998113BF289B102200E5C5CE /* SettingViewController.swift */,
 				9996135E289B008200B721D4 /* MainViewController.swift */,
@@ -356,6 +359,7 @@
 			files = (
 				99961365289B008200B721D4 /* StoreRoom.xcdatamodeld in Sources */,
 				996CD82828A30801000D933D /* CollectionViewCell.swift in Sources */,
+				999ACD3828C28B3A00CFF235 /* GetPhotoCamera.swift in Sources */,
 				99A200ED28A812F8007859F2 /* CalculateSizeCell.swift in Sources */,
 				99A200EB28A8076F007859F2 /* CollectionViewControllerContent.swift in Sources */,
 				990171B728A55D2600862B29 /* EntityThings+CoreDataClass.swift in Sources */,

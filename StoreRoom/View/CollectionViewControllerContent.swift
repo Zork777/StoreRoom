@@ -19,6 +19,41 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     private let base = BaseCoreData()
     private var calculateSizeCell: CalculateSizeCell?
     
+    var image: UIImage? {
+        willSet{
+            guard let newImage = newValue else {
+                showMessage(message: "New image is null")
+                return}
+            var nameThing = "_"
+            let dialog = UIViewController()
+            let textField = UITextField(frame: dialog.view.bounds)
+            dialog.view.addSubview(textField)
+            dialog.view.backgroundColor = .blue
+            textField.backgroundColor = .red
+            textField.translatesAutoresizingMaskIntoConstraints = false
+            textField.centerXAnchor.constraint(equalTo: dialog.view.centerXAnchor).isActive = true
+            textField.centerYAnchor.constraint(equalTo: dialog.view.centerYAnchor).isActive = true
+            present(dialog, animated: true)
+            
+            nameThing = textField.text ?? "????"
+            
+            let thingObject = Object(name: nameThing, image: newImage)
+            if idBoxOrRoom == nil {
+                showMessage(message: "ID box or room is nil")
+                return
+            }
+            guard let baseObject = base.findBoxOrRoomByID(id: idBoxOrRoom!) else {
+                showMessage(message: "ID box not found in base")
+                return
+            }
+            base.saveObject(objectForSave: thingObject, base: .things, boxOrRoom: baseObject)
+        }
+    }
+    
+    @IBAction func buttonAddThing(_ sender: Any) {
+        getPhotoCamera()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -108,6 +143,7 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets.init(top: CGFloat(8), left: .zero, bottom: .zero, right: .zero)
     }
+    
 //
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
 //        return CGFloat(1)
@@ -157,4 +193,5 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
 //        }
     }
 }
+
 

@@ -93,7 +93,13 @@
                             <outlet property="delegate" destination="CNr-By-afa" id="jpH-Q8-IYZ"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="jmk-PZ-9Ps"/>
+                    <navigationItem key="navigationItem" id="jmk-PZ-9Ps">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="rZm-eq-Z77">
+                            <connections>
+                                <action selector="buttonAddThing:" destination="CNr-By-afa" id="EQc-m1-zMb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionViewThings" destination="fgA-nW-gyT" id="h3r-mb-H3b"/>
                         <segue destination="1T3-Tx-cLJ" kind="showDetail" identifier="gotoShowThing" id="U7E-nK-Dnl"/>

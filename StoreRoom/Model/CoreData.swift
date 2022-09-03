@@ -159,6 +159,17 @@ class BaseCoreData {
             throw ValidationError.failedDeleteInCoreData
         }
     }
+
+///find object Box or Room in base
+    func findBoxOrRoomByID(id: UUID) -> NSManagedObject?{
+        guard let objectBoxOrRoom = findObjectByNameOrID(name: nil, id: id, base: .boxs)?.first else {
+            guard let objectBoxOrRoom = findObjectByNameOrID(name: nil, id: id, base: .rooms)?.first else {
+                return nil
+            }
+            return objectBoxOrRoom
+        }
+        return objectBoxOrRoom
+    }
     
 ///find object by name or ID
     func findObjectByNameOrID(name: String?, id: UUID = UUID(), base: Bases) -> [NSManagedObject]?{
