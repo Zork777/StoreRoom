@@ -26,24 +26,7 @@ class CollectionViewCell: UICollectionViewCell {
         
         contentView.layer.cornerRadius = cornerRadius
 //        contentView.layer.masksToBounds = true
-        contentView.layer.borderColor = UIColor.systemGray.cgColor
-        contentView.layer.borderWidth = CGFloat(1)
-
-//        layer.cornerRadius = cornerRadius
-//        layer.masksToBounds = false
-//
-//        layer.shadowRadius = cornerRadius
-//        layer.shadowOpacity = 0.1
-//        layer.shadowColor = UIColor.black.cgColor
-//        layer.shadowOffset = CGSize(width: 0, height: 0)
+//        contentView.layer.borderColor = UIColor.systemGray.cgColor
+//        contentView.layer.borderWidth = CGFloat(1)
     }
-//
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//
-//        layer.shadowPath = UIBezierPath(
-//            roundedRect: bounds,
-//            cornerRadius: cornerRadius
-//        ).cgPath
-//    }
 }
