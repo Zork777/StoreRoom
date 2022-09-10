@@ -21,7 +21,9 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     private var calculateSizeCell: CalculateSizeCell?
     
     @IBAction func buttonAddThing(_ sender: Any) {
-        getPhotoCamera()
+//        getPhotoCamera()
+//        testGetPhotoCamera()
+        testViewGetPhotoCamera()
     }
     
     override func viewDidLoad() {
