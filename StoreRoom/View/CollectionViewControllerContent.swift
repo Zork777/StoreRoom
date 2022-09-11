@@ -20,10 +20,27 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     private let base = BaseCoreData()
     private var calculateSizeCell: CalculateSizeCell?
     
+    var dialogGetNameThing: (()->()) = {return}
+    
+    var thingForSave = Object(name: nil, image: nil) {
+        didSet {
+            if thingForSave.name != nil && thingForSave.image != nil {
+                if saveThing() {
+                    thingForSave = Object(name: nil, image: nil)
+                }
+                else {
+                    showMessage(message: "Не получилось сохранить в базу новую вещь")
+                }
+            }
+        }
+    }
+    
     @IBAction func buttonAddThing(_ sender: Any) {
-//        getPhotoCamera()
-//        testGetPhotoCamera()
-        testViewGetPhotoCamera()
+        dialogGetNameThing = viewGetName
+        getPhotoInCamera()
+//        alertGetName()
+//        thingForSave.image = .checkmark
+//        viewGetName()
     }
     
     override func viewDidLoad() {
@@ -153,17 +170,33 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     }
     */
 
+///сохранение вещи
+    func saveThing() -> Bool {
+        let base = BaseCoreData()
+        guard let idBoxOrRoom = idBoxOrRoom else {
+            showMessage(message: "get name: ID box is nil")
+            return false
+        }
+        guard let baseObject = base.findBoxOrRoomByID(id: idBoxOrRoom) else {
+            showMessage(message: "get name: ID box not found in base")
+            return false
+        }
+        do {
+            try base.saveObject(objectForSave: thingForSave, base: .things, boxOrRoom: baseObject)
+        }
+        catch {
+            showMessage(message: "error save object")
+            return false
+        }
+        return true
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //MARK: переход содержимое коробки/кладовки
         if let destination = segue.destination as? ViewControllerShowThing {
             destination.label = things[selectThing].name
             destination.image = things[selectThing].image
             }
-//        if let destination = segue.destination as? CollectionViewControllerContent {
-//            let id = boxs[selectThing].id
-//            destination.idBoxOrRoom = id
-//            destination.title = boxs[selectThing].name
-//        }
     }
 }
 

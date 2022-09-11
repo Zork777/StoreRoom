@@ -66,7 +66,12 @@ class TestData: BaseCoreData {
             let roomsObject = try base.fetchContext(base: .rooms, predicate: nil)
             if !roomsObject.isEmpty{
                 for box in testBoxs{
-                    base.saveObject(objectForSave: box, base: .boxs, boxOrRoom: roomsObject.randomElement()!)
+                    do {
+                        try base.saveObject(objectForSave: box, base: .boxs, boxOrRoom: roomsObject.randomElement()!)
+                    }
+                    catch {
+                        showMessage(message: "Error save object")
+                    }
                 }
             }
             else{
@@ -85,8 +90,13 @@ class TestData: BaseCoreData {
             let boxObject = try base.fetchContext(base: .boxs, predicate: nil)
             if !roomsObject.isEmpty || !boxObject.isEmpty{
                 for thing in testThings{
-                    base.saveObject(objectForSave: thing, base: .things,
+                    do {
+                        try base.saveObject(objectForSave: thing, base: .things,
                                     boxOrRoom:  Bool.random() ? roomsObject.randomElement()! : boxObject.randomElement()!)
+                    }
+                    catch {
+                        showMessage(message: "Error save Object")
+                    }
                 }
             }
             else{

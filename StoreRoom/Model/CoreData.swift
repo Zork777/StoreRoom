@@ -69,12 +69,12 @@ class BaseCoreData {
     }
 
     ///Сохранение объекта в core со связкой с коробкой или кладовкой
-    func saveObject(objectForSave: Object, base: Bases, boxOrRoom: NSManagedObject) {
+    func saveObject(objectForSave: Object, base: Bases, boxOrRoom: NSManagedObject) throws {
                 switch base {
                 case .boxs:
                     let object = NSEntityDescription.insertNewObject(forEntityName: base.rawValue,
                                                                      into: context) as! EntityBoxs
-                    object.name = objectForSave.name
+                    object.name = objectForSave.name ?? "_"
                     object.image = objectForSave.imageData
                     object.imageSmall = objectForSave.imageDataSmall
                     object.boxToRoom = boxOrRoom as? EntityRooms
@@ -85,7 +85,7 @@ class BaseCoreData {
                 case .things:
                     let object = NSEntityDescription.insertNewObject(forEntityName: base.rawValue,
                                                                      into: context) as! EntityThings
-                    object.name = objectForSave.name
+                    object.name = objectForSave.name ?? "_"
                     object.image = objectForSave.imageData
                     object.imageSmall = objectForSave.imageDataSmall
                     object.id = UUID()
