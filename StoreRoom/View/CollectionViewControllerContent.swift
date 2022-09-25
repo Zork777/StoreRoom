@@ -12,12 +12,11 @@ private let reuseIdentifier = "ItemCell"
 class CollectionViewControllerContent: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet var collectionViewThings: UICollectionView!
-    var idBoxOrRoom: UUID? = nil
+    var dataManager: DataManager? = nil
     
     private var selectThing: Int = 0
-    private var boxs = [ItemCollection]()
-    private var things = [ItemCollection]()
-    private let base = BaseCoreData()
+    private var boxs = [EntityBoxs]()
+    private var things = [EntityThings]()
     private var calculateSizeCell: CalculateSizeCell?
     
     var dialogGetNameThing: (()->()) = {return}
@@ -45,16 +44,9 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if idBoxOrRoom == nil {
-                showMessage(message: ValidationError.notFoundIdRoom.localizedDescription)
-                fatalError()}
-        if let entityBoxs = base.boxInRoom(idRoom: idBoxOrRoom!) {
-            boxs = entityBoxs.map({ EntityBoxs in EntityBoxs.convertToItemCollection()})
-        }
-        if let entityThings = base.contentBoxRoom(idBoxOrRoom: idBoxOrRoom!) {
-            things = entityThings.map({ EntityThings in EntityThings.convertToItemCollection()})
-        }
+        
+        boxs = dataManager?.getBoxs() ?? []
+        things = dataManager?.getThings() ?? []
 
         self.collectionView!.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
         calculateSizeCell = CalculateSizeCell(itemsPerRow: 2, widthView: collectionViewThings.bounds.width)
@@ -99,10 +91,10 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
         switch indexPath.section{
         case 0:
             cell.labelName.text = boxs[indexPath.row].name
-            cell.image.image = boxs[indexPath.row].image.preparingThumbnail(of: calculateSizeCell!.sizeCell ?? calculateSizeCell!.calculateSizeCell())
+            cell.image.image = boxs[indexPath.row].image?.convertToUIImage().preparingThumbnail(of: calculateSizeCell!.sizeCell ?? calculateSizeCell!.calculateSizeCell())
         case 1:
             cell.labelName.text = things[indexPath.row].name
-            cell.image.image = things[indexPath.row].image.preparingThumbnail(of: calculateSizeCell!.sizeCell ?? calculateSizeCell!.calculateSizeCell())
+            cell.image.image = things[indexPath.row].image?.convertToUIImage().preparingThumbnail(of: calculateSizeCell!.sizeCell ?? calculateSizeCell!.calculateSizeCell())
         default:
             break
         }
@@ -117,9 +109,8 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
         case 0:
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let destination = storyBoard.instantiateViewController(withIdentifier: "CollectionViewControllerContent") as! CollectionViewControllerContent
-            let id = boxs[selectThing].id
-            destination.idBoxOrRoom = id
             destination.title = boxs[selectThing].name
+            destination.dataManager = GetDataInBox(boxEntity: boxs[selectThing])
             show (destination, sender: true)
             
             // выбор вещи
@@ -172,22 +163,22 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
 
 ///сохранение вещи
     func saveThing() -> Bool {
-        let base = BaseCoreData()
-        guard let idBoxOrRoom = idBoxOrRoom else {
-            showMessage(message: "get name: ID box is nil")
-            return false
-        }
-        guard let baseObject = base.findBoxOrRoomByID(id: idBoxOrRoom) else {
-            showMessage(message: "get name: ID box not found in base")
-            return false
-        }
-        do {
-            try base.saveObject(objectForSave: thingForSave, base: .things, boxOrRoom: baseObject)
-        }
-        catch {
-            showMessage(message: "error save object")
-            return false
-        }
+        
+//        guard let idBoxOrRoom = idBoxOrRoom else {
+//            showMessage(message: "get name: ID box is nil")
+//            return false
+//        }
+//        guard let baseObject = base.findBoxOrRoomByID(id: idBoxOrRoom) else {
+//            showMessage(message: "get name: ID box not found in base")
+//            return false
+//        }
+//        do {
+//            try base.saveObject(objectForSave: thingForSave, base: .things, boxOrRoom: baseObject)
+//        }
+//        catch {
+//            showMessage(message: "error save object")
+//            return false
+//        }
         return true
     }
     
@@ -195,7 +186,7 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
         //MARK: переход содержимое коробки/кладовки
         if let destination = segue.destination as? ViewControllerShowThing {
             destination.label = things[selectThing].name
-            destination.image = things[selectThing].image
+            destination.image = things[selectThing].image?.convertToUIImage()
             }
     }
 }

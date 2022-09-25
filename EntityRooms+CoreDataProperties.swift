@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 
 extension EntityRooms {
@@ -80,3 +81,4 @@ extension EntityRooms {
 extension EntityRooms : Identifiable {
 
 }
+

@@ -16,6 +16,7 @@
 		990171B628A55D2600862B29 /* EntityMain+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990171AE28A55D2600862B29 /* EntityMain+CoreDataProperties.swift */; };
 		990171B728A55D2600862B29 /* EntityThings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990171AF28A55D2600862B29 /* EntityThings+CoreDataClass.swift */; };
 		990171B828A55D2600862B29 /* EntityThings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990171B028A55D2600862B29 /* EntityThings+CoreDataProperties.swift */; };
+		9939DA9228DE4D01004080D4 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9939DA9128DE4D01004080D4 /* DataManager.swift */; };
 		996CD82828A30801000D933D /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996CD82628A30801000D933D /* CollectionViewCell.swift */; };
 		996CD82928A30801000D933D /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 996CD82728A30801000D933D /* CollectionViewCell.xib */; };
 		998113C0289B102200E5C5CE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998113BF289B102200E5C5CE /* SettingViewController.swift */; };
@@ -69,6 +70,7 @@
 		990171AE28A55D2600862B29 /* EntityMain+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityMain+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		990171AF28A55D2600862B29 /* EntityThings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityThings+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		990171B028A55D2600862B29 /* EntityThings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityThings+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		9939DA9128DE4D01004080D4 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		996CD82628A30801000D933D /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollectionViewCell.swift; path = StoreRoom/View/CollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		996CD82728A30801000D933D /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CollectionViewCell.xib; path = StoreRoom/View/CollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
 		998113BF289B102200E5C5CE /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingViewController.swift; path = StoreRoom/View/SettingViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -201,6 +203,7 @@
 				99A200EC28A812F8007859F2 /* CalculateSizeCell.swift */,
 				998113C1289B10BA00E5C5CE /* GenerateTestData.swift */,
 				998113C3289C36D800E5C5CE /* CoreData.swift */,
+				9939DA9128DE4D01004080D4 /* DataManager.swift */,
 				998113C7289C3A0C00E5C5CE /* Variable.swift */,
 				998113C5289C37ED00E5C5CE /* Error.swift */,
 			);
@@ -389,6 +392,7 @@
 				998113C2289B10BA00E5C5CE /* GenerateTestData.swift in Sources */,
 				998113C6289C37ED00E5C5CE /* Error.swift in Sources */,
 				990171B828A55D2600862B29 /* EntityThings+CoreDataProperties.swift in Sources */,
+				9939DA9228DE4D01004080D4 /* DataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,6 +572,7 @@
 				DEVELOPMENT_TEAM = RC9H8Z8TW3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StoreRoom/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Разрешите доступ к камере";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -597,6 +602,7 @@
 				DEVELOPMENT_TEAM = RC9H8Z8TW3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StoreRoom/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Разрешите доступ к камере";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

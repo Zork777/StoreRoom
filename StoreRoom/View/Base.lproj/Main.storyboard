@@ -11,7 +11,7 @@
         <!--места хранения-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="StoreRoom" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="main" id="BYZ-38-t0r" customClass="MainViewController" customModule="StoreRoom" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -50,7 +50,7 @@
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="cyR-Ct-F25"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="collectionViewStoreRoom" destination="dO5-YR-2BL" id="1dh-Rf-53e"/>
+                        <outlet property="collectionViewStoreRoom" destination="dO5-YR-2BL" id="Jor-Tv-Zdl"/>
                         <segue destination="CNr-By-afa" kind="show" identifier="gotoContentView" id="rPZ-uA-GU9"/>
                     </connections>
                 </viewController>

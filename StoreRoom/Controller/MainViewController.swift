@@ -13,21 +13,21 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var collectionViewStoreRoom: UICollectionView!
     
     private let idCell = "ItemCell"
-    private var rooms: [ItemCollection]?
-    let base = BaseCoreData()
+    private var rooms: [EntityRooms]?
+    
+    var dataManager = GetRooms()
     var calculateSizeCell: CalculateSizeCell?
     var selectRoom: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionViewStoreRoom.delegate = self
-        self.collectionViewStoreRoom.dataSource = self
-        self.collectionViewStoreRoom.register(UINib(nibName: "CollectionViewCell", bundle: nil ), forCellWithReuseIdentifier: idCell)
+        collectionViewStoreRoom.delegate = self
+        collectionViewStoreRoom.dataSource = self
+        collectionViewStoreRoom.register(UINib(nibName: "CollectionViewCell", bundle: nil ), forCellWithReuseIdentifier: idCell)
         
         //MARK: рассчет размера ячейки
         calculateSizeCell = CalculateSizeCell(itemsPerRow: 1, widthView: collectionViewStoreRoom.bounds.width)
-        
-        rooms = try! base.fetchContext(base: .rooms, predicate: nil).map{$0 as! EntityRooms}.map{$0.convertToItemCollection()}
+        rooms = dataManager.getRooms()
     }
     
     
@@ -39,7 +39,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let cell = collectionViewStoreRoom.dequeueReusableCell(withReuseIdentifier: idCell, for: indexPath) as! CollectionViewCell
         guard let room = rooms?[indexPath.row] else {return cell}
         cell.labelName.text = room.name
-        cell.image.image = room.image.preparingThumbnail(of: calculateSizeCell!.sizeCell ?? calculateSizeCell!.calculateSizeCell())
+        cell.image.image = room.image?.convertToUIImage().preparingThumbnail(of: calculateSizeCell!.sizeCell ?? calculateSizeCell!.calculateSizeCell())
         return cell
     }
     
@@ -68,11 +68,9 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //MARK: переход содержимое коробки/кладовки
         if let destination = segue.destination as? CollectionViewControllerContent { //ViewControllerContent
-            if let id = rooms?[selectRoom].id {
-                destination.idBoxOrRoom = id
-                destination.title = rooms?[selectRoom].name
-                }
-            }
+            destination.dataManager = GetDataInRoom(objectRoom: rooms![selectRoom])
+            destination.title = rooms?[selectRoom].name
+        }
     }
 }
 

@@ -12,7 +12,6 @@ import UIKit
 struct ItemCollection {
     var name: String
     var image: UIImage
-    var id: UUID
 }
 
 ///данные объекта для сохранения в кладовке или коробке или сама коробка

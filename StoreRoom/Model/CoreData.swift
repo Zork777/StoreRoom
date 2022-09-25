@@ -10,9 +10,11 @@ import CoreData
 import UIKit
 
 
+
 class BaseCoreData {
     private let persistentContainer: NSPersistentContainer
     private let context: NSManagedObjectContext
+    static let shared = BaseCoreData()
     
     ///Название  base
     enum Bases: String, CaseIterable{
@@ -68,7 +70,7 @@ class BaseCoreData {
         }
     }
 
-    ///Сохранение объекта в core со связкой с коробкой или кладовкой
+///Сохранение объекта в core со связкой с коробкой или кладовкой
     func saveObject(objectForSave: Object, base: Bases, boxOrRoom: NSManagedObject) throws {
                 switch base {
                 case .boxs:
@@ -184,23 +186,29 @@ class BaseCoreData {
         }
     }
 
+    
 ///извлекаем все коробки в кладовке
-    func boxInRoom(idRoom: UUID) -> [EntityBoxs]?{
+    func getBoxInRoom(idRoom: UUID) -> [EntityBoxs]?{
         guard let objectRoom = findObjectByNameOrID(name: nil, id: idRoom, base: .rooms)?.first as? EntityRooms else {return nil}
         guard let content = objectRoom.roomToBox?.map({$0 as! EntityBoxs}) else {return nil}
         return content
     }
     
-///содержимое коробки или кладовки
-    func contentBoxRoom(idBoxOrRoom: UUID) -> [EntityThings]?{
-        let objectRoom = findObjectByNameOrID(name: nil, id: idBoxOrRoom, base: .rooms)?.first as? EntityRooms
-        let objectBox = findObjectByNameOrID(name: nil, id: idBoxOrRoom, base: .boxs)?.first as? EntityBoxs
-        if objectRoom != nil {
-            guard let content = objectRoom!.roomToThing?.map({$0 as! EntityThings}) else {return nil}
-            return content
-        }
+///содержимое коробки
+    func getContentBox(idBox: UUID) -> [EntityThings]? {
+        let objectBox = findObjectByNameOrID(name: nil, id: idBox, base: .boxs)?.first as? EntityBoxs
         if objectBox != nil {
             guard let content = objectBox!.boxToThing?.map({$0 as! EntityThings}) else {return nil}
+            return content
+        }
+        return nil
+    }
+    
+///содержимое кладовки
+    func getContentRoom(idRoom: UUID) -> [EntityThings]?{
+        let objectRoom = findObjectByNameOrID(name: nil, id: idRoom, base: .rooms)?.first as? EntityRooms
+        if objectRoom != nil {
+            guard let content = objectRoom!.roomToThing?.map({$0 as! EntityThings}) else {return nil}
             return content
         }
         return nil
@@ -211,18 +219,25 @@ class BaseCoreData {
 
 extension EntityRooms {
     func convertToItemCollection() -> ItemCollection{
-        return ItemCollection(name: self.name, image: UIImage(data: self.image!)!, id: self.id)
+        return ItemCollection(name: self.name, image: UIImage(data: self.image!)!)
     }
 }
 
 extension EntityBoxs {
     func convertToItemCollection() -> ItemCollection{
-        return ItemCollection(name: self.name, image: UIImage(data: self.image!)!, id: self.id)
+        return ItemCollection(name: self.name, image: UIImage(data: self.image!)!)
     }
 }
 
 extension EntityThings {
     func convertToItemCollection() -> ItemCollection{
-        return ItemCollection(name: self.name, image: UIImage(data: self.image!)!, id: self.id)
+        return ItemCollection(name: self.name, image: UIImage(data: self.image!)!)
+    }
+}
+
+extension Data {
+    func convertToUIImage() -> UIImage {
+        guard let image = UIImage(data: self) else {return #imageLiteral(resourceName: "noPhoto")}
+        return image
     }
 }

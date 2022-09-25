@@ -106,7 +106,7 @@ class StoreRoomTests: XCTestCase {
                                                                                                 return
                                                                                             }
         let roomId = room.value(forKey: "id") as! UUID
-        guard let content = testBase.boxInRoom(idRoom: roomId) else {
+        guard let content = testBase.getBoxInRoom(idRoom: roomId) else {
                                                                     XCTAssertTrue(false)
                                                                     return
         }
@@ -121,7 +121,7 @@ class StoreRoomTests: XCTestCase {
         XCTAssertNoThrow(try testBase.saveObject(objectForSave: testThingHelmet!, base: .things, boxOrRoom: room)) //записываем шлем в room
         
         let roomId = room.value(forKey: "id") as! UUID
-        guard let content = testBase.contentBoxRoom(idBoxOrRoom: roomId) else {
+        guard let content = testBase.getContentRoom(idRoom: roomId) else {
                                                                             XCTAssertTrue(false)
                                                                             return
                                                                         }
@@ -137,12 +137,19 @@ class StoreRoomTests: XCTestCase {
         XCTAssertNoThrow(try testBase.saveObject(objectForSave: testThingHelmet!, base: .things, boxOrRoom: box)) //записываем шлем
         
         let boxId = box.value(forKey: "id") as! UUID
-        guard let content = testBase.contentBoxRoom(idBoxOrRoom: boxId) else {
+        guard let content = testBase.getContentBox(idBox: boxId) else {
                                                                             XCTAssertTrue(false)
                                                                             return
                                                                         }
         XCTAssertEqual(content.count, 3)
         XCTAssertTrue (content.sorted()[0].name == testThingShoes?.name)
+    }
+    
+    //извлекаем все комнаты
+    func testFetchAllRomm(){
+        testSaveRoom()
+        let rooms = GetRooms().getRooms()
+        XCTAssertEqual(rooms?.count, 1)
     }
     
     func testExample() throws {
