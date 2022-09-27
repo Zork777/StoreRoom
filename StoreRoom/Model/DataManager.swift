@@ -6,18 +6,25 @@
 //
 
 import Foundation
+import CoreData
 
 protocol DataManager {
     func getThings () -> [EntityThings]?
     func getBoxs () -> [EntityBoxs]?
     func getRooms () -> [EntityRooms]?
+    func getObjectBoxOrRoom () -> NSManagedObject
 }
 
 class GetDataInRoom: DataManager {
-    var objectRoom: EntityRooms
+
+    var roomEntity: EntityRooms
     
-    init (objectRoom: EntityRooms) {
-        self.objectRoom = objectRoom
+    init (roomEntity: EntityRooms) {
+        self.roomEntity = roomEntity
+    }
+    
+    func getObjectBoxOrRoom() -> NSManagedObject {
+        return roomEntity
     }
     
     func getRooms() -> [EntityRooms]? {
@@ -25,22 +32,26 @@ class GetDataInRoom: DataManager {
     }
     
     func getThings() -> [EntityThings]? {
-        let things = objectRoom.roomToThing
+        let things = roomEntity.roomToThing
         return things?.allObjects as? [EntityThings]
     }
     
     func getBoxs() -> [EntityBoxs]? {
-        let boxs = objectRoom.roomToBox
+        let boxs = roomEntity.roomToBox
         return boxs?.allObjects as? [EntityBoxs]
     }
 }
 
 
 class GetDataInBox: DataManager {
-    var boxEntity: EntityBoxs
+    public var boxEntity: EntityBoxs
     
     init (boxEntity: EntityBoxs) {
         self.boxEntity = boxEntity
+    }
+    
+    func getObjectBoxOrRoom() -> NSManagedObject {
+        return boxEntity
     }
     
     func getRooms() -> [EntityRooms]? {
@@ -69,6 +80,10 @@ class GetRooms: DataManager {
     
     func getBoxs() -> [EntityBoxs]? {
         return nil
+    }
+    
+    func getObjectBoxOrRoom() -> NSManagedObject {
+        return EntityRooms()
     }
     
     

@@ -21,7 +21,7 @@ extension CollectionViewControllerContent: UINavigationControllerDelegate, UIIma
                 showMessage(message: "get name: name thing is nil")
                 return
             }
-            self.thingForSave.name = name[0].text ?? "_"
+            self.objectForSave.name = name[0].text ?? "_"
         }))
         
         dialog.addAction(actionCancel)
@@ -50,9 +50,17 @@ extension CollectionViewControllerContent: UINavigationControllerDelegate, UIIma
                 showMessage(message: "get name: name thing is nil")
                 return
             }
+
+            switch dialogGetNameThing.selectThingOrBox.selectedSegmentIndex {
+            case 0:
+                self?.typeObjectForSave = .things
+            case 1:
+                self?.typeObjectForSave = .boxs
+            default:
+                self?.typeObjectForSave = .things
+            }
             
-            self?.thingForSave.name = nameThing
-                
+            self?.objectForSave.name = nameThing
         }
         present(vc, animated: true)
     }
@@ -72,7 +80,7 @@ extension CollectionViewControllerContent: UINavigationControllerDelegate, UIIma
             print("No image found")
             return
         }
-        thingForSave.image = image
+        objectForSave.image = image
         dialogGetNameThing() // вызываем диалоговое окно для запроса названия
         
     }

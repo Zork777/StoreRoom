@@ -218,20 +218,20 @@ class BaseCoreData {
 
 
 extension EntityRooms {
-    func convertToItemCollection() -> ItemCollection{
-        return ItemCollection(name: self.name, image: UIImage(data: self.image!)!)
+    func convertToItemCollection() -> CellData{
+        return CellData(name: self.name, image: UIImage(data: self.image!)!)
     }
 }
 
 extension EntityBoxs {
-    func convertToItemCollection() -> ItemCollection{
-        return ItemCollection(name: self.name, image: UIImage(data: self.image!)!)
+    func convertToItemCollection() -> CellData{
+        return CellData(name: self.name, image: UIImage(data: self.image!)!)
     }
 }
 
 extension EntityThings {
-    func convertToItemCollection() -> ItemCollection{
-        return ItemCollection(name: self.name, image: UIImage(data: self.image!)!)
+    func convertToItemCollection() -> CellData{
+        return CellData(name: self.name, image: UIImage(data: self.image!)!)
     }
 }
 

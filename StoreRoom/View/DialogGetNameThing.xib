@@ -12,7 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DialogGetNameThing" customModule="StoreRoom" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="231"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="195"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2wz-yu-pXb">
@@ -22,12 +22,12 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B9K-XJ-3Dr">
-                    <rect key="frame" x="32" y="44.5" width="350" height="83.5"/>
+                    <rect key="frame" x="32" y="44.5" width="350" height="34"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="af8-5H-qMa">
-                    <rect key="frame" x="32" y="168" width="350" height="31"/>
+                    <rect key="frame" x="32" y="132" width="350" height="31"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sam-hU-g44">
                             <rect key="frame" x="0.0" y="0.0" width="167" height="31"/>
@@ -47,10 +47,19 @@
                         </button>
                     </subviews>
                 </stackView>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vWA-8W-iJm">
+                    <rect key="frame" x="32" y="86.5" width="350" height="32"/>
+                    <segments>
+                        <segment title="Вещь"/>
+                        <segment title="Коробка"/>
+                    </segments>
+                </segmentedControl>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="af8-5H-qMa" firstAttribute="top" secondItem="vWA-8W-iJm" secondAttribute="bottom" constant="14.5" id="AjF-ZJ-ACG"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="vWA-8W-iJm" secondAttribute="trailing" constant="32" id="BbA-Fg-jb9"/>
                 <constraint firstItem="2wz-yu-pXb" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Bkx-ez-Put"/>
                 <constraint firstItem="2wz-yu-pXb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="H6n-up-Jb0"/>
                 <constraint firstItem="B9K-XJ-3Dr" firstAttribute="top" secondItem="2wz-yu-pXb" secondAttribute="bottom" constant="8" symbolic="YES" id="IOJ-CS-xML"/>
@@ -59,15 +68,17 @@
                 <constraint firstItem="af8-5H-qMa" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="TUM-mA-SfC"/>
                 <constraint firstItem="af8-5H-qMa" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="32" id="ZT4-sQ-YyX"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="af8-5H-qMa" secondAttribute="bottom" constant="32" id="d3e-ZU-BVD"/>
-                <constraint firstItem="af8-5H-qMa" firstAttribute="top" secondItem="B9K-XJ-3Dr" secondAttribute="bottom" constant="40" id="nsk-UN-FYg"/>
+                <constraint firstItem="vWA-8W-iJm" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="32" id="fWK-Md-ONh"/>
+                <constraint firstItem="vWA-8W-iJm" firstAttribute="top" secondItem="B9K-XJ-3Dr" secondAttribute="bottom" constant="8" id="oeQ-3t-cdp"/>
                 <constraint firstItem="B9K-XJ-3Dr" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="32" id="pMk-tx-rjJ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="selectThingOrBox" destination="vWA-8W-iJm" id="sGw-Cl-tqv"/>
                 <outlet property="textField" destination="B9K-XJ-3Dr" id="7U4-Qo-39e"/>
                 <outlet property="title" destination="2wz-yu-pXb" id="XAL-FM-88z"/>
             </connections>
-            <point key="canvasLocation" x="45" y="-32"/>
+            <point key="canvasLocation" x="44.927536231884062" y="-44.53125"/>
         </view>
     </objects>
     <resources>

@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 import UIKit
 
-struct ItemCollection {
+struct CellData {
     var name: String
     var image: UIImage
 }

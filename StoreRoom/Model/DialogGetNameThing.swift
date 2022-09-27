@@ -11,6 +11,8 @@ class DialogGetNameThing: UIView {
 
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var selectThingOrBox: UISegmentedControl!
+    
     
     var closeVC: (() -> ()) = {return}
     var getName: (() -> ()) = {return}

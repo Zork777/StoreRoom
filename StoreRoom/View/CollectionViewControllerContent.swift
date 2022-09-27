@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 private let reuseIdentifier = "ItemCell"
 
@@ -16,16 +17,18 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     
     private var selectThing: Int = 0
     private var boxs = [EntityBoxs]()
-    private var things = [EntityThings]()
+    private var things = [CellData]()
     private var calculateSizeCell: CalculateSizeCell?
     
     var dialogGetNameThing: (()->()) = {return}
     
-    var thingForSave = Object(name: nil, image: nil) {
+    var typeObjectForSave: BaseCoreData.Bases = .things
+    var objectForSave:Object = Object(name: nil, image: nil) {
+        
         didSet {
-            if thingForSave.name != nil && thingForSave.image != nil {
-                if saveThing() {
-                    thingForSave = Object(name: nil, image: nil)
+            if objectForSave.name != nil && objectForSave.image != nil {
+                if saveObjectInBase() {
+                    objectForSave = Object(name: nil, image: nil)
                 }
                 else {
                     showMessage(message: "Не получилось сохранить в базу новую вещь")
@@ -35,19 +38,20 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     }
     
     @IBAction func buttonAddThing(_ sender: Any) {
-        dialogGetNameThing = viewGetName
-        getPhotoInCamera()
+//        dialogGetNameThing = viewGetName
+//        getPhotoInCamera()
 //        alertGetName()
-//        thingForSave.image = .checkmark
-//        viewGetName()
+        objectForSave.image = #imageLiteral(resourceName: "sokrovisha-1")
+        viewGetName()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         boxs = dataManager?.getBoxs() ?? []
-        things = dataManager?.getThings() ?? []
-
+        if let thingsEntity = dataManager?.getThings() {
+            things = thingsEntity.map{$0.convertToItemCollection()}
+        }
         self.collectionView!.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
         calculateSizeCell = CalculateSizeCell(itemsPerRow: 2, widthView: collectionViewThings.bounds.width)
         
@@ -94,7 +98,7 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
             cell.image.image = boxs[indexPath.row].image?.convertToUIImage().preparingThumbnail(of: calculateSizeCell!.sizeCell ?? calculateSizeCell!.calculateSizeCell())
         case 1:
             cell.labelName.text = things[indexPath.row].name
-            cell.image.image = things[indexPath.row].image?.convertToUIImage().preparingThumbnail(of: calculateSizeCell!.sizeCell ?? calculateSizeCell!.calculateSizeCell())
+            cell.image.image = things[indexPath.row].image.preparingThumbnail(of: calculateSizeCell!.sizeCell ?? calculateSizeCell!.calculateSizeCell())
         default:
             break
         }
@@ -161,32 +165,55 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     }
     */
 
-///сохранение вещи
-    func saveThing() -> Bool {
+///сохранение вещи или коробки
+    func saveObjectInBase() -> Bool {
+        guard let boxOrRoom = dataManager?.getObjectBoxOrRoom() else {
+            showMessage(message: "error save object")
+            return false
+        }
         
-//        guard let idBoxOrRoom = idBoxOrRoom else {
-//            showMessage(message: "get name: ID box is nil")
-//            return false
-//        }
-//        guard let baseObject = base.findBoxOrRoomByID(id: idBoxOrRoom) else {
-//            showMessage(message: "get name: ID box not found in base")
-//            return false
-//        }
-//        do {
-//            try base.saveObject(objectForSave: thingForSave, base: .things, boxOrRoom: baseObject)
-//        }
-//        catch {
-//            showMessage(message: "error save object")
-//            return false
-//        }
+        switch typeObjectForSave {
+        case .things:
+            do {
+                try BaseCoreData.shared.saveObject(objectForSave: objectForSave,
+                                                   base: .things,
+                                                   boxOrRoom: boxOrRoom)
+            }
+            catch {
+                showMessage(message: "error save object thing")
+                return false
+            }
+            things.append(CellData(name: objectForSave.name ?? "_",
+                                   image: objectForSave.image ?? #imageLiteral(resourceName: "noPhoto")))
+            collectionViewThings.reloadSections(IndexSet(integer: 1))
+            print ("saved thing")
+        case .boxs:
+            do {
+                try BaseCoreData.shared.saveObject(objectForSave: objectForSave,
+                                                   base: .boxs,
+                                                   boxOrRoom: boxOrRoom)
+            }
+            catch {
+                showMessage(message: "error save object thing")
+                return false
+            }
+            boxs = dataManager?.getBoxs() ?? []
+            collectionViewThings.reloadSections(IndexSet(integer: 0))
+            print ("saved box")
+        case .rooms, .main:
+            print ("type not found")
+            return false
+        }
+        
         return true
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //MARK: переход содержимое коробки/кладовки
         if let destination = segue.destination as? ViewControllerShowThing {
             destination.label = things[selectThing].name
-            destination.image = things[selectThing].image?.convertToUIImage()
+            destination.image = things[selectThing].image
             }
     }
 }

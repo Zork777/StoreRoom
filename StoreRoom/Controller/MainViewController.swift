@@ -68,7 +68,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //MARK: переход содержимое коробки/кладовки
         if let destination = segue.destination as? CollectionViewControllerContent { //ViewControllerContent
-            destination.dataManager = GetDataInRoom(objectRoom: rooms![selectRoom])
+            destination.dataManager = GetDataInRoom(roomEntity: rooms![selectRoom])
             destination.title = rooms?[selectRoom].name
         }
     }
