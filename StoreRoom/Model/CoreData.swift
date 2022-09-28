@@ -79,7 +79,15 @@ class BaseCoreData {
                     object.name = objectForSave.name ?? "_"
                     object.image = objectForSave.imageData
                     object.imageSmall = objectForSave.imageDataSmall
-                    object.boxToRoom = boxOrRoom as? EntityRooms
+                    if boxOrRoom.entity.name == Bases.boxs.rawValue {
+                        let boxEntity = boxOrRoom as! EntityBoxs
+                        boxEntity.boxToBox = boxEntity.boxToBox?.adding(object) as NSSet?
+                    }
+                    else {
+                        object.boxToRoom = boxOrRoom as? EntityRooms
+                    }
+                    
+                    //boxOrRoom as? EntityBoxs
                     object.id = UUID()
                     
                 case .rooms, .main:

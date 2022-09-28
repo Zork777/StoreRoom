@@ -49,9 +49,11 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
         super.viewDidLoad()
         
         boxs = dataManager?.getBoxs() ?? []
+        
         if let thingsEntity = dataManager?.getThings() {
             things = thingsEntity.map{$0.convertToItemCollection()}
         }
+        
         self.collectionView!.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
         calculateSizeCell = CalculateSizeCell(itemsPerRow: 2, widthView: collectionViewThings.bounds.width)
         

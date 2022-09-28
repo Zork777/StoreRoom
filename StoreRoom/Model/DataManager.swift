@@ -64,7 +64,8 @@ class GetDataInBox: DataManager {
     }
     
     func getBoxs() -> [EntityBoxs]? {
-        return nil
+        let boxs = boxEntity.boxToBox
+        return boxs?.allObjects as? [EntityBoxs]
     }
 }
     

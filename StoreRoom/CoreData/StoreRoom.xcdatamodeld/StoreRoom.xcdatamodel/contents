@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E230" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21G72" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="EntityBoxs" representedClassName="EntityBoxs" syncable="YES">
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="imageSmall" optional="YES" attributeType="Binary"/>
         <attribute name="name" attributeType="String"/>
+        <relationship name="boxToBox" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EntityBoxs"/>
         <relationship name="boxToRoom" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="EntityRooms" inverseName="roomToBox" inverseEntity="EntityRooms"/>
         <relationship name="boxToThing" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="EntityThings" inverseName="thingToBox" inverseEntity="EntityThings"/>
         <relationship name="toMain" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EntityMain" inverseName="toBox" inverseEntity="EntityMain"/>
@@ -51,9 +52,9 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="EntityBoxs" positionX="-112.62890625" positionY="-71.2890625" width="128" height="148"/>
+        <element name="EntityBoxs" positionX="-112.62890625" positionY="-71.2890625" width="128" height="149"/>
+        <element name="EntityMain" positionX="101.078125" positionY="113.67578125" width="128" height="133"/>
         <element name="EntityRooms" positionX="311.3984375" positionY="-71.53125" width="128" height="148"/>
         <element name="EntityThings" positionX="106.94921875" positionY="-339.63671875" width="128" height="148"/>
-        <element name="EntityMain" positionX="101.078125" positionY="113.67578125" width="128" height="133"/>
     </elements>
 </model>

@@ -2,7 +2,7 @@
 //  EntityBoxs+CoreDataProperties.swift
 //  StoreRoom
 //
-//  Created by Евгений Захаров on 11.08.2022.
+//  Created by Евгений Захаров on 28.09.2022.
 //
 //
 
@@ -16,13 +16,14 @@ extension EntityBoxs {
         return NSFetchRequest<EntityBoxs>(entityName: "EntityBoxs")
     }
 
+    @NSManaged public var id: UUID?
     @NSManaged public var image: Data?
     @NSManaged public var imageSmall: Data?
     @NSManaged public var name: String
-    @NSManaged public var id: UUID
     @NSManaged public var boxToRoom: EntityRooms?
     @NSManaged public var boxToThing: NSSet?
     @NSManaged public var toMain: NSSet?
+    @NSManaged public var boxToBox: NSSet?
 
 }
 
@@ -57,6 +58,23 @@ extension EntityBoxs {
 
     @objc(removeToMain:)
     @NSManaged public func removeFromToMain(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for boxToBox
+extension EntityBoxs {
+
+    @objc(addBoxToBoxObject:)
+    @NSManaged public func addToBoxToBox(_ value: EntityBoxs)
+
+    @objc(removeBoxToBoxObject:)
+    @NSManaged public func removeFromBoxToBox(_ value: EntityBoxs)
+
+    @objc(addBoxToBox:)
+    @NSManaged public func addToBoxToBox(_ values: NSSet)
+
+    @objc(removeBoxToBox:)
+    @NSManaged public func removeFromBoxToBox(_ values: NSSet)
 
 }
 
