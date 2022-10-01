@@ -87,7 +87,6 @@ class BaseCoreData {
                         object.boxToRoom = boxOrRoom as? EntityRooms
                     }
                     
-                    //boxOrRoom as? EntityBoxs
                     object.id = UUID()
                     
                 case .rooms, .main:

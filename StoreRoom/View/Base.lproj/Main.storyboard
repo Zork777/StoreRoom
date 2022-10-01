@@ -11,13 +11,13 @@
         <!--места хранения-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="main" id="BYZ-38-t0r" customClass="MainViewController" customModule="StoreRoom" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainSceneOld" id="BYZ-38-t0r" customClass="MainViewController" customModule="StoreRoom" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dO5-YR-2BL">
-                                <rect key="frame" x="16" y="104" width="382" height="742"/>
+                                <rect key="frame" x="0.0" y="104" width="414" height="742"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CWm-OX-NVo">
                                     <size key="itemSize" width="128" height="128"/>
@@ -37,8 +37,8 @@
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dO5-YR-2BL" secondAttribute="bottom" constant="16" id="16Q-Ia-F34"/>
                             <constraint firstItem="dO5-YR-2BL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="DwN-63-QjI"/>
-                            <constraint firstItem="dO5-YR-2BL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="eJv-Zb-FWV"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dO5-YR-2BL" secondAttribute="trailing" constant="16" id="xvi-yI-wGB"/>
+                            <constraint firstItem="dO5-YR-2BL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="eJv-Zb-FWV"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dO5-YR-2BL" secondAttribute="trailing" id="xvi-yI-wGB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="места хранения" id="p6P-5o-DBK">
@@ -47,7 +47,11 @@
                                 <segue destination="8UV-m7-Nb8" kind="show" id="lGW-Rb-cd2"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="cyR-Ct-F25"/>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="cyR-Ct-F25">
+                            <connections>
+                                <action selector="buttonAddRoom:" destination="BYZ-38-t0r" id="ZLn-RF-eoe"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionViewStoreRoom" destination="dO5-YR-2BL" id="Jor-Tv-Zdl"/>
@@ -76,7 +80,7 @@
         <!--Collection View Controller Content-->
         <scene sceneID="00K-RH-mhf">
             <objects>
-                <collectionViewController storyboardIdentifier="CollectionViewControllerContent" id="CNr-By-afa" customClass="CollectionViewControllerContent" customModule="StoreRoom" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="mainScene" id="CNr-By-afa" customClass="CollectionViewControllerContent" customModule="StoreRoom" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="fgA-nW-gyT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -154,7 +158,7 @@
         <!--Navigation Controller-->
         <scene sceneID="dyK-1e-hpi">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="En7-y2-QzL" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="mainNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="En7-y2-QzL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kll-0K-y8f">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

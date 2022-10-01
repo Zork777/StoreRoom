@@ -10,12 +10,19 @@ import CoreData
 
 class MainViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
+    @IBAction func buttonAddRoom(_ sender: Any) {
+//        dialogGetNameThing = viewGetName
+//        getPhotoInCamera()
+//        alertGetName()
+//        objectForSave.image = #imageLiteral(resourceName: "sokrovisha-1")
+    }
+    
     @IBOutlet weak var collectionViewStoreRoom: UICollectionView!
     
     private let idCell = "ItemCell"
     private var rooms: [EntityRooms]?
     
-    var dataManager = GetRooms()
+    var dataManager: DataManager?
     var calculateSizeCell: CalculateSizeCell?
     var selectRoom: Int = 0
     
@@ -25,9 +32,12 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         collectionViewStoreRoom.dataSource = self
         collectionViewStoreRoom.register(UINib(nibName: "CollectionViewCell", bundle: nil ), forCellWithReuseIdentifier: idCell)
         
-        //MARK: рассчет размера ячейки
-        calculateSizeCell = CalculateSizeCell(itemsPerRow: 1, widthView: collectionViewStoreRoom.bounds.width)
-        rooms = dataManager.getRooms()
+        if let dataManager = dataManager {
+            rooms = dataManager.getBoxOrRomm()
+        }
+        else {
+            showMessage(message: "dataManager not found")
+        }
     }
     
     
@@ -39,7 +49,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let cell = collectionViewStoreRoom.dequeueReusableCell(withReuseIdentifier: idCell, for: indexPath) as! CollectionViewCell
         guard let room = rooms?[indexPath.row] else {return cell}
         cell.labelName.text = room.name
-        cell.image.image = room.image?.convertToUIImage().preparingThumbnail(of: calculateSizeCell!.sizeCell ?? calculateSizeCell!.calculateSizeCell())
+        cell.image.image = room.image?.convertToUIImage().preparingThumbnail(of: calculateSizeCell!.sizeCell )
         return cell
     }
     
@@ -50,7 +60,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return calculateSizeCell!.sizeCell ?? calculateSizeCell!.calculateSizeCell()
+        return calculateSizeCell!.sizeCell 
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -68,7 +78,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //MARK: переход содержимое коробки/кладовки
         if let destination = segue.destination as? CollectionViewControllerContent { //ViewControllerContent
-            destination.dataManager = GetDataInRoom(roomEntity: rooms![selectRoom])
+            destination.dataManager = GetData(object: rooms![selectRoom])
             destination.title = rooms?[selectRoom].name
         }
     }

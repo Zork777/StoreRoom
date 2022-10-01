@@ -16,9 +16,9 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     var dataManager: DataManager? = nil
     
     private var selectThing: Int = 0
-    private var boxs = [EntityBoxs]()
+    private var boxs = [NSManagedObject]()
     private var things = [CellData]()
-    private var calculateSizeCell: CalculateSizeCell?
+    var calculateSizeCell: CalculateSizeCell?
     
     var dialogGetNameThing: (()->()) = {return}
     
@@ -40,7 +40,6 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     @IBAction func buttonAddThing(_ sender: Any) {
 //        dialogGetNameThing = viewGetName
 //        getPhotoInCamera()
-//        alertGetName()
         objectForSave.image = #imageLiteral(resourceName: "sokrovisha-1")
         viewGetName()
     }
@@ -48,14 +47,15 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        boxs = dataManager?.getBoxs() ?? []
+//        boxs = dataManager?.getBoxs() ?? []
+        boxs = dataManager?.getBoxOrRomm() ?? []
         
         if let thingsEntity = dataManager?.getThings() {
             things = thingsEntity.map{$0.convertToItemCollection()}
         }
         
         self.collectionView!.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
-        calculateSizeCell = CalculateSizeCell(itemsPerRow: 2, widthView: collectionViewThings.bounds.width)
+//        calculateSizeCell = CalculateSizeCell(itemsPerRow: 2, widthView: collectionViewThings.bounds.width)
         
         view.backgroundColor = .white
         collectionViewThings.translatesAutoresizingMaskIntoConstraints = false
@@ -96,11 +96,18 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
         switch indexPath.section{
         case 0:
-            cell.labelName.text = boxs[indexPath.row].name
-            cell.image.image = boxs[indexPath.row].image?.convertToUIImage().preparingThumbnail(of: calculateSizeCell!.sizeCell ?? calculateSizeCell!.calculateSizeCell())
+            cell.labelName.text = boxs[indexPath.row].value(forKey: "name") as? String //.name
+            let image = boxs[indexPath.row].value(forKey: "image") as? Data
+            if let calculateSizeCell = calculateSizeCell, let image = image {
+                cell.image.image = image.convertToUIImage().preparingThumbnail(of: calculateSizeCell.sizeCell)
+            }
+
+            //boxs[indexPath.row].image?.convertToUIImage().preparingThumbnail(of: calculateSizeCell!.sizeCell ?? calculateSizeCell!.calculateSizeCell())
         case 1:
             cell.labelName.text = things[indexPath.row].name
-            cell.image.image = things[indexPath.row].image.preparingThumbnail(of: calculateSizeCell!.sizeCell ?? calculateSizeCell!.calculateSizeCell())
+            if let calculateSizeCell = calculateSizeCell {
+            cell.image.image = things[indexPath.row].image.preparingThumbnail(of: calculateSizeCell.sizeCell)
+            }
         default:
             break
         }
@@ -114,9 +121,10 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
             //выбор коробки
         case 0:
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let destination = storyBoard.instantiateViewController(withIdentifier: "CollectionViewControllerContent") as! CollectionViewControllerContent
-            destination.title = boxs[selectThing].name
-            destination.dataManager = GetDataInBox(boxEntity: boxs[selectThing])
+            let destination = storyBoard.instantiateViewController(withIdentifier: "mainScene") as! CollectionViewControllerContent
+            destination.title = boxs[selectThing].value(forKey: "name") as? String //.name
+            destination.calculateSizeCell = CalculateSizeCell(itemsPerRow: 2)
+            destination.dataManager = GetData(object: boxs[selectThing]) //GetDataInBox(boxEntity: boxs[selectThing] as! EntityBoxs)
             show (destination, sender: true)
             
             // выбор вещи
@@ -199,7 +207,7 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
                 showMessage(message: "error save object thing")
                 return false
             }
-            boxs = dataManager?.getBoxs() ?? []
+            boxs = dataManager?.getBoxOrRomm() ?? []
             collectionViewThings.reloadSections(IndexSet(integer: 0))
             print ("saved box")
         case .rooms, .main:
@@ -210,9 +218,8 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
         return true
     }
     
-    
+    //MARK: show picter thing
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //MARK: переход содержимое коробки/кладовки
         if let destination = segue.destination as? ViewControllerShowThing {
             destination.label = things[selectThing].name
             destination.image = things[selectThing].image

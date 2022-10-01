@@ -10,24 +10,6 @@ import UIKit
 
 
 extension CollectionViewControllerContent: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    
-    
-    func alertGetName() {
-        let dialog = UIAlertController(title: "", message: "название?", preferredStyle: .alert)
-        dialog.addTextField()
-        let actionCancel = UIAlertAction(title: "Отмена", style: .cancel)
-        let nameTextField = UIAlertAction(title: "OK", style: .default, handler: ({ _ in
-            guard let name = dialog.textFields else {
-                showMessage(message: "get name: name thing is nil")
-                return
-            }
-            self.objectForSave.name = name[0].text ?? "_"
-        }))
-        
-        dialog.addAction(actionCancel)
-        dialog.addAction(nameTextField)
-        present(dialog, animated: true)
-    }
 
     func viewGetName() {
         let vc = UIViewController()
@@ -82,19 +64,7 @@ extension CollectionViewControllerContent: UINavigationControllerDelegate, UIIma
         }
         objectForSave.image = image
         dialogGetNameThing() // вызываем диалоговое окно для запроса названия
-        
     }
 }
 
-extension UIView {
-    class func fromNib(named: String? = nil) -> Self {
-        let name = named ?? "\(Self.self)"
-        guard
-            let nib = Bundle.main.loadNibNamed(name, owner: nil, options: nil)
-            else { fatalError("missing expected nib named: \(name)") }
-        guard
-            let view = nib.first as? Self
-            else { fatalError("view of type \(Self.self) not found in \(nib)") }
-        return view
-    }
-}
+

@@ -15,19 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-//        let dataManager = GetRooms()
-//        let mainViewController = MainViewController(dataManager: dataManager)
-//        let window = UIWindow(frame: UIScreen.main.bounds)
-//        window.rootViewController = mainViewController
-//        window.makeKeyAndVisible()
-//        self.window = window
-
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: "main") as! MainViewController
-//        vc.dataManager = dataManager
-//        if let rootViewController = window?.rootViewController as? MainViewController {
-//            rootViewController.dataManager = dataManager
-//        }
         return true
     }
 
