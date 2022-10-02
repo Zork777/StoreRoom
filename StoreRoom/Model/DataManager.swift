@@ -10,20 +10,21 @@ import CoreData
 
 protocol DataManager {
     func getThings () -> [EntityThings]?
-//    func getBoxs () -> [EntityBoxs]?
-//    func getRooms () -> [EntityRooms]?
     func getBoxOrRomm <T: NSManagedObject> () -> [T]?
     func getObjectBoxOrRoom () -> NSManagedObject?
+    func saveObjectInBase(typeObjectForSave: BaseCoreData.Bases, objectForSave: Object) -> Bool
 }
 
 class GetData <T: NSManagedObject> : DataManager {
     
-    var object: T?
+    var object: T? //храним родительский объект (коробка или кладовка)
     
     init (object: T?) {
         self.object = object
     }
     
+    /// Получение вещей хранимые в объекте (родительский)
+    /// - Returns: массив вещей
     func getThings() -> [EntityThings]? {
         var returnValue: NSSet?
         if let object = self.object {
@@ -42,7 +43,10 @@ class GetData <T: NSManagedObject> : DataManager {
         }
         return nil
     }
+
     
+    /// Получаем коробки или кладовки
+    /// - Returns: массив коробок или кладовок
     func getBoxOrRomm <T> () -> [T]? {
         var returnValue: [T] = []
         if let object = self.object {
@@ -62,99 +66,62 @@ class GetData <T: NSManagedObject> : DataManager {
         return try? BaseCoreData.shared.fetchContext(base: .rooms, predicate: nil).compactMap{$0 as? T}
     }
     
+    /// Получение вышестоящего объекта (родительского)
+    /// - Returns: возвращаем объект
     func getObjectBoxOrRoom() -> NSManagedObject? {
         if let object = object {
             return object
         }
         return nil
     }
-    
-    
+
+///сохранение вещи или коробки
+    func saveObjectInBase(typeObjectForSave: BaseCoreData.Bases, objectForSave: Object) -> Bool {
+        let boxOrRoom = self.getObjectBoxOrRoom()
+        
+        if boxOrRoom == nil && typeObjectForSave != .rooms {
+            showMessage(message: "error save object")
+            return false
+        }
+        
+        switch typeObjectForSave {
+        case .things:
+            do {
+                try BaseCoreData.shared.saveObject(objectForSave: objectForSave,
+                                                   base: .things,
+                                                   boxOrRoom: boxOrRoom!)
+            }
+            catch {
+                showMessage(message: "error save object thing")
+                return false
+            }
+            
+        case .boxs:
+            do {
+                try BaseCoreData.shared.saveObject(objectForSave: objectForSave,
+                                                   base: .boxs,
+                                                   boxOrRoom: boxOrRoom!)
+            }
+            catch {
+                showMessage(message: "error save object box")
+                return false
+            }
+            
+        case .rooms:
+            do {
+                try BaseCoreData.shared.saveObject(objectForSave: objectForSave,
+                                                   base: .rooms)
+            }
+            catch {
+                showMessage(message: "error save object room")
+                return false
+            }
+            
+        case .main:
+            print ("type not found")
+            return false
+        }
+        
+        return true
+    }
 }
-//
-//class GetDataInRoom: DataManager {
-//
-//    var roomEntity: EntityRooms
-//    
-//    init (roomEntity: EntityRooms) {
-//        self.roomEntity = roomEntity
-//    }
-//    
-//    func getObjectBoxOrRoom() -> NSManagedObject? {
-//        return roomEntity
-//    }
-//    
-//    func getBoxOrRomm <T: NSManagedObject> () -> [T]? {
-//        return nil
-//    }
-//    
-//    func getRooms() -> [EntityRooms]? {
-//        return nil
-//    }
-//    
-//    func getThings() -> [EntityThings]? {
-//        let things = roomEntity.roomToThing
-//        return things?.allObjects as? [EntityThings]
-//    }
-//    
-//    func getBoxs() -> [EntityBoxs]? {
-//        return nil
-//    }
-//}
-//
-//
-//class GetDataInBox: DataManager {
-//    public var boxEntity: EntityBoxs
-//    
-//    init (boxEntity: EntityBoxs) {
-//        self.boxEntity = boxEntity
-//    }
-//    
-//    func getBoxOrRomm <T: NSManagedObject> () -> [T]? {
-//
-//        return nil
-//    }
-//    
-//    func getObjectBoxOrRoom() -> NSManagedObject? {
-//        return boxEntity
-//    }
-//    
-//    func getRooms() -> [EntityRooms]? {
-//        return nil
-//    }
-//    
-//    func getThings() -> [EntityThings]? {
-//        let things = boxEntity.boxToThing
-//        return things?.allObjects as? [EntityThings]
-//    }
-//    
-//    func getBoxs() -> [EntityBoxs]? {
-//        let boxs = boxEntity.boxToBox
-//        return boxs?.allObjects as? [EntityBoxs]
-//    }
-//}
-//    
-//class GetRooms: DataManager {
-//    
-//    func getRooms() -> [EntityRooms]? {
-//        return try? BaseCoreData.shared.fetchContext(base: .rooms, predicate: nil).compactMap{$0 as? EntityRooms}
-//    }
-//    
-//    func getBoxOrRomm <T: NSManagedObject> () -> [T]? {
-//        return nil
-//    }
-//    
-//    func getThings() -> [EntityThings]? {
-//        return nil
-//    }
-//    
-//    func getBoxs() -> [EntityBoxs]? {
-//        return nil
-//    }
-//    
-//    func getObjectBoxOrRoom() -> NSManagedObject? {
-//        return EntityRooms()
-//    }
-//    
-//    
-//}

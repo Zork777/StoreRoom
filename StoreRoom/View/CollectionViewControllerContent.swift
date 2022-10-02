@@ -19,21 +19,24 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
         performSegue(withIdentifier: "gotoSetting", sender: nil)
     }
     
-    var dataManager: DataManager? = nil
+    var dataManager: DataManager!
     
     private var selectThing: Int = 0
-    private var boxs = [NSManagedObject]()
+    private var boxsOrRooms = [NSManagedObject]()
     private var things = [CellData]()
     var calculateSizeCell: CalculateSizeCell?
     
     var dialogGetNameThing: (()->()) = {return}
     
     var typeObjectForSave: BaseCoreData.Bases = .things
+    
+    //MARK: хранение объекта для записи + проверка готовности объекта для записи
     var objectForSave:Object = Object(name: nil, image: nil) {
         
         didSet {
             if objectForSave.name != nil && objectForSave.image != nil {
-                if saveObjectInBase() {
+                if dataManager.saveObjectInBase(typeObjectForSave: typeObjectForSave, objectForSave: objectForSave){
+                    addObjectInArray()
                     objectForSave = Object(name: nil, image: nil)
                 }
                 else {
@@ -43,6 +46,7 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
         }
     }
     
+    //MARK: Добавляем новую кладовку, коробку, вещь
     @IBAction func buttonAddThing(_ sender: Any) {
 //        dialogGetNameThing = viewGetName
 //        getPhotoInCamera()
@@ -53,9 +57,9 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        boxs = dataManager?.getBoxOrRomm() ?? []
+        boxsOrRooms = dataManager.getBoxOrRomm() ?? []
         
-        if let thingsEntity = dataManager?.getThings() {
+        if let thingsEntity = dataManager.getThings() {
             things = thingsEntity.map{$0.convertToItemCollection()}
         }
         
@@ -88,7 +92,7 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section{
         case 0:
-            return boxs.count
+            return boxsOrRooms.count
         case 1:
             return things.count
         default:
@@ -107,8 +111,8 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
         switch indexPath.section{
         case 0:
-            cell.labelName.text = boxs[indexPath.row].value(forKey: "name") as? String //.name
-            let image = boxs[indexPath.row].value(forKey: "image") as? Data
+            cell.labelName.text = boxsOrRooms[indexPath.row].value(forKey: "name") as? String //.name
+            let image = boxsOrRooms[indexPath.row].value(forKey: "image") as? Data
             if let calculateSizeCell = calculateSizeCell, let image = image {
                 cell.image.image = image.convertToUIImage().preparingThumbnail(of: calculateSizeCell.sizeCell)
             }
@@ -128,16 +132,16 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
         selectThing = indexPath.row
         switch indexPath.section{
             
-            //выбор коробки
+            //MARK: Действие при нажатии на коробку или кладовку
         case 0:
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let destination = storyBoard.instantiateViewController(withIdentifier: "mainScene") as! CollectionViewControllerContent
-            destination.title = boxs[selectThing].value(forKey: "name") as? String //.name
+            destination.title = boxsOrRooms[selectThing].value(forKey: "name") as? String //.name
             destination.calculateSizeCell = CalculateSizeCell(itemsPerRow: 2)
-            destination.dataManager = GetData(object: boxs[selectThing]) //GetDataInBox(boxEntity: boxs[selectThing] as! EntityBoxs)
+            destination.dataManager = GetData(object: boxsOrRooms[selectThing]) //GetDataInBox(boxEntity: boxs[selectThing] as! EntityBoxs)
             show (destination, sender: true)
             
-            // выбор вещи
+            //MARK: Действие при нажатии на вещь
         case 1:
             performSegue(withIdentifier: "gotoShowThing", sender: nil)
         default:
@@ -184,65 +188,24 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     
     }
     */
+    
+    
+    /// Записываем новый объект в массив и обновляем ячейки
+    func addObjectInArray() {
 
-///сохранение вещи или коробки
-    func saveObjectInBase() -> Bool {
-        let boxOrRoom = dataManager?.getObjectBoxOrRoom()
-        
-        if boxOrRoom == nil && typeObjectForSave != .rooms {
-            showMessage(message: "error save object")
-            return false
-        }
-        
         switch typeObjectForSave {
         case .things:
-            do {
-                try BaseCoreData.shared.saveObject(objectForSave: objectForSave,
-                                                   base: .things,
-                                                   boxOrRoom: boxOrRoom!)
-            }
-            catch {
-                showMessage(message: "error save object thing")
-                return false
-            }
             things.append(CellData(name: objectForSave.name ?? "_",
                                    image: objectForSave.image ?? #imageLiteral(resourceName: "noPhoto")))
             collectionViewThings.reloadSections(IndexSet(integer: 1))
-            print ("saved thing")
             
-        case .boxs:
-            do {
-                try BaseCoreData.shared.saveObject(objectForSave: objectForSave,
-                                                   base: .boxs,
-                                                   boxOrRoom: boxOrRoom!)
-            }
-            catch {
-                showMessage(message: "error save object box")
-                return false
-            }
-            boxs = dataManager?.getBoxOrRomm() ?? []
+        case .boxs, .rooms:
+            boxsOrRooms = dataManager?.getBoxOrRomm() ?? []
             collectionViewThings.reloadSections(IndexSet(integer: 0))
-            print ("saved box")
-            
-        case .rooms:
-            do {
-                try BaseCoreData.shared.saveObject(objectForSave: objectForSave,
-                                                   base: .rooms)
-            }
-            catch {
-                showMessage(message: "error save object room")
-                return false
-            }
-            boxs = dataManager?.getBoxOrRomm() ?? []
-            collectionViewThings.reloadSections(IndexSet(integer: 0))
-            print ("saved room")
             
         case .main:
             print ("type not found")
-            return false
         }
-        
-        return true
     }
     
     //MARK: show picter thing

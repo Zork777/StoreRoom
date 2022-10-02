@@ -26,24 +26,38 @@ extension CollectionViewControllerContent: UINavigationControllerDelegate, UIIma
         dialogGetNameThing.rightAnchor.constraint(equalTo: vc.view.rightAnchor, constant: -8).isActive = true
         dialogGetNameThing.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
         dialogGetNameThing.centerYAnchor.constraint(equalTo: vc.view.centerYAnchor).isActive = true
+        
+        //настриваем кол-во выводимых типов объекта для записи
+        if dataManager.getObjectBoxOrRoom()?.entity.name == nil {
+            dialogGetNameThing.selectThingOrBox.removeSegment(at: 1, animated: true)
+            dialogGetNameThing.selectThingOrBox.removeSegment(at: 0, animated: true)
+            dialogGetNameThing.selectThingOrBox.selectedSegmentIndex = 0
+        }
+        else {
+            dialogGetNameThing.selectThingOrBox.removeSegment(at: 2, animated: true)
+            dialogGetNameThing.selectThingOrBox.selectedSegmentIndex = 0
+        }
+        
         dialogGetNameThing.closeVC = { vc.dismiss(animated: true) }
         dialogGetNameThing.getName = { [weak self] in
             guard let nameThing = dialogGetNameThing.textField.text else {
                 showMessage(message: "get name: name thing is nil")
                 return
             }
-
-            switch dialogGetNameThing.selectThingOrBox.selectedSegmentIndex {
-            case 0:
-                self?.typeObjectForSave = .things
-            case 1:
-                self?.typeObjectForSave = .boxs
-            case 2:
-                self?.typeObjectForSave = .rooms
-            default:
-                self?.typeObjectForSave = .things
-            }
             
+            if dialogGetNameThing.selectThingOrBox.numberOfSegments == 1 {
+                self?.typeObjectForSave = .rooms // новая кладовка, поэтому сразу пишем тип кладовка
+            }
+            else {
+                switch dialogGetNameThing.selectThingOrBox.selectedSegmentIndex {
+                case 0:
+                    self?.typeObjectForSave = .things
+                case 1:
+                    self?.typeObjectForSave = .boxs
+                default:
+                    self?.typeObjectForSave = .things
+                }
+            }
             self?.objectForSave.name = nameThing
         }
         present(vc, animated: true)
