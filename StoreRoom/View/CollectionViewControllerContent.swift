@@ -13,6 +13,12 @@ private let reuseIdentifier = "ItemCell"
 class CollectionViewControllerContent: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet var collectionViewThings: UICollectionView!
+    
+    //MARK: переход в настройки
+    @objc func funcAdminButton() {
+        performSegue(withIdentifier: "gotoSetting", sender: nil)
+    }
+    
     var dataManager: DataManager? = nil
     
     private var selectThing: Int = 0
@@ -47,7 +53,6 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        boxs = dataManager?.getBoxs() ?? []
         boxs = dataManager?.getBoxOrRomm() ?? []
         
         if let thingsEntity = dataManager?.getThings() {
@@ -55,7 +60,7 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
         }
         
         self.collectionView!.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
-//        calculateSizeCell = CalculateSizeCell(itemsPerRow: 2, widthView: collectionViewThings.bounds.width)
+
         
         view.backgroundColor = .white
         collectionViewThings.translatesAutoresizingMaskIntoConstraints = false
@@ -65,7 +70,13 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
         collectionViewThings.topAnchor.constraint(equalTo: view.topAnchor , constant: 16).isActive = true
         collectionViewThings.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16).isActive = true
         view.backgroundColor = .systemBackground
-
+        
+        
+        //MARK: настройка входа в системное меню
+        let tap = UITapGestureRecognizer(target: self, action: #selector(funcAdminButton))
+        tap.numberOfTapsRequired = 5
+        view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(tap)
     }
 
     
@@ -102,7 +113,6 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
                 cell.image.image = image.convertToUIImage().preparingThumbnail(of: calculateSizeCell.sizeCell)
             }
 
-            //boxs[indexPath.row].image?.convertToUIImage().preparingThumbnail(of: calculateSizeCell!.sizeCell ?? calculateSizeCell!.calculateSizeCell())
         case 1:
             cell.labelName.text = things[indexPath.row].name
             if let calculateSizeCell = calculateSizeCell {
@@ -177,7 +187,9 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
 
 ///сохранение вещи или коробки
     func saveObjectInBase() -> Bool {
-        guard let boxOrRoom = dataManager?.getObjectBoxOrRoom() else {
+        let boxOrRoom = dataManager?.getObjectBoxOrRoom()
+        
+        if boxOrRoom == nil && typeObjectForSave != .rooms {
             showMessage(message: "error save object")
             return false
         }
@@ -187,7 +199,7 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
             do {
                 try BaseCoreData.shared.saveObject(objectForSave: objectForSave,
                                                    base: .things,
-                                                   boxOrRoom: boxOrRoom)
+                                                   boxOrRoom: boxOrRoom!)
             }
             catch {
                 showMessage(message: "error save object thing")
@@ -197,20 +209,35 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
                                    image: objectForSave.image ?? #imageLiteral(resourceName: "noPhoto")))
             collectionViewThings.reloadSections(IndexSet(integer: 1))
             print ("saved thing")
+            
         case .boxs:
             do {
                 try BaseCoreData.shared.saveObject(objectForSave: objectForSave,
                                                    base: .boxs,
-                                                   boxOrRoom: boxOrRoom)
+                                                   boxOrRoom: boxOrRoom!)
             }
             catch {
-                showMessage(message: "error save object thing")
+                showMessage(message: "error save object box")
                 return false
             }
             boxs = dataManager?.getBoxOrRomm() ?? []
             collectionViewThings.reloadSections(IndexSet(integer: 0))
             print ("saved box")
-        case .rooms, .main:
+            
+        case .rooms:
+            do {
+                try BaseCoreData.shared.saveObject(objectForSave: objectForSave,
+                                                   base: .rooms)
+            }
+            catch {
+                showMessage(message: "error save object room")
+                return false
+            }
+            boxs = dataManager?.getBoxOrRomm() ?? []
+            collectionViewThings.reloadSections(IndexSet(integer: 0))
+            print ("saved room")
+            
+        case .main:
             print ("type not found")
             return false
         }

@@ -38,6 +38,8 @@ extension CollectionViewControllerContent: UINavigationControllerDelegate, UIIma
                 self?.typeObjectForSave = .things
             case 1:
                 self?.typeObjectForSave = .boxs
+            case 2:
+                self?.typeObjectForSave = .rooms
             default:
                 self?.typeObjectForSave = .things
             }

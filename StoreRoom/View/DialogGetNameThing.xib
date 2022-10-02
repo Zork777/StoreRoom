@@ -52,6 +52,7 @@
                     <segments>
                         <segment title="Вещь"/>
                         <segment title="Коробка"/>
+                        <segment title="Кладовка"/>
                     </segments>
                 </segmentedControl>
             </subviews>

@@ -27,7 +27,6 @@
 		998113D6289C420400E5C5CE /* AlertWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998113D5289C420400E5C5CE /* AlertWindow.swift */; };
 		9996135B289B008200B721D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9996135A289B008200B721D4 /* AppDelegate.swift */; };
 		9996135D289B008200B721D4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9996135C289B008200B721D4 /* SceneDelegate.swift */; };
-		9996135F289B008200B721D4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9996135E289B008200B721D4 /* MainViewController.swift */; };
 		99961362289B008200B721D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99961360289B008200B721D4 /* Main.storyboard */; };
 		99961365289B008200B721D4 /* StoreRoom.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 99961363289B008200B721D4 /* StoreRoom.xcdatamodeld */; };
 		99961367289B008600B721D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99961366289B008600B721D4 /* Assets.xcassets */; };
@@ -82,7 +81,6 @@
 		99961357289B008200B721D4 /* StoreRoom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreRoom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9996135A289B008200B721D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9996135C289B008200B721D4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9996135E289B008200B721D4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		99961361289B008200B721D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		99961364289B008200B721D4 /* StoreRoom.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StoreRoom.xcdatamodel; sourceTree = "<group>"; };
 		99961366289B008600B721D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -229,7 +227,6 @@
 				99A200EA28A8076F007859F2 /* CollectionViewControllerContent.swift */,
 				996CD82628A30801000D933D /* CollectionViewCell.swift */,
 				998113BF289B102200E5C5CE /* SettingViewController.swift */,
-				9996135E289B008200B721D4 /* MainViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -383,7 +380,6 @@
 				998113C0289B102200E5C5CE /* SettingViewController.swift in Sources */,
 				998113C8289C3A0C00E5C5CE /* Variable.swift in Sources */,
 				990171B228A55D2600862B29 /* EntityBoxs+CoreDataProperties.swift in Sources */,
-				9996135F289B008200B721D4 /* MainViewController.swift in Sources */,
 				9996135B289B008200B721D4 /* AppDelegate.swift in Sources */,
 				990171B328A55D2600862B29 /* EntityRooms+CoreDataClass.swift in Sources */,
 				99A200EF28A8472E007859F2 /* ViewControllerShowThing.swift in Sources */,
