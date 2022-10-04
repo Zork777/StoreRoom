@@ -30,18 +30,18 @@ class ViewControllerShowThing: UIViewController {
         view.addSubview(buttonClose)
         
         buttonClose.translatesAutoresizingMaskIntoConstraints = false
-        buttonClose.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -6).isActive = true
-        buttonClose.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        buttonClose.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
+        buttonClose.centerYAnchor.constraint(equalTo: labelTitle.centerYAnchor).isActive = true
 
         labelTitle.translatesAutoresizingMaskIntoConstraints = false
         labelTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        labelTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 6).isActive = true
+        labelTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 16).isActive = true
         labelTitle.sizeToFit()
         
         imageThing.translatesAutoresizingMaskIntoConstraints = false
         imageThing.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        imageThing.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 6).isActive = true
-        imageThing.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -6).isActive = true
+        imageThing.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 6).isActive = true
+        imageThing.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -6).isActive = true
         imageThing.contentMode = .scaleAspectFit
     }
     

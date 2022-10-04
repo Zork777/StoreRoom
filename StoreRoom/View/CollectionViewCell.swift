@@ -7,6 +7,12 @@
 
 import UIKit
 
+struct Cell {
+    var labelName: String
+    var image: UIImage
+    var sizeCell: CGSize
+}
+
 class CollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var labelName: UILabel!
@@ -28,5 +34,13 @@ class CollectionViewCell: UICollectionViewCell {
 //        contentView.layer.masksToBounds = true
 //        contentView.layer.borderColor = UIColor.systemGray.cgColor
 //        contentView.layer.borderWidth = CGFloat(1)
+    }
+    
+    func config(cell: Cell) {
+        labelName.text = cell.labelName
+        DispatchQueue.main.async {
+            [weak self] in
+            self?.image.image = cell.image.preparingThumbnail(of: cell.sizeCell)
+        }
     }
 }

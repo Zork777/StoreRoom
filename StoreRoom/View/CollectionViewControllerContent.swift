@@ -21,10 +21,10 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     
     var dataManager: DataManager!
     
-    private var selectThing: Int = 0
+    private var selectCell: Int = 0
     private var boxsOrRooms = [NSManagedObject]()
     private var things = [CellData]()
-    var calculateSizeCell: CalculateSizeCell?
+    var calculateSizeCell: CalculateSizeCell!
     
     var dialogGetNameThing: (()->()) = {return}
     
@@ -48,21 +48,33 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     
     //MARK: Добавляем новую кладовку, коробку, вещь
     @IBAction func buttonAddThing(_ sender: Any) {
-//        dialogGetNameThing = viewGetName
-//        getPhotoInCamera()
-        objectForSave.image = #imageLiteral(resourceName: "sokrovisha-1")
-        viewGetName()
+        dialogGetNameThing = viewGetName
+        getPhotoInCamera()
+        
+//        objectForSave.image = #imageLiteral(resourceName: "sokrovisha-1") //for test
+//        viewGetName() //for test
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        boxsOrRooms = dataManager.getBoxOrRomm() ?? []
         
-        if let thingsEntity = dataManager.getThings() {
-            things = thingsEntity.map{$0.convertToItemCollection()}
+        //загружаем данные в массивы
+        DispatchQueue.main.async {
+            [weak self] in
+            guard let strongSelf = self else {return}
+            strongSelf.boxsOrRooms = strongSelf.dataManager.getBoxOrRomm() ?? []
+            
+            if let thingsEntity = strongSelf.dataManager.getThings() {
+                strongSelf.things = thingsEntity.map{$0.convertToItemCollection()}
+            }
+            strongSelf.collectionViewThings.reloadData()
         }
         
+        
+        if dataManager.getObjectBoxOrRoom() == nil { title = "Кладовки" }
+        
+
         self.collectionView!.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
 
         
@@ -111,17 +123,17 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
         switch indexPath.section{
         case 0:
-            cell.labelName.text = boxsOrRooms[indexPath.row].value(forKey: "name") as? String //.name
-            let image = boxsOrRooms[indexPath.row].value(forKey: "image") as? Data
-            if let calculateSizeCell = calculateSizeCell, let image = image {
-                cell.image.image = image.convertToUIImage().preparingThumbnail(of: calculateSizeCell.sizeCell)
-            }
+            let name = boxsOrRooms[indexPath.row].value(forKey: "name") as? String ?? ""
+            var image = (boxsOrRooms[indexPath.row].value(forKey: "image") as? Data)?.convertToUIImage()
+            if image == nil { image = #imageLiteral(resourceName: "noPhoto") }
+            cell.config(cell: Cell(labelName: name, image: image!, sizeCell: calculateSizeCell.sizeCell))
+            
 
         case 1:
-            cell.labelName.text = things[indexPath.row].name
-            if let calculateSizeCell = calculateSizeCell {
-            cell.image.image = things[indexPath.row].image.preparingThumbnail(of: calculateSizeCell.sizeCell)
-            }
+            let name = things[indexPath.row].name
+            let image = things[indexPath.row].image
+            cell.config(cell: Cell(labelName: name, image: image, sizeCell: calculateSizeCell.sizeCell))
+            
         default:
             break
         }
@@ -129,16 +141,16 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectThing = indexPath.row
+        selectCell = indexPath.row
         switch indexPath.section{
             
             //MARK: Действие при нажатии на коробку или кладовку
         case 0:
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let destination = storyBoard.instantiateViewController(withIdentifier: "mainScene") as! CollectionViewControllerContent
-            destination.title = boxsOrRooms[selectThing].value(forKey: "name") as? String //.name
+            destination.title = boxsOrRooms[selectCell].value(forKey: "name") as? String
             destination.calculateSizeCell = CalculateSizeCell(itemsPerRow: 2)
-            destination.dataManager = GetData(object: boxsOrRooms[selectThing]) //GetDataInBox(boxEntity: boxs[selectThing] as! EntityBoxs)
+            destination.dataManager = GetData(object: boxsOrRooms[selectCell])
             show (destination, sender: true)
             
             //MARK: Действие при нажатии на вещь
@@ -152,6 +164,17 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets.init(top: CGFloat(8), left: .zero, bottom: .zero, right: .zero)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return calculateSizeCell.sizeCell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, canEditItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    
+
     
 //
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -211,8 +234,8 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     //MARK: show picter thing
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? ViewControllerShowThing {
-            destination.label = things[selectThing].name
-            destination.image = things[selectThing].image
+            destination.label = things[selectCell].name
+            destination.image = things[selectCell].image
             }
     }
 }

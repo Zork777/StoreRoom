@@ -11,6 +11,7 @@ import UIKit
 class CalculateSizeCell {
     private var itemsPerRow: CGFloat = 1
     private var widthView: CGFloat
+    
     let sectionInsets = UIEdgeInsets(
                                               top: 16.0,
                                               left: 16.0,
