@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 
-class CalculateSizeCell {
-    private var itemsPerRow: CGFloat = 1
+final class CalculateSizeCell {
+    var itemsPerRow: CGFloat = 1
     private var widthView: CGFloat
     
     let sectionInsets = UIEdgeInsets(

@@ -13,11 +13,34 @@ struct Cell {
     var sizeCell: CGSize
 }
 
+
 class CollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var checkMarkLabel: UILabel!
     var cornerRadius: CGFloat = 5.0
+    
+    
+    //MARK: отмечаем на редактирование
+    var isInEditingMode: Bool = false {
+        didSet {
+            checkMarkLabel.isHidden = !isInEditingMode
+        }
+    }
+    
+    //MARK: отмечаем выбранную ячейку
+    override var isSelected: Bool {
+        didSet {
+            if isInEditingMode {
+                checkMarkLabel.text = isSelected ? "✓" : ""
+            }
+        }
+    }
+    
+    @objc func longPressed(sender: UILongPressGestureRecognizer) {
+        print("longpressed")
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,6 +57,18 @@ class CollectionViewCell: UICollectionViewCell {
 //        contentView.layer.masksToBounds = true
 //        contentView.layer.borderColor = UIColor.systemGray.cgColor
 //        contentView.layer.borderWidth = CGFloat(1)
+        
+//        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
+//        self.view.addGestureRecognizer(tapGestureRecognizer)
+            
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressed))
+        addGestureRecognizer(longPressRecognizer)
+            
+//        @objc func tapped(sender: UITapGestureRecognizer){
+//            print("tapped")
+//        }
+
+
     }
     
     func config(cell: Cell) {
@@ -42,5 +77,10 @@ class CollectionViewCell: UICollectionViewCell {
             [weak self] in
             self?.image.image = cell.image.preparingThumbnail(of: cell.sizeCell)
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        checkMarkLabel.isHidden = !isInEditingMode
     }
 }
