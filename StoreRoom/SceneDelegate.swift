@@ -23,9 +23,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainScene = storyboard.instantiateViewController(withIdentifier: "mainScene") as! CollectionViewControllerContent //MainViewController
+        let mainScene = storyboard.instantiateViewController(withIdentifier: "mainScene1") as! ViewController //CollectionViewControllerContent //MainViewController
+//        let layout = UICollectionViewFlowLayout()
+//        let mainScene = CollectionViewControllerContent(collectionViewLayout: layout)
         mainScene.dataManager = dataManager
         mainScene.calculateSizeCell = CalculateSizeCell(itemsPerRow: 1)
+        
         let nav = UINavigationController(rootViewController: mainScene)
         window?.rootViewController = nav
         window?.makeKeyAndVisible()

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-extension CollectionViewControllerContent: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+extension ViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     func viewGetName() {
         let vc = UIViewController()

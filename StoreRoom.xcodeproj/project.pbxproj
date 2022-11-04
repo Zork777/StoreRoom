@@ -19,6 +19,7 @@
 		9939DA9228DE4D01004080D4 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9939DA9128DE4D01004080D4 /* DataManager.swift */; };
 		996CD82828A30801000D933D /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996CD82628A30801000D933D /* CollectionViewCell.swift */; };
 		996CD82928A30801000D933D /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 996CD82728A30801000D933D /* CollectionViewCell.xib */; };
+		997D008B2912FF2F00B1385A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997D008A2912FF2F00B1385A /* ViewController.swift */; };
 		998113C0289B102200E5C5CE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998113BF289B102200E5C5CE /* SettingViewController.swift */; };
 		998113C2289B10BA00E5C5CE /* GenerateTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998113C1289B10BA00E5C5CE /* GenerateTestData.swift */; };
 		998113C4289C36D800E5C5CE /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998113C3289C36D800E5C5CE /* CoreData.swift */; };
@@ -35,7 +36,7 @@
 		9996137F289B008600B721D4 /* StoreRoomUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9996137E289B008600B721D4 /* StoreRoomUITests.swift */; };
 		99961381289B008600B721D4 /* StoreRoomUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99961380289B008600B721D4 /* StoreRoomUITestsLaunchTests.swift */; };
 		999ACD3828C28B3A00CFF235 /* GetPhotoCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999ACD3728C28B3A00CFF235 /* GetPhotoCamera.swift */; };
-		99A200EB28A8076F007859F2 /* CollectionViewControllerContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A200EA28A8076F007859F2 /* CollectionViewControllerContent.swift */; };
+		99A200EB28A8076F007859F2 /* delete_CollectionViewControllerContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A200EA28A8076F007859F2 /* delete_CollectionViewControllerContent.swift */; };
 		99A200ED28A812F8007859F2 /* CalculateSizeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A200EC28A812F8007859F2 /* CalculateSizeCell.swift */; };
 		99A200EF28A8472E007859F2 /* ViewControllerShowThing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A200EE28A8472E007859F2 /* ViewControllerShowThing.swift */; };
 		99B4E65F28EC978E002AD71E /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B4E65E28EC978E002AD71E /* Animation.swift */; };
@@ -73,6 +74,7 @@
 		9939DA9128DE4D01004080D4 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		996CD82628A30801000D933D /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollectionViewCell.swift; path = StoreRoom/View/CollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		996CD82728A30801000D933D /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CollectionViewCell.xib; path = StoreRoom/View/CollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
+		997D008A2912FF2F00B1385A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = StoreRoom/View/ViewController.swift; sourceTree = SOURCE_ROOT; };
 		998113BF289B102200E5C5CE /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingViewController.swift; path = StoreRoom/View/SettingViewController.swift; sourceTree = SOURCE_ROOT; };
 		998113C1289B10BA00E5C5CE /* GenerateTestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GenerateTestData.swift; path = StoreRoom/View/GenerateTestData.swift; sourceTree = SOURCE_ROOT; };
 		998113C3289C36D800E5C5CE /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoreData.swift; path = StoreRoom/Model/CoreData.swift; sourceTree = SOURCE_ROOT; };
@@ -93,7 +95,7 @@
 		9996137E289B008600B721D4 /* StoreRoomUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRoomUITests.swift; sourceTree = "<group>"; };
 		99961380289B008600B721D4 /* StoreRoomUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRoomUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		999ACD3728C28B3A00CFF235 /* GetPhotoCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPhotoCamera.swift; sourceTree = "<group>"; };
-		99A200EA28A8076F007859F2 /* CollectionViewControllerContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollectionViewControllerContent.swift; path = StoreRoom/View/CollectionViewControllerContent.swift; sourceTree = SOURCE_ROOT; };
+		99A200EA28A8076F007859F2 /* delete_CollectionViewControllerContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = delete_CollectionViewControllerContent.swift; path = StoreRoom/View/delete_CollectionViewControllerContent.swift; sourceTree = SOURCE_ROOT; };
 		99A200EC28A812F8007859F2 /* CalculateSizeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateSizeCell.swift; sourceTree = "<group>"; };
 		99A200EE28A8472E007859F2 /* ViewControllerShowThing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerShowThing.swift; path = StoreRoom/View/ViewControllerShowThing.swift; sourceTree = SOURCE_ROOT; };
 		99B4E65E28EC978E002AD71E /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
@@ -226,10 +228,11 @@
 		99961390289B010E00B721D4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				997D008A2912FF2F00B1385A /* ViewController.swift */,
 				99A200EE28A8472E007859F2 /* ViewControllerShowThing.swift */,
-				99A200EA28A8076F007859F2 /* CollectionViewControllerContent.swift */,
 				996CD82628A30801000D933D /* CollectionViewCell.swift */,
 				998113BF289B102200E5C5CE /* SettingViewController.swift */,
+				99A200EA28A8076F007859F2 /* delete_CollectionViewControllerContent.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -371,7 +374,7 @@
 				996CD82828A30801000D933D /* CollectionViewCell.swift in Sources */,
 				999ACD3828C28B3A00CFF235 /* GetPhotoCamera.swift in Sources */,
 				99A200ED28A812F8007859F2 /* CalculateSizeCell.swift in Sources */,
-				99A200EB28A8076F007859F2 /* CollectionViewControllerContent.swift in Sources */,
+				99A200EB28A8076F007859F2 /* delete_CollectionViewControllerContent.swift in Sources */,
 				990171B728A55D2600862B29 /* EntityThings+CoreDataClass.swift in Sources */,
 				990171B428A55D2600862B29 /* EntityRooms+CoreDataProperties.swift in Sources */,
 				9901717628A405C900862B29 /* ImageResize.swift in Sources */,
@@ -384,6 +387,7 @@
 				998113C0289B102200E5C5CE /* SettingViewController.swift in Sources */,
 				998113C8289C3A0C00E5C5CE /* Variable.swift in Sources */,
 				990171B228A55D2600862B29 /* EntityBoxs+CoreDataProperties.swift in Sources */,
+				997D008B2912FF2F00B1385A /* ViewController.swift in Sources */,
 				9996135B289B008200B721D4 /* AppDelegate.swift in Sources */,
 				990171B328A55D2600862B29 /* EntityRooms+CoreDataClass.swift in Sources */,
 				99A200EF28A8472E007859F2 /* ViewControllerShowThing.swift in Sources */,

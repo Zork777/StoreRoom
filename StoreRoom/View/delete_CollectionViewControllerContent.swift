@@ -8,17 +8,11 @@
 import UIKit
 import CoreData
 
-
-final class NumberOfRow: UIBarButtonItem {
-    var numberOfRow: CGFloat?
-}
-
+private let reuseIdentifier = "ItemCell"
 
 
 class CollectionViewControllerContent: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIToolbarDelegate {
 
-    @IBOutlet var collectionViewThings: UICollectionView!
-    
     //MARK: переход в настройки
     @objc func funcAdminButton() {
         performSegue(withIdentifier: "gotoSetting", sender: nil)
@@ -32,8 +26,8 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
         DispatchQueue.main.async {
             [weak self] in
             guard let strongSelf = self else {return}
-            strongSelf.collectionViewThings.reloadSections(IndexSet(integer: 0))
-            strongSelf.collectionViewThings.reloadSections(IndexSet(integer: 1))
+            strongSelf.collectionView.reloadSections(IndexSet(integer: 0))
+            strongSelf.collectionView.reloadSections(IndexSet(integer: 1))
 
         }
 
@@ -43,15 +37,14 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
         print ("edit mode")
     }
     
+    //MARK: variables
     var dataManager: DataManager!
-    
     private var selectCell: Int = 0
     private var boxsOrRooms = [NSManagedObject]()
     private var things = [CellData]()
     var calculateSizeCell: CalculateSizeCell!
     var dialogGetNameThing: (()->()) = {return}
     var typeObjectForSave: BaseCoreData.Bases = .things
-    private let reuseIdentifier = "ItemCell"
     
     
     //MARK: хранение объекта для записи + проверка готовности объекта для записи
@@ -72,8 +65,8 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     
     //MARK: Добавляем новую кладовку, коробку, вещь
         @objc func buttonAddThing(){
-        dialogGetNameThing = viewGetName
-        getPhotoInCamera()
+//        dialogGetNameThing = viewGetName
+//        getPhotoInCamera()
         
 //        objectForSave.image = #imageLiteral(resourceName: "sokrovisha-1") //for test
 //        viewGetName() //for test
@@ -82,22 +75,21 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //загружаем данные в массивы
+        //MARK:загружаем данные в массивы
         DispatchQueue.main.async {
             [weak self] in
             guard let strongSelf = self else {return}
             strongSelf.boxsOrRooms = strongSelf.dataManager.getBoxOrRomm() ?? []
-            
+
             if let thingsEntity = strongSelf.dataManager.getThings() {
                 strongSelf.things = thingsEntity.map{$0.convertToItemCollection()}
             }
-            strongSelf.collectionViewThings.reloadData()
+            strongSelf.collectionView.reloadData()
         }
-        
         
         if dataManager.getObjectBoxOrRoom() == nil { title = "Кладовки" }
         
-        self.collectionViewThings!.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView!.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
 
         
         //MARK: добавляем кнопки на barItemright выбор(select) +
@@ -130,13 +122,13 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
         self.toolbarItems = [barButtonOneRow, flexibleSpace, barButtonTwoRow, flexibleSpace, barButtonThreeRow, flexibleSpace, barButtonFourRow]
 
         
-        view.backgroundColor = .white
-        collectionViewThings.translatesAutoresizingMaskIntoConstraints = false
-        collectionViewThings.sizeToFit()
-        collectionViewThings.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
-        collectionViewThings.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-        collectionViewThings.topAnchor.constraint(equalTo: view.topAnchor , constant: 16).isActive = true
-        collectionViewThings.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        collectionView.backgroundColor = .systemBackground
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.sizeToFit()
+        collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        collectionView.topAnchor.constraint(equalTo: view.topAnchor , constant: 16).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         view.backgroundColor = .systemBackground
         
         
@@ -147,6 +139,18 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
         view.addGestureRecognizer(tap)
     }
 
+   
+    //MARK: отмена выбора ячейки
+//    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+//        if let selectedItems = collectionView.indexPathsForSelectedItems {
+//            if selectedItems.contains(indexPath) {
+//                collectionView.deselectItem(at: indexPath, animated: true)
+//                return false
+//            }
+//        }
+//        return true
+//    }
+    
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
@@ -167,14 +171,15 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         
-        collectionViewThings.allowsMultipleSelection = editing
-        collectionViewThings.indexPathsForSelectedItems?.forEach({ (IndexPath) in
-            collectionViewThings.deselectItem(at: IndexPath, animated: true)
+        collectionView.allowsMultipleSelection = editing
+        
+        collectionView.indexPathsForSelectedItems?.forEach({ (IndexPath) in
+            collectionView.deselectItem(at: IndexPath, animated: true)
         })
         
-        let indexPaths = collectionViewThings.indexPathsForVisibleItems
+        let indexPaths = collectionView.indexPathsForVisibleItems
         for indexPath in indexPaths {
-            let cell = collectionViewThings.cellForItem(at: indexPath) as! CollectionViewCell
+            let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
             cell.isInEditingMode = editing
         }
     }
@@ -184,32 +189,33 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
 //    override func indexTitles(for collectionView: UICollectionView) -> [String]? {
 //        return ["вещи", "коробки"]
 //    }
-
+    
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionViewThings.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
         switch indexPath.section{
         case 0:
             let name = boxsOrRooms[indexPath.row].value(forKey: "name") as? String ?? ""
             var image = (boxsOrRooms[indexPath.row].value(forKey: "image") as? Data)?.convertToUIImage()
             if image == nil { image = #imageLiteral(resourceName: "noPhoto") }
             cell.config(cell: Cell(labelName: name, image: image!, sizeCell: calculateSizeCell.sizeCell))
-            
+
 
         case 1:
             let name = things[indexPath.row].name
             let image = things[indexPath.row].image
             cell.config(cell: Cell(labelName: name, image: image, sizeCell: calculateSizeCell.sizeCell))
-            
+
         default:
             break
         }
-        
+
         cell.isInEditingMode = isEditing
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print ("select-", collectionView.indexPathsForSelectedItems)
         
         if isEditing {
             print ("view delete button")
@@ -219,7 +225,7 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
             print ("hide delete button1")
         }
         
-        if let selectedItems = collectionViewThings.indexPathsForSelectedItems, selectedItems.count == 0 {
+        if let selectedItems = collectionView.indexPathsForSelectedItems, selectedItems.count == 0 {
             print ("hide delete button2")
         }
         
@@ -243,6 +249,7 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
         }
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets.init(top: CGFloat(8), left: .zero, bottom: .zero, right: .zero)
     }
@@ -255,14 +262,7 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
 //        return true
 //    }
     
-    
 
-    
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return CGFloat(1)
-//    }
-    
     // MARK: UICollectionViewDelegate
 
     /*
@@ -297,12 +297,13 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
     
     //MARK: удаляем выбранные ячейки
     func deleteItem() {
-        if let selectedCells = collectionViewThings.indexPathsForSelectedItems {
+        if let selectedCells = collectionView.indexPathsForSelectedItems {
+            print (selectedCells)
           // 1
           let items = selectedCells.map { $0.item }.sorted().reversed()
           // 2
           for item in items {
-              print(item)
+//              print(item)
 //              modelData.remove(at: item)
           }
           // 3
@@ -318,11 +319,11 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
         case .things:
             things.append(CellData(name: objectForSave.name ?? "_",
                                    image: objectForSave.image ?? #imageLiteral(resourceName: "noPhoto")))
-            collectionViewThings.reloadSections(IndexSet(integer: 1))
+            collectionView.reloadSections(IndexSet(integer: 1))
             
         case .boxs, .rooms:
             boxsOrRooms = dataManager?.getBoxOrRomm() ?? []
-            collectionViewThings.reloadSections(IndexSet(integer: 0))
+            collectionView.reloadSections(IndexSet(integer: 0))
             
         case .main:
             print ("type not found")
@@ -336,6 +337,10 @@ class CollectionViewControllerContent: UICollectionViewController, UICollectionV
             destination.image = things[selectCell].image
             }
     }
+}
+
+final class NumberOfRow: UIBarButtonItem {
+    var numberOfRow: CGFloat?
 }
 
 

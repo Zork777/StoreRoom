@@ -68,7 +68,6 @@ class CollectionViewCell: UICollectionViewCell {
 //            print("tapped")
 //        }
 
-
     }
     
     func config(cell: Cell) {
@@ -79,8 +78,9 @@ class CollectionViewCell: UICollectionViewCell {
         }
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        checkMarkLabel.isHidden = !isInEditingMode
-    }
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//        isSelected = false
+//        checkMarkLabel.isHidden = !isInEditingMode
+//    }
 }
