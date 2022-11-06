@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     var dataManager: DataManager!
     private var selectCell: Int = 0
     private var boxsOrRooms = [NSManagedObject]()
-    private var things = [CellData]()
+    private var things = [NSManagedObject]()//[CellData]()
     var calculateSizeCell: CalculateSizeCell!
     var dialogGetNameThing: (()->()) = {return}
     var typeObjectForSave: BaseCoreData.Bases = .things
@@ -53,9 +53,10 @@ class ViewController: UIViewController {
             guard let strongSelf = self else {return}
             strongSelf.boxsOrRooms = strongSelf.dataManager.getBoxOrRomm() ?? []
 
-            if let thingsEntity = strongSelf.dataManager.getThings() {
-                strongSelf.things = thingsEntity.map{$0.convertToItemCollection()}
-            }
+            strongSelf.things = strongSelf.dataManager.getThings() ?? []
+//            if let thingsEntity = strongSelf.dataManager.getThings() {
+//                strongSelf.things = thingsEntity.map{$0.convertToItemCollection()}
+//            }
             strongSelf.collectionView.reloadData()
         }
         
@@ -168,9 +169,14 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
 
 
         case 1:
-            let name = things[indexPath.row].name
-            let image = things[indexPath.row].image
-            cell.config(cell: Cell(labelName: name, image: image, sizeCell: calculateSizeCell.sizeCell))
+            let name = things[indexPath.row].value(forKey: "name") as? String ?? ""
+            var image = (things[indexPath.row].value(forKey: "image") as? Data)?.convertToUIImage()
+            if image == nil { image = #imageLiteral(resourceName: "noPhoto") }
+            cell.config(cell: Cell(labelName: name, image: image!, sizeCell: calculateSizeCell.sizeCell))
+            
+//            let name = things[indexPath.row].name
+//            let image = things[indexPath.row].image
+//            cell.config(cell: Cell(labelName: name, image: image, sizeCell: calculateSizeCell.sizeCell))
 
         default:
             break
@@ -181,18 +187,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        print ("select-", collectionView.indexPathsForSelectedItems)
         
         if isEditing { return }
-//            print ("view delete button")
-//            return
-//        } else {
-//            print ("hide delete button1")
-//        }
-//
-//        if let selectedItems = collectionView.indexPathsForSelectedItems, selectedItems.count == 0 {
-//            print ("hide delete button2")
-//        }
         
         selectCell = indexPath.row
         switch indexPath.section{
@@ -227,8 +223,12 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? ViewControllerShowThing {
-            destination.label = things[selectCell].name
-            destination.image = things[selectCell].image
+            let name = things[selectCell].value(forKey: "name") as? String ?? ""
+            let image = (things[selectCell].value(forKey: "image") as? Data)?.convertToUIImage()
+            destination.label = name
+            destination.image = image
+//            destination.label = things[selectCell].name
+//            destination.image = things[selectCell].image
             }
     }
     
@@ -247,7 +247,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             guard let strongSelf = self else {return}
             strongSelf.collectionView.reloadSections(IndexSet(integer: 0))
             strongSelf.collectionView.reloadSections(IndexSet(integer: 1))
-
         }
     }
     final class NumberOfRow: UIBarButtonItem {
@@ -265,18 +264,24 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     //MARK: функция Записывает новый объект в массив и обновляет ячейки
     func addObjectInArray() {
-        switch typeObjectForSave {
-        case .things:
-            things.append(CellData(name: objectForSave.name ?? "_",
-                                   image: objectForSave.image ?? #imageLiteral(resourceName: "noPhoto")))
-            collectionView.reloadSections(IndexSet(integer: 1))
-            
-        case .boxs, .rooms:
-            boxsOrRooms = dataManager?.getBoxOrRomm() ?? []
-            collectionView.reloadSections(IndexSet(integer: 0))
-            
-        case .main:
-            print ("type not found")
+        DispatchQueue.main.async {
+            [weak self] in
+            guard let strongSelf = self else {return}
+            switch strongSelf.typeObjectForSave {
+            case .things:
+                
+    //            things.append(CellData(name: objectForSave.name ?? "_",
+    //                                   image: objectForSave.image ?? #imageLiteral(resourceName: "noPhoto")))
+                strongSelf.things = strongSelf.dataManager.getThings() ?? []
+                strongSelf.collectionView.reloadSections(IndexSet(integer: 1))
+                
+            case .boxs, .rooms:
+                strongSelf.boxsOrRooms = strongSelf.dataManager?.getBoxOrRomm() ?? []
+                strongSelf.collectionView.reloadSections(IndexSet(integer: 0))
+                
+            case .main:
+                print ("type not found")
+            }
         }
     }
     
@@ -286,13 +291,24 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             let items = selectedCells.sorted().reversed().map { ($0.section, $0.row) }
 
             for item in items {
+                let index = item.1
                 switch item.0 {
                 case 0:
-                    print ("box-",item.1)
-                    boxsOrRooms.remove(at: item.1)
+                    if !dataManager.deleteObjectInBase(typeObjectForDelete: .boxs, objectForDelete: boxsOrRooms[index]) {
+                        showMessage(message: "Error delete - \(String(describing: boxsOrRooms[index].value(forKey: "name")))")
+                    }
+                    else {
+                        boxsOrRooms.remove(at: index)
+                    }
+                    
                 case 1:
-                    print ("thing-",item.1)
-                    things.remove(at: item.1)
+
+                    if !dataManager.deleteObjectInBase(typeObjectForDelete: .things, objectForDelete: things[index]) {
+                        showMessage(message: "Error delete - \(String(describing: things[index].value(forKey: "name")))")
+                    }
+                    else {
+                        things.remove(at: index)
+                    }
                 default:
                     break
                 }

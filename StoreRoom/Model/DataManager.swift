@@ -13,6 +13,7 @@ protocol DataManager {
     func getBoxOrRomm <T: NSManagedObject> () -> [T]?
     func getObjectBoxOrRoom () -> NSManagedObject?
     func saveObjectInBase(typeObjectForSave: BaseCoreData.Bases, objectForSave: Object) -> Bool
+    func deleteObjectInBase(typeObjectForDelete: BaseCoreData.Bases, objectForDelete: NSManagedObject) -> Bool
 }
 
 class GetData <T: NSManagedObject> : DataManager {
@@ -123,5 +124,35 @@ class GetData <T: NSManagedObject> : DataManager {
         }
         
         return true
+    }
+    
+///удаление вещи или коробки
+    func deleteObjectInBase(typeObjectForDelete: BaseCoreData.Bases, objectForDelete: NSManagedObject) -> Bool {
+        let boxOrRoom = self.getObjectBoxOrRoom()
+        
+        if boxOrRoom == nil && typeObjectForDelete != .rooms {
+            return false
+        }
+        
+        switch typeObjectForDelete {
+        case .boxs:
+            print ("delete boxs")
+            return true
+        case .rooms:
+            print ("delete rooms")
+            return true
+        case .things:
+            print ("delete things")
+            do {
+                try BaseCoreData.shared.deleteObject(object: objectForDelete)
+                return true
+            }
+            catch {
+                return false
+            }
+        case .main:
+            print ("type not found")
+            return false
+        }
     }
 }

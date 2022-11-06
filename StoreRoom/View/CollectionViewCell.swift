@@ -77,10 +77,4 @@ class CollectionViewCell: UICollectionViewCell {
             self?.image.image = cell.image.preparingThumbnail(of: cell.sizeCell)
         }
     }
-    
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//        isSelected = false
-//        checkMarkLabel.isHidden = !isInEditingMode
-//    }
 }
