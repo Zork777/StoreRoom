@@ -128,16 +128,17 @@ class GetData <T: NSManagedObject> : DataManager {
     
 ///удаление вещи или коробки
     func deleteObjectInBase(typeObjectForDelete: BaseCoreData.Bases, objectForDelete: NSManagedObject) -> Bool {
-        let boxOrRoom = self.getObjectBoxOrRoom()
-        
-        if boxOrRoom == nil && typeObjectForDelete != .rooms {
-            return false
-        }
-        
+
         switch typeObjectForDelete {
         case .boxs:
             print ("delete boxs")
-            return true
+            do {
+                try BaseCoreData.shared.deleteObject(object: objectForDelete)
+                return true
+            }
+            catch {
+                return false
+            }
         case .rooms:
             print ("delete rooms")
             return true

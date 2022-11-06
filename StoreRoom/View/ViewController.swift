@@ -295,16 +295,15 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
                 switch item.0 {
                 case 0:
                     if !dataManager.deleteObjectInBase(typeObjectForDelete: .boxs, objectForDelete: boxsOrRooms[index]) {
-                        showMessage(message: "Error delete - \(String(describing: boxsOrRooms[index].value(forKey: "name")))")
+                        showMessage(message: "Error delete - \(String(describing: boxsOrRooms[index].value(forKey: "name") ?? ""))")
                     }
                     else {
                         boxsOrRooms.remove(at: index)
                     }
                     
                 case 1:
-
                     if !dataManager.deleteObjectInBase(typeObjectForDelete: .things, objectForDelete: things[index]) {
-                        showMessage(message: "Error delete - \(String(describing: things[index].value(forKey: "name")))")
+                        showMessage(message: "Error delete - \(String(describing: things[index].value(forKey: "name") ?? ""))")
                     }
                     else {
                         things.remove(at: index)
