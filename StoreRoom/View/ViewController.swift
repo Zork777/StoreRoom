@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     //MARK: объявляем переменные
+    var dialogViews = [UIView]()
     var dataManager: DataManager!
     private var selectCell: Int = 0
     private var boxsOrRooms = [NSManagedObject]()
@@ -289,33 +290,46 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     @objc func deleteItem() {
         if let selectedCells = collectionView.indexPathsForSelectedItems{
             let items = selectedCells.sorted().reversed().map { ($0.section, $0.row) }
-
             for item in items {
-                let index = item.1
+                let objectIndex = item.1
+                
                 switch item.0 {
+                    //MARK: удаление коробок
                 case 0:
-                    if !dataManager.deleteObjectInBase(typeObjectForDelete: .boxs, objectForDelete: boxsOrRooms[index]) {
-                        showMessage(message: "Error delete - \(String(describing: boxsOrRooms[index].value(forKey: "name") ?? ""))")
-                    }
-                    else {
-                        boxsOrRooms.remove(at: index)
-                    }
+
+                    let getCountOld = boxsOrRooms.count
+                    let objectName = boxsOrRooms[objectIndex].value(forKey: "name") as? String ?? ""
+                    let dialogConfirmDelete = DialogConfirmDelete.fromNib()
+                    dialogConfirmDelete.objectName.text = objectName
+                    dialogConfirmDelete.functionDelete = {
+                        [weak self] in
+                        guard let strongSelf = self else {return}
+                        let getCountNew = strongSelf.boxsOrRooms.count
+                        let correctIndex = objectIndex-(getCountOld - getCountNew)
+                        if !strongSelf.dataManager.deleteObjectInBase(typeObjectForDelete: .boxs, objectForDelete: strongSelf.boxsOrRooms[correctIndex]) {
+                            showMessage(message: "Error delete - \"\(objectName)\"")}
+                        else {
+                            strongSelf.boxsOrRooms.remove(at: correctIndex)
+                            strongSelf.collectionView.deleteItems(at: [IndexPath(row: correctIndex, section: item.0)])}
+                        }
+                    view.addSubview(dialogConfirmDelete)
+                    dialogConfirmDelete.setupInit()
                     
+                    //MARK: Удаление вещей
                 case 1:
-                    if !dataManager.deleteObjectInBase(typeObjectForDelete: .things, objectForDelete: things[index]) {
-                        showMessage(message: "Error delete - \(String(describing: things[index].value(forKey: "name") ?? ""))")
+                    let objectName = things[objectIndex].value(forKey: "name") as? String ?? ""
+                    if !dataManager.deleteObjectInBase(typeObjectForDelete: .things, objectForDelete: things[objectIndex]) {
+                        showMessage(message: "Error delete - \(objectName)")
                     }
                     else {
-                        things.remove(at: index)
+                        things.remove(at: objectIndex)
+                        collectionView.deleteItems(at: [IndexPath(row: item.1, section: item.0)])
                     }
                 default:
                     break
                 }
             }
-                
-            collectionView.deleteItems(at: selectedCells)
             isEditing = false
-
         }
     }
     

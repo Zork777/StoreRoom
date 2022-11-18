@@ -54,20 +54,8 @@ class CollectionViewCell: UICollectionViewCell {
         image.layer.cornerRadius = cornerRadius
         
         contentView.layer.cornerRadius = cornerRadius
-//        contentView.layer.masksToBounds = true
-//        contentView.layer.borderColor = UIColor.systemGray.cgColor
-//        contentView.layer.borderWidth = CGFloat(1)
-        
-//        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
-//        self.view.addGestureRecognizer(tapGestureRecognizer)
-            
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressed))
         addGestureRecognizer(longPressRecognizer)
-            
-//        @objc func tapped(sender: UITapGestureRecognizer){
-//            print("tapped")
-//        }
-
     }
     
     func config(cell: Cell) {
