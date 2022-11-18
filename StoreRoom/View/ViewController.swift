@@ -296,10 +296,11 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
                 switch item.0 {
                     //MARK: удаление коробок
                 case 0:
-
                     let getCountOld = boxsOrRooms.count
                     let objectName = boxsOrRooms[objectIndex].value(forKey: "name") as? String ?? ""
+                    let blankFullScreen = UIView(frame: view.frame)
                     let dialogConfirmDelete = DialogConfirmDelete.fromNib()
+                    
                     dialogConfirmDelete.objectName.text = objectName
                     dialogConfirmDelete.functionDelete = {
                         [weak self] in
@@ -312,8 +313,18 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
                             strongSelf.boxsOrRooms.remove(at: correctIndex)
                             strongSelf.collectionView.deleteItems(at: [IndexPath(row: correctIndex, section: item.0)])}
                         }
+                    dialogConfirmDelete.functionCloseVC = {
+                        self.dismiss(animated: true)
+                        blankFullScreen.removeFromSuperview()
+                    }
+                    
+
+                    blankFullScreen.backgroundColor = .white
+                    blankFullScreen.alpha = 0.5
+                    view.addSubview(blankFullScreen)
+                    
                     view.addSubview(dialogConfirmDelete)
-                    dialogConfirmDelete.setupInit()
+                    dialogConfirmDelete.setupInit(view: view)
                     
                     //MARK: Удаление вещей
                 case 1:
