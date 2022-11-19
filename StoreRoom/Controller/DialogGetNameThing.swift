@@ -25,8 +25,8 @@ class DialogGetNameThing: UIView {
     }
     
     @IBAction func buttonOk(_ sender: Any) {
-        removeFromSuperview()
         getName()
+        removeFromSuperview()
         closeVC()
     }
     

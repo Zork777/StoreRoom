@@ -18,14 +18,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
      
         
-        let dataManager = GetData(object: nil)//GetRooms()
+        let dataManager = GetData(object: nil)
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainScene = storyboard.instantiateViewController(withIdentifier: "mainScene1") as! ViewController //CollectionViewControllerContent //MainViewController
-//        let layout = UICollectionViewFlowLayout()
-//        let mainScene = CollectionViewControllerContent(collectionViewLayout: layout)
+        let mainScene = storyboard.instantiateViewController(withIdentifier: "mainScene1") as! ViewController //CollectionViewControllerContent
         mainScene.dataManager = dataManager
         mainScene.calculateSizeCell = CalculateSizeCell(itemsPerRow: 1)
         

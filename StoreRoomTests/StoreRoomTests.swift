@@ -148,8 +148,10 @@ class StoreRoomTests: XCTestCase {
     //извлекаем все комнаты
     func testFetchAllRomm(){
         testSaveRoom()
-        let rooms = GetRooms().getRooms()
-        XCTAssertEqual(rooms?.count, 1)
+        var rooms = [NSManagedObject]()
+        let dataManager = GetData(object: nil)
+        rooms = dataManager.getBoxOrRomm() ?? []
+        XCTAssertEqual(rooms.count, 1)
     }
     
     func testExample() throws {
