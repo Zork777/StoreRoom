@@ -39,7 +39,10 @@ class ViewController: UIViewController {
                     objectForSave = Object(name: nil, image: nil)
                 }
                 else {
-                    showMessage(message: "Не получилось сохранить в базу новую вещь")
+                    let messageError = NSLocalizedString("errorSaveObject",
+                                                         value: "Couldn't save a new item to the database",
+                                                         comment: "message error aboute error save in core base in var objectForSave")
+                    showMessage(message: messageError)
                 }
             }
         }
@@ -55,16 +58,15 @@ class ViewController: UIViewController {
             strongSelf.boxsOrRooms = strongSelf.dataManager.getBoxOrRomm() ?? []
 
             strongSelf.things = strongSelf.dataManager.getThings() ?? []
-//            if let thingsEntity = strongSelf.dataManager.getThings() {
-//                strongSelf.things = thingsEntity.map{$0.convertToItemCollection()}
-//            }
             strongSelf.collectionView.reloadData()
         }
         
         //MARK: настраиваем collection
         configCollection()
         
-        if dataManager.getObjectBoxOrRoom() == nil { title = "Кладовки" }
+        if dataManager.getObjectBoxOrRoom() == nil {
+            let nameTitle = NSLocalizedString("RootTitleName", value: "Root", comment: "title name main window")
+            title = nameTitle }
         
         
         collectionView!.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
@@ -175,9 +177,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             if image == nil { image = #imageLiteral(resourceName: "noPhoto") }
             cell.config(cell: Cell(labelName: name, image: image!, sizeCell: calculateSizeCell.sizeCell))
             
-//            let name = things[indexPath.row].name
-//            let image = things[indexPath.row].image
-//            cell.config(cell: Cell(labelName: name, image: image, sizeCell: calculateSizeCell.sizeCell))
 
         default:
             break
@@ -228,8 +227,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             let image = (things[selectCell].value(forKey: "image") as? Data)?.convertToUIImage()
             destination.label = name
             destination.image = image
-//            destination.label = things[selectCell].name
-//            destination.image = things[selectCell].image
             }
     }
     
@@ -270,9 +267,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             guard let strongSelf = self else {return}
             switch strongSelf.typeObjectForSave {
             case .things:
-                
-    //            things.append(CellData(name: objectForSave.name ?? "_",
-    //                                   image: objectForSave.image ?? #imageLiteral(resourceName: "noPhoto")))
                 strongSelf.things = strongSelf.dataManager.getThings() ?? []
                 strongSelf.collectionView.reloadSections(IndexSet(integer: 1))
                 
@@ -281,6 +275,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
                 strongSelf.collectionView.reloadSections(IndexSet(integer: 0))
                 
             case .main:
+                showMessage(message: "global error (addObjectInArray)")
                 print ("type not found")
             }
         }
@@ -290,6 +285,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     @objc func deleteItem() {
         if let selectedCells = collectionView.indexPathsForSelectedItems{
             let items = selectedCells.sorted().reversed().map { ($0.section, $0.row) }
+            let messageError = NSLocalizedString("errorDeleteObject",
+                                                 value: "Error delete - ",
+                                                 comment: "message error when deleting an box/root/thing")
             for item in items {
                 let objectIndex = item.1
                 
@@ -308,7 +306,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
                         let getCountNew = strongSelf.boxsOrRooms.count
                         let correctIndex = objectIndex-(getCountOld - getCountNew)
                         if !strongSelf.dataManager.deleteObjectInBase(typeObjectForDelete: .boxs, objectForDelete: strongSelf.boxsOrRooms[correctIndex]) {
-                            showMessage(message: "Error delete - \"\(objectName)\"")}
+                            showMessage(message: "\(messageError)\"\(objectName)\"")}
                         else {
                             strongSelf.boxsOrRooms.remove(at: correctIndex)
                             strongSelf.collectionView.deleteItems(at: [IndexPath(row: correctIndex, section: item.0)])}
@@ -330,7 +328,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
                 case 1:
                     let objectName = things[objectIndex].value(forKey: "name") as? String ?? ""
                     if !dataManager.deleteObjectInBase(typeObjectForDelete: .things, objectForDelete: things[objectIndex]) {
-                        showMessage(message: "Error delete - \(objectName)")
+                        showMessage(message: "\(messageError)\"\(objectName)\"")
                     }
                     else {
                         things.remove(at: objectIndex)

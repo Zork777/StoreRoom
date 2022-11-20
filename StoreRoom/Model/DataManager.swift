@@ -81,7 +81,7 @@ class GetData <T: NSManagedObject> : DataManager {
         let boxOrRoom = self.getObjectBoxOrRoom()
         
         if boxOrRoom == nil && typeObjectForSave != .rooms {
-            showMessage(message: "error save object")
+//            showMessage(message: "error save object")
             return false
         }
         
@@ -93,7 +93,7 @@ class GetData <T: NSManagedObject> : DataManager {
                                                    boxOrRoom: boxOrRoom!)
             }
             catch {
-                showMessage(message: "error save object thing")
+//                showMessage(message: "error save object thing")
                 return false
             }
             
@@ -104,7 +104,7 @@ class GetData <T: NSManagedObject> : DataManager {
                                                    boxOrRoom: boxOrRoom!)
             }
             catch {
-                showMessage(message: "error save object box")
+//                showMessage(message: "error save object box")
                 return false
             }
             
@@ -114,7 +114,7 @@ class GetData <T: NSManagedObject> : DataManager {
                                                    base: .rooms)
             }
             catch {
-                showMessage(message: "error save object room")
+//                showMessage(message: "error save object room")
                 return false
             }
             

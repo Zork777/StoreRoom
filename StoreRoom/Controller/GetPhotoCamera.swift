@@ -20,12 +20,12 @@ extension ViewController: UINavigationControllerDelegate, UIImagePickerControlle
         self.modalPresentationStyle = .currentContext
         
         vc.view.addSubview(dialogGetNameThing)
-        dialogGetNameThing.title.text = "Введите название"
         dialogGetNameThing.translatesAutoresizingMaskIntoConstraints = false
         dialogGetNameThing.leftAnchor.constraint(equalTo: vc.view.leftAnchor, constant: 8).isActive = true
         dialogGetNameThing.rightAnchor.constraint(equalTo: vc.view.rightAnchor, constant: -8).isActive = true
         dialogGetNameThing.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
         dialogGetNameThing.centerYAnchor.constraint(equalTo: vc.view.centerYAnchor).isActive = true
+        dialogGetNameThing.setupInit()
         
         //настриваем кол-во выводимых типов объекта для записи
         if dataManager.getObjectBoxOrRoom()?.entity.name == nil {
@@ -41,7 +41,10 @@ extension ViewController: UINavigationControllerDelegate, UIImagePickerControlle
         dialogGetNameThing.closeVC = { vc.dismiss(animated: true) }
         dialogGetNameThing.getName = { [weak self] in
             guard let nameThing = dialogGetNameThing.textField.text else {
-                showMessage(message: "get name: name thing is nil")
+                let messageError = NSLocalizedString("errorGetNameThingIsNil",
+                                                     value: "get name: name thing is nil",
+                                                     comment: "message error when get name thing")
+                showMessage(message: messageError)
                 return
             }
             

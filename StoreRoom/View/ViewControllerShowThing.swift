@@ -18,7 +18,10 @@ class ViewControllerShowThing: UIViewController {
         let imageThing = UIImageView()
         let buttonClose = UIButton(type: .system)
         
-        buttonClose.setTitle("Закрыть", for: .normal)
+        let buttonTitle = NSLocalizedString("buttonTitle",
+                                             value: "Close",
+                                             comment: "button title for close view thing")
+        buttonClose.setTitle(buttonTitle, for: .normal)
         buttonClose.addTarget(self, action: #selector(closeView), for: .touchUpInside)
         labelTitle.text = label
         if image != nil {

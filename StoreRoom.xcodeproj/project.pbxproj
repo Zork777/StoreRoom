@@ -16,6 +16,10 @@
 		990171B628A55D2600862B29 /* EntityMain+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990171AE28A55D2600862B29 /* EntityMain+CoreDataProperties.swift */; };
 		990171B728A55D2600862B29 /* EntityThings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990171AF28A55D2600862B29 /* EntityThings+CoreDataClass.swift */; };
 		990171B828A55D2600862B29 /* EntityThings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990171B028A55D2600862B29 /* EntityThings+CoreDataProperties.swift */; };
+		99252B7A292AB26B00F6BDA1 /* localizableString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99252B79292AB26B00F6BDA1 /* localizableString.swift */; };
+		99252B81292AB57200F6BDA1 /* StoreRoom Localizations in Resources */ = {isa = PBXBuildFile; fileRef = 99252B80292AB57200F6BDA1 /* StoreRoom Localizations */; };
+		99252B84292ABA3900F6BDA1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99252B86292ABA3900F6BDA1 /* Localizable.strings */; };
+		99252B89292AC0E100F6BDA1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99252B87292AC0E100F6BDA1 /* InfoPlist.strings */; };
 		9939DA9228DE4D01004080D4 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9939DA9128DE4D01004080D4 /* DataManager.swift */; };
 		996CD82828A30801000D933D /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996CD82628A30801000D933D /* CollectionViewCell.swift */; };
 		996CD82928A30801000D933D /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 996CD82728A30801000D933D /* CollectionViewCell.xib */; };
@@ -41,6 +45,7 @@
 		99AC19B92923F58300B05DC5 /* DialogConfirmDelete.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99AC19B82923F58300B05DC5 /* DialogConfirmDelete.xib */; };
 		99AC19BB2923FA3500B05DC5 /* DialogConfirmDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AC19BA2923FA3500B05DC5 /* DialogConfirmDelete.swift */; };
 		99B4E65F28EC978E002AD71E /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B4E65E28EC978E002AD71E /* Animation.swift */; };
+		99E3631A292A8B370036CF8C /* StoreRoom Localizations in Resources */ = {isa = PBXBuildFile; fileRef = 99E36319292A8B370036CF8C /* StoreRoom Localizations */; };
 		99EF062128CD1CC600456E7A /* DialogGetNameThing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EF062028CD1CC600456E7A /* DialogGetNameThing.swift */; };
 		99EF062328CD1CEB00456E7A /* DialogGetNameThing.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99EF062228CD1CEB00456E7A /* DialogGetNameThing.xib */; };
 /* End PBXBuildFile section */
@@ -72,6 +77,13 @@
 		990171AE28A55D2600862B29 /* EntityMain+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityMain+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		990171AF28A55D2600862B29 /* EntityThings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityThings+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		990171B028A55D2600862B29 /* EntityThings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityThings+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		99252B79292AB26B00F6BDA1 /* localizableString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = localizableString.swift; path = StoreRoom/Model/localizableString.swift; sourceTree = SOURCE_ROOT; };
+		99252B7B292AB4AE00F6BDA1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		99252B7C292AB4AE00F6BDA1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		99252B80292AB57200F6BDA1 /* StoreRoom Localizations */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "StoreRoom Localizations"; path = "Model/StoreRoom Localizations"; sourceTree = "<group>"; };
+		99252B85292ABA3900F6BDA1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		99252B88292AC0E100F6BDA1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		99252B8A292AC2AE00F6BDA1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9939DA9128DE4D01004080D4 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		996CD82628A30801000D933D /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollectionViewCell.swift; path = StoreRoom/View/CollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		996CD82728A30801000D933D /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CollectionViewCell.xib; path = StoreRoom/View/CollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
@@ -85,10 +97,8 @@
 		99961357289B008200B721D4 /* StoreRoom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreRoom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9996135A289B008200B721D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9996135C289B008200B721D4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		99961361289B008200B721D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		99961364289B008200B721D4 /* StoreRoom.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StoreRoom.xcdatamodel; sourceTree = "<group>"; };
 		99961366289B008600B721D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		99961369289B008600B721D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9996136B289B008600B721D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99961370289B008600B721D4 /* StoreRoomTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoreRoomTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		99961374289B008600B721D4 /* StoreRoomTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRoomTests.swift; sourceTree = "<group>"; };
@@ -101,6 +111,9 @@
 		99AC19B82923F58300B05DC5 /* DialogConfirmDelete.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DialogConfirmDelete.xib; path = StoreRoom/Controller/DialogConfirmDelete.xib; sourceTree = SOURCE_ROOT; };
 		99AC19BA2923FA3500B05DC5 /* DialogConfirmDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DialogConfirmDelete.swift; path = StoreRoom/View/DialogConfirmDelete.swift; sourceTree = SOURCE_ROOT; };
 		99B4E65E28EC978E002AD71E /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
+		99E36302292A7EC80036CF8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		99E36303292A7EC80036CF8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		99E36319292A8B370036CF8C /* StoreRoom Localizations */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "StoreRoom Localizations"; sourceTree = SOURCE_ROOT; };
 		99EF062028CD1CC600456E7A /* DialogGetNameThing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DialogGetNameThing.swift; path = StoreRoom/Controller/DialogGetNameThing.swift; sourceTree = SOURCE_ROOT; };
 		99EF062228CD1CEB00456E7A /* DialogGetNameThing.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DialogGetNameThing.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,8 +172,11 @@
 				9996138E289B00F300B721D4 /* Model */,
 				9996135A289B008200B721D4 /* AppDelegate.swift */,
 				9996135C289B008200B721D4 /* SceneDelegate.swift */,
+				99252B86292ABA3900F6BDA1 /* Localizable.strings */,
 				99961366289B008600B721D4 /* Assets.xcassets */,
+				99252B80292AB57200F6BDA1 /* StoreRoom Localizations */,
 				9996136B289B008600B721D4 /* Info.plist */,
+				99252B87292AC0E100F6BDA1 /* InfoPlist.strings */,
 			);
 			path = StoreRoom;
 			sourceTree = "<group>";
@@ -176,6 +192,7 @@
 		9996137D289B008600B721D4 /* StoreRoomUITests */ = {
 			isa = PBXGroup;
 			children = (
+				99E36319292A8B370036CF8C /* StoreRoom Localizations */,
 				9996137E289B008600B721D4 /* StoreRoomUITests.swift */,
 				99961380289B008600B721D4 /* StoreRoomUITestsLaunchTests.swift */,
 			);
@@ -201,6 +218,7 @@
 		9996138E289B00F300B721D4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				99252B79292AB26B00F6BDA1 /* localizableString.swift */,
 				9901717528A405C900862B29 /* ImageResize.swift */,
 				99A200EC28A812F8007859F2 /* CalculateSizeCell.swift */,
 				998113C1289B10BA00E5C5CE /* GenerateTestData.swift */,
@@ -326,6 +344,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 9996134E289B008200B721D4;
 			productRefGroup = 99961358289B008200B721D4 /* Products */;
@@ -349,6 +368,9 @@
 				99AC19B92923F58300B05DC5 /* DialogConfirmDelete.xib in Resources */,
 				99961367289B008600B721D4 /* Assets.xcassets in Resources */,
 				99961362289B008200B721D4 /* Main.storyboard in Resources */,
+				99252B84292ABA3900F6BDA1 /* Localizable.strings in Resources */,
+				99252B81292AB57200F6BDA1 /* StoreRoom Localizations in Resources */,
+				99252B89292AC0E100F6BDA1 /* InfoPlist.strings in Resources */,
 				996CD82928A30801000D933D /* CollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,6 +386,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99E3631A292A8B370036CF8C /* StoreRoom Localizations in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +408,7 @@
 				99AC19BB2923FA3500B05DC5 /* DialogConfirmDelete.swift in Sources */,
 				990171B528A55D2600862B29 /* EntityMain+CoreDataClass.swift in Sources */,
 				990171B628A55D2600862B29 /* EntityMain+CoreDataProperties.swift in Sources */,
+				99252B7A292AB26B00F6BDA1 /* localizableString.swift in Sources */,
 				990171B128A55D2600862B29 /* EntityBoxs+CoreDataClass.swift in Sources */,
 				99B4E65F28EC978E002AD71E /* Animation.swift in Sources */,
 				99EF062128CD1CC600456E7A /* DialogGetNameThing.swift in Sources */,
@@ -437,10 +461,28 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		99252B86292ABA3900F6BDA1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99252B85292ABA3900F6BDA1 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		99252B87292AC0E100F6BDA1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99252B88292AC0E100F6BDA1 /* ru */,
+				99252B8A292AC2AE00F6BDA1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		99961360289B008200B721D4 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				99961361289B008200B721D4 /* Base */,
+				99E36302292A7EC80036CF8C /* Base */,
+				99252B7B292AB4AE00F6BDA1 /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -448,7 +490,8 @@
 		99961368289B008600B721D4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				99961369289B008600B721D4 /* Base */,
+				99E36303292A7EC80036CF8C /* Base */,
+				99252B7C292AB4AE00F6BDA1 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -460,6 +503,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -512,6 +556,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -520,6 +565,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -565,6 +611,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -595,7 +642,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -624,7 +671,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

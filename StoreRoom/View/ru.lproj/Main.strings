@@ -1,0 +1,15 @@
+/* Class = "UIButton"; configuration.title = "SaveTestData"; ObjectID = "9uj-L2-ubU"; */
+"9uj-L2-ubU.configuration.title" = "SaveTestData";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "9uj-L2-ubU"; */
+"9uj-L2-ubU.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "ClearBase"; ObjectID = "Ja7-QB-PWN"; */
+"Ja7-QB-PWN.configuration.title" = "ClearBase";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Ja7-QB-PWN"; */
+"Ja7-QB-PWN.normalTitle" = "Button";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "w0q-4K-qYD"; */
+"w0q-4K-qYD.title" = "Настройки";
+

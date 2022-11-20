@@ -39,7 +39,7 @@ class CollectionViewCell: UICollectionViewCell {
     }
     
     @objc func longPressed(sender: UILongPressGestureRecognizer) {
-        print("longpressed")
+        print("long pressed")
     }
     
     override func awakeFromNib() {

@@ -16,13 +16,13 @@ enum ValidationError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .failedSavingInCoreData:
-            return "failed save in Core Data"
+            return failedSaveCoreData
         case .failedDeleteInCoreData:
-            return "failed delete in Core Data"
+            return failedDeleteCoreData
         case .failedMarkOrderForDelete:
-            return "failed mark delete order"
+            return failedDeleteMarkOrder
         case .notFoundIdRoom:
-            return "id room or box is null"
+            return notFoundIdRoomBox
         }
     }
 }

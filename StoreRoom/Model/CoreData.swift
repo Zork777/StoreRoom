@@ -180,6 +180,7 @@ class BaseCoreData {
         return objectBoxOrRoom
     }
     
+    
 ///find object by name or ID
     func findObjectByNameOrID(name: String?, id: UUID = UUID(), base: Bases) -> [NSManagedObject]?{
         var predicate: NSPredicate?

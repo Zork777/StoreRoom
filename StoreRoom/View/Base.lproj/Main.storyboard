@@ -24,36 +24,7 @@
             </objects>
             <point key="canvasLocation" x="2125" y="68"/>
         </scene>
-        <!--Collection View Controller Content-->
-        <scene sceneID="00K-RH-mhf">
-            <objects>
-                <collectionViewController storyboardIdentifier="mainScene" id="CNr-By-afa" customClass="CollectionViewControllerContent" customModule="StoreRoom" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="fgA-nW-gyT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <gestureRecognizers/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ooi-5g-fYY">
-                            <size key="itemSize" width="128" height="128"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells/>
-                        <connections>
-                            <outlet property="dataSource" destination="CNr-By-afa" id="GTe-6J-wFe"/>
-                            <outlet property="delegate" destination="CNr-By-afa" id="jpH-Q8-IYZ"/>
-                        </connections>
-                    </collectionView>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="jmk-PZ-9Ps"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2rD-LI-4t4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3657" y="-32"/>
-        </scene>
-        <!--Настройки-->
+        <!--Settings-->
         <scene sceneID="UuH-Eh-vax">
             <objects>
                 <viewController id="8UV-m7-Nb8" customClass="SettingViewController" customModule="StoreRoom" customModuleProvider="target" sceneMemberID="viewController">
@@ -89,7 +60,7 @@
                             <constraint firstItem="zGv-hj-E0e" firstAttribute="trailing" secondItem="Ja7-QB-PWN" secondAttribute="trailing" constant="16" id="jC8-NE-Dth"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Настройки" id="w0q-4K-qYD"/>
+                    <navigationItem key="navigationItem" title="Settings" id="w0q-4K-qYD"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iyJ-6Z-dnz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

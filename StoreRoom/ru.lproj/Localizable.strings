@@ -1,0 +1,44 @@
+/* Second segment name in dialog getNameThing */
+"Box" = "Коробка";
+
+/* button title for close view thing */
+"buttonTitle" = "Закрыть";
+
+/* Title in dialog getNameThing */
+"EnterName" = "Введите название";
+
+/* message error when deleting an box/root/thing */
+"errorDeleteObject" = "Ошибка удаления - ";
+
+/* message error when get name thing */
+"errorGetNameThingIsNil" = "get name: имя вещи не найдено";
+
+/* message error aboute error save in core base in var objectForSave */
+"errorSaveObject" = "Ошибка записи вещи в базу";
+
+/* failed delete in Core Data */
+"failedDeleteCoreData" = "Ошибка удаления из базы";
+
+/* failed mark delete order */
+"failedDeleteMarkOrder" = "Ошибка удаления выделенных объектов";
+
+/* failed save in Core Data */
+"failedSaveCoreData" = "Ошибка сохранения";
+
+/* id room or box is null */
+"notFoundIdRoomBox" = "Вышестоящий объект не найден";
+
+/* OK button in dialog */
+"OK" = "ОК";
+
+"Cancel" = "Отменить";
+
+/* Third segment name in dialog getNameThing */
+"Root" = "Главный";
+
+/* title name main window */
+"RootTitleName" = "Главное";
+
+/* First segment name in dialog getNameThing */
+"Thing" = "Вещь";
+

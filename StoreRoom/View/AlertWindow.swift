@@ -11,8 +11,8 @@ import UIKit
 ///Выводим диалог
 func dialogMessage(message: String, funcOk: @escaping () -> (), funcCancel: @escaping ()->()){
     let dialog = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
-    let actionOk = UIAlertAction(title: "OK", style: .default, handler: {_ in funcOk() })
-    let actionCancel = UIAlertAction(title: "Отмена", style: .cancel, handler: {_ in funcCancel() })
+    let actionOk = UIAlertAction(title: buttonOkTitle, style: .default, handler: {_ in funcOk() })
+    let actionCancel = UIAlertAction(title: buttonCloseTitle, style: .cancel, handler: {_ in funcCancel() })
     let messageFont  = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)]
     let messageAttrString = NSMutableAttributedString(string: message, attributes: messageFont)
     dialog.setValue(messageAttrString, forKey: "attributedMessage")
@@ -26,7 +26,7 @@ func dialogMessage(message: String, funcOk: @escaping () -> (), funcCancel: @esc
 ///Выводим сообщение
 func showMessage(message: String) {
     let dialog = UIAlertController(title: "", message: message, preferredStyle: .alert)
-    let action = UIAlertAction(title: "OK", style: .default)
+    let action = UIAlertAction(title: buttonOkTitle, style: .default)
     dialog.addAction(action)
     let vc = UIApplication.topViewController()
     vc?.present(dialog, animated: true)

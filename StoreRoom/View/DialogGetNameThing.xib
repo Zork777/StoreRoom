@@ -32,7 +32,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sam-hU-g44">
                             <rect key="frame" x="0.0" y="0.0" width="167" height="31"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="filled" title="Закрыть"/>
+                            <buttonConfiguration key="configuration" style="filled" title="Close"/>
                             <connections>
                                 <action selector="buttonClose:" destination="iN0-l3-epB" eventType="touchUpInside" id="hvc-cG-TIv"/>
                             </connections>
@@ -50,9 +50,9 @@
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vWA-8W-iJm">
                     <rect key="frame" x="32" y="86.5" width="350" height="32"/>
                     <segments>
-                        <segment title="Вещь"/>
-                        <segment title="Коробка"/>
-                        <segment title="Кладовка"/>
+                        <segment title="Thing"/>
+                        <segment title="Box"/>
+                        <segment title="Root"/>
                     </segments>
                 </segmentedControl>
             </subviews>
@@ -75,6 +75,8 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="buttonClose" destination="sam-hU-g44" id="fgr-YP-MMy"/>
+                <outlet property="buttonOk" destination="UMM-4S-EBC" id="zyu-aC-nDH"/>
                 <outlet property="selectThingOrBox" destination="vWA-8W-iJm" id="sGw-Cl-tqv"/>
                 <outlet property="textField" destination="B9K-XJ-3Dr" id="7U4-Qo-39e"/>
                 <outlet property="title" destination="2wz-yu-pXb" id="XAL-FM-88z"/>
