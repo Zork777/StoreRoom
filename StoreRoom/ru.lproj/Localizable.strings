@@ -42,3 +42,6 @@
 /* First segment name in dialog getNameThing */
 "Thing" = "Вещь";
 
+"failedBackupBase" = "Ошибка архивирования базы";
+
+"failedRestoreBase" = "Ошибка восстановления базы";

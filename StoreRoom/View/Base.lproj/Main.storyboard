@@ -48,13 +48,35 @@
                                     <action selector="buttonClearBase:" destination="8UV-m7-Nb8" eventType="touchUpInside" id="nl6-vY-Mqs"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XET-BQ-iqg">
+                                <rect key="frame" x="16" y="198" width="382" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Backup Base"/>
+                                <connections>
+                                    <action selector="bacupBase:" destination="8UV-m7-Nb8" eventType="touchUpInside" id="Jpu-TA-h53"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z1V-h2-89u">
+                                <rect key="frame" x="16" y="245" width="382" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Restore Base"/>
+                                <connections>
+                                    <action selector="restoreBase:" destination="8UV-m7-Nb8" eventType="touchUpInside" id="Beh-cq-xNI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zGv-hj-E0e"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="zGv-hj-E0e" firstAttribute="trailing" secondItem="Z1V-h2-89u" secondAttribute="trailing" constant="16" id="2Yz-6i-vCd"/>
+                            <constraint firstItem="Z1V-h2-89u" firstAttribute="leading" secondItem="zGv-hj-E0e" secondAttribute="leading" constant="16" id="386-Xr-GTi"/>
+                            <constraint firstItem="XET-BQ-iqg" firstAttribute="top" secondItem="Ja7-QB-PWN" secondAttribute="bottom" constant="16" id="53C-fB-VoA"/>
                             <constraint firstItem="Ja7-QB-PWN" firstAttribute="top" secondItem="9uj-L2-ubU" secondAttribute="bottom" constant="16" id="K1v-vo-GCp"/>
                             <constraint firstItem="Ja7-QB-PWN" firstAttribute="leading" secondItem="zGv-hj-E0e" secondAttribute="leading" constant="16" id="KQi-2l-J3J"/>
                             <constraint firstItem="9uj-L2-ubU" firstAttribute="leading" secondItem="zGv-hj-E0e" secondAttribute="leading" constant="16" id="Poe-DY-uCy"/>
+                            <constraint firstItem="XET-BQ-iqg" firstAttribute="leading" secondItem="zGv-hj-E0e" secondAttribute="leading" constant="16" id="Qdy-Kl-uBX"/>
+                            <constraint firstItem="zGv-hj-E0e" firstAttribute="trailing" secondItem="XET-BQ-iqg" secondAttribute="trailing" constant="16" id="R2N-jS-ZFm"/>
+                            <constraint firstItem="Z1V-h2-89u" firstAttribute="top" secondItem="XET-BQ-iqg" secondAttribute="bottom" constant="16" id="Se1-Mk-Dqo"/>
                             <constraint firstItem="9uj-L2-ubU" firstAttribute="top" secondItem="zGv-hj-E0e" secondAttribute="top" constant="16" id="fXF-Et-kGo"/>
                             <constraint firstItem="zGv-hj-E0e" firstAttribute="trailing" secondItem="9uj-L2-ubU" secondAttribute="trailing" constant="16" id="g8h-oQ-Rsp"/>
                             <constraint firstItem="zGv-hj-E0e" firstAttribute="trailing" secondItem="Ja7-QB-PWN" secondAttribute="trailing" constant="16" id="jC8-NE-Dth"/>

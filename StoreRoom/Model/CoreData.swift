@@ -15,6 +15,7 @@ class BaseCoreData {
     private let persistentContainer: NSPersistentContainer
     private let context: NSManagedObjectContext
     static let shared = BaseCoreData()
+    static let projectName = "StoreRoom"
     
     ///Название  base
     enum Bases: String, CaseIterable{
@@ -27,8 +28,8 @@ class BaseCoreData {
     
     init (){
         persistentContainer = {
-                  let container = NSPersistentContainer(name: "StoreRoom")
-                  container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+                let container = NSPersistentContainer(name: BaseCoreData.projectName)
+                container.loadPersistentStores(completionHandler: { (storeDescription, error) in
                       if let error = error as NSError? {
                           fatalError("Unresolved error \(error), \(error.userInfo)")
                       }
@@ -220,6 +221,45 @@ class BaseCoreData {
             return content
         }
         return nil
+    }
+    
+///backup Base Core
+    func backupBase(backupName: String){
+        let backUpFolderUrl = FileManager.default.urls(for: .documentDirectory, in:.userDomainMask).first!
+        let backupUrl = backUpFolderUrl.appendingPathComponent(backupName + ".sqlite")
+        let container = NSPersistentContainer(name : BaseCoreData.projectName)
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error
+                 {
+                
+                     fatalError("Failed to load store: \(error)")
+                 }
+        })
+        let coordinator = container.persistentStoreCoordinator
+        let store = coordinator.persistentStores[0]
+        do {
+            try coordinator.migratePersistentStore(store, to: backupUrl, options: nil, withType: NSSQLiteStoreType)
+           } catch {
+               showMessage(message: failedBackupBase)
+           }
+       }
+    
+///Restore Base Core
+    func restoreFromStore(backupName: String){
+        BaseCoreData.shared.deleteAllCoreBases()
+        let storeFolderUrl = FileManager.default.urls(for: .applicationSupportDirectory, in:.userDomainMask).first!
+        let storeUrl = storeFolderUrl.appendingPathComponent(BaseCoreData.projectName + ".sqlite")
+        let backUpFolderUrl = FileManager.default.urls(for: .documentDirectory, in:.userDomainMask).first!
+        let backupUrl = backUpFolderUrl.appendingPathComponent(backupName + ".sqlite")
+        let container = NSPersistentContainer(name: BaseCoreData.projectName)
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            do{
+                try container.persistentStoreCoordinator.replacePersistentStore(at: storeUrl,destinationOptions: nil,withPersistentStoreFrom: backupUrl,sourceOptions: nil,ofType: NSSQLiteStoreType)
+            } catch {
+                showMessage(message: failedRestoreBase)
+            }
+        })
+
     }
   
 }
