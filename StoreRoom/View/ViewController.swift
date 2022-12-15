@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     var dataManager: DataManager!
     private var selectCell: Int = 0
     private var boxsOrRooms = [NSManagedObject]()
-    private var things = [NSManagedObject]()//[CellData]()
+    private var things = [NSManagedObject]()
     var calculateSizeCell: CalculateSizeCell!
     var dialogGetNameThing: (()->()) = {return}
     var typeObjectForSave: BaseCoreData.Bases = .things
@@ -253,11 +253,11 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     //MARK: функция добавляет новую кладовку, коробку, вещь
     @objc func buttonAddThing(){
-//        dialogGetNameThing = viewGetName
-//        getPhotoInCamera()
+        dialogGetNameThing = viewGetName
+        getPhotoInCamera()
         
-        objectForSave.image = #imageLiteral(resourceName: "sokrovisha-1") //for test
-        viewGetName() //for test
+//        objectForSave.image = #imageLiteral(resourceName: "sokrovisha-1") //for test
+//        viewGetName() //for test
     }
     
     //MARK: функция Записывает новый объект в массив и обновляет ячейки

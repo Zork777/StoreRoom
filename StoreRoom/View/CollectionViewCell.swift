@@ -33,7 +33,8 @@ class CollectionViewCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             if isInEditingMode {
-                checkMarkLabel.text = isSelected ? "✓" : ""
+//                checkMarkLabel.text = isSelected ? "✓" : ""
+                image.alpha = isSelected ? 0.5 : 1
             }
         }
     }
