@@ -1,3 +1,4 @@
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Allow access to the camera";
+"CFBundleName" = "StoreRoom";
 
