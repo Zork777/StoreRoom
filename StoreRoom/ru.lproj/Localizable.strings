@@ -45,3 +45,5 @@
 "failedBackupBase" = "Ошибка архивирования базы";
 
 "failedRestoreBase" = "Ошибка восстановления базы";
+
+"Delete" = "Удалить";

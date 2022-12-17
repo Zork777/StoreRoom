@@ -57,6 +57,8 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="buttonCancel" destination="v9L-cd-Hnc" id="b9l-BK-uJb"/>
+                <outlet property="buttonDelete" destination="ai3-Md-l0p" id="3Wj-GR-s1J"/>
                 <outlet property="objectName" destination="CPD-ow-bRM" id="xUU-4R-lY1"/>
             </connections>
             <point key="canvasLocation" x="532.60869565217399" y="195.53571428571428"/>

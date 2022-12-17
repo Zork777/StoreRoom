@@ -7,8 +7,9 @@
 
 import Foundation //bundle: Bundle.main
 
-let buttonCloseTitle = NSLocalizedString("Cancel", comment: "Cancel button in dialog")
+let buttonCancelTitle = NSLocalizedString("Cancel", comment: "Cancel button in dialog")
 let buttonOkTitle = NSLocalizedString("OK", comment: "OK button in dialog")
+let buttonDeleteTitle = NSLocalizedString("Delete", comment: "Delete button in dialog")
 let failedSaveCoreData = NSLocalizedString("failedSaveCoreData", value: "failed save in Core Data", comment: "failed save in Core Data")
 let failedDeleteCoreData = NSLocalizedString("failedDeleteCoreData", value: "failed delete in Core Data", comment: "failed delete in Core Data")
 let failedDeleteMarkOrder = NSLocalizedString("failedDeleteMarkOrder", value: "failed mark delete order", comment: "failed mark delete order")

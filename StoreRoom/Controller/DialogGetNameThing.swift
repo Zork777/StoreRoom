@@ -47,7 +47,7 @@ class DialogGetNameThing: UIView {
         let segmentNameSecond = NSLocalizedString("Box", comment: "Second segment name in dialog getNameThing")
         let segmentNameThird = NSLocalizedString("Root", comment: "Third segment name in dialog getNameThing")
         title.text = labelTitle
-        buttonClose.setTitle(buttonCloseTitle, for: .normal)
+        buttonClose.setTitle(buttonCancelTitle, for: .normal)
         buttonOk.setTitle(buttonOkTitle, for: .normal)
         selectThingOrBox.setTitle(segmentNameFirst, forSegmentAt: 0)
         selectThingOrBox.setTitle(segmentNameSecond, forSegmentAt: 1)
