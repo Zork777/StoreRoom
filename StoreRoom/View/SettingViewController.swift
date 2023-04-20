@@ -108,16 +108,15 @@ class SettingViewController: UIViewController {
 //        progressBar.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
 //        progressBar.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
 //        progressBar.heightAnchor.constraint(equalToConstant: 100).isActive = true
-//        
+//
 //        progressView.translatesAutoresizingMaskIntoConstraints = false
 //        progressView.centerXAnchor.constraint(equalTo: progressBar.centerXAnchor).isActive = true
 //        progressView.centerYAnchor.constraint(equalTo: progressBar.centerYAnchor).isActive = true
 //        progressView.widthAnchor.constraint(equalTo: progressBar.widthAnchor).isActive = true
 //        progressView.heightAnchor.constraint(equalToConstant: 20).isActive = true
-//        
+//
 //        progressView.setProgress(0.0, animated: false)
 
-        // Do any additional setup after loading the view.
     }
     
 
