@@ -44,7 +44,7 @@ class BaseCoreData {
           if context.hasChanges {
               do {
                   try context.save()
-                  debugPrint ("saved in core data")
+//                  debugPrint ("saved in core data")
               } catch {
                   context.rollback()
                   let nserror = error as NSError

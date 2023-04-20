@@ -18,49 +18,49 @@ class TestData: BaseCoreData {
     var testBoxs = [Object]()
     var testThings = [Object]()
     
-    let testRoomsRu = [Object(name: "Кладовка1", image: UIImage(named: "room1")!),
-                 Object(name: "Кладовка2", image: UIImage(named: "room2")!),
-                 Object(name: "Гараж", image: UIImage(named: "room3")!),
-                 Object(name: "Шкаф", image: UIImage(named: "room4")!)]
+    let testRoomsRu = [Object(name: "Кладовка1", image: #imageLiteral(resourceName: "noPhoto")),//UIImage( //named: "room1")!),
+                 Object(name: "Кладовка2", image: #imageLiteral(resourceName: "noPhoto")),
+                 Object(name: "Гараж", image: #imageLiteral(resourceName: "noPhoto")),
+                 Object(name: "Шкаф", image: #imageLiteral(resourceName: "noPhoto"))]
     
-    let testBoxsRu = [Object(name: "Коробка", image: #imageLiteral(resourceName: "box1.jpg")),
-                Object(name: "Контейнер", image: #imageLiteral(resourceName: "box2.jpg")),
-                Object(name: "Коробка2", image: #imageLiteral(resourceName: "box3.jpg")),
-                Object(name: "Контейнер с игрушками", image: #imageLiteral(resourceName: "box4.jpg"))]
+    let testBoxsRu = [Object(name: "Коробка", image: #imageLiteral(resourceName: "noPhoto")),
+                Object(name: "Контейнер", image: #imageLiteral(resourceName: "noPhoto")),
+                Object(name: "Коробка2", image: #imageLiteral(resourceName: "noPhoto")),
+                Object(name: "Контейнер с игрушками", image: #imageLiteral(resourceName: "noPhoto"))]
     
-    let testThingsRu = [Object(name: "босоножки", image: #imageLiteral(resourceName: "shoes5.jpg")),
-                  Object(name: "туфли", image: #imageLiteral(resourceName: "shoes6.jpg")),
-                  Object(name: "футболка", image: #imageLiteral(resourceName: "футболка.jpeg")),
-                  Object(name: "Лопата", image: #imageLiteral(resourceName: "лопата.jpg")),
-                  Object(name: "Каска", image: #imageLiteral(resourceName: "каска.jpg")),
-                  Object(name: "Мангал", image: #imageLiteral(resourceName: "мангал.jpg")),
-                  Object(name: "Свитер", image: #imageLiteral(resourceName: "свитер.jpg")),
-                  Object(name: "сумка", image: #imageLiteral(resourceName: "сумка.jpg")),
-                  Object(name: "Джинсы", image: #imageLiteral(resourceName: "джинсы.jpeg")),
-                  Object(name: "Стич", image: #imageLiteral(resourceName: "toy1.jpg")),
-                  Object(name: "Игрушка", image: #imageLiteral(resourceName: "toy2.jpg"))]
+    let testThingsRu = [Object(name: "босоножки", image: #imageLiteral(resourceName: "noPhoto")),
+                  Object(name: "туфли", image: #imageLiteral(resourceName: "noPhoto")),
+                  Object(name: "футболка", image: #imageLiteral(resourceName: "noPhoto")),
+                  Object(name: "Лопата", image: #imageLiteral(resourceName: "noPhoto")),
+                  Object(name: "Каска", image: #imageLiteral(resourceName: "noPhoto")),
+                  Object(name: "Мангал", image: #imageLiteral(resourceName: "noPhoto")),
+                  Object(name: "Свитер", image: #imageLiteral(resourceName: "noPhoto")),
+                  Object(name: "сумка", image: #imageLiteral(resourceName: "noPhoto")),
+                  Object(name: "Джинсы", image: #imageLiteral(resourceName: "noPhoto")),
+                  Object(name: "Стич", image: #imageLiteral(resourceName: "noPhoto")),
+                  Object(name: "Игрушка", image: #imageLiteral(resourceName: "noPhoto"))]
     
-    let testRoomsEn = [Object(name: "Storeroom1", image: UIImage(named: "room1")!),
-                 Object(name: "Storeroom2", image: UIImage(named: "room2")!),
-                 Object(name: "Garage", image: UIImage(named: "room3")!),
-                 Object(name: "Wardrobe", image: UIImage(named: "room4")!)]
+    let testRoomsEn = [Object(name: "Storeroom1", image: #imageLiteral(resourceName: "noPhoto")),
+                 Object(name: "Storeroom2", image: #imageLiteral(resourceName: "noPhoto")),
+                 Object(name: "Garage", image: #imageLiteral(resourceName: "noPhoto")),
+                 Object(name: "Wardrobe", image: #imageLiteral(resourceName: "noPhoto"))]
     
-    let testBoxsEn = [Object(name: "Box", image: #imageLiteral(resourceName: "box1.jpg")),
-                Object(name: "Container", image: #imageLiteral(resourceName: "box2.jpg")),
-                Object(name: "Box2", image: #imageLiteral(resourceName: "box3.jpg")),
-                Object(name: "Container with toys", image: #imageLiteral(resourceName: "box4.jpg"))]
+    let testBoxsEn = [Object(name: "Box", image: #imageLiteral(resourceName: "noPhoto")),
+                Object(name: "Container", image: #imageLiteral(resourceName: "noPhoto")),
+                Object(name: "Box2", image: #imageLiteral(resourceName: "noPhoto")),
+                Object(name: "Container with toys", image: #imageLiteral(resourceName: "noPhoto"))]
     
-    let testThingsEn = [Object(name: "sandals", image: #imageLiteral(resourceName: "shoes5.jpg")),
-                  Object(name: "shoes", image: #imageLiteral(resourceName: "shoes6.jpg")),
-                  Object(name: "T-shirt", image: #imageLiteral(resourceName: "футболка.jpeg")),
-                  Object(name: "Shovel", image: #imageLiteral(resourceName: "лопата.jpg")),
-                  Object(name: "Helmet", image: #imageLiteral(resourceName: "каска.jpg")),
-                  Object(name: "Barbecue", image: #imageLiteral(resourceName: "мангал.jpg")),
-                  Object(name: "Sweater", image: #imageLiteral(resourceName: "свитер.jpg")),
-                  Object(name: "bag", image: #imageLiteral(resourceName: "сумка.jpg")),
-                  Object(name: "Jeans", image: #imageLiteral(resourceName: "джинсы.jpeg")),
-                  Object(name: "Stitch", image: #imageLiteral(resourceName: "toy1.jpg")),
-                  Object(name: "toy", image: #imageLiteral(resourceName: "toy2"))]
+    let testThingsEn = [Object(name: "sandals", image: #imageLiteral(resourceName: "noPhoto")),
+                  Object(name: "shoes", image: #imageLiteral(resourceName: "noPhoto")),
+                  Object(name: "T-shirt", image: #imageLiteral(resourceName: "noPhoto")),
+                  Object(name: "Shovel", image: #imageLiteral(resourceName: "noPhoto")),
+                  Object(name: "Helmet", image: #imageLiteral(resourceName: "noPhoto")),
+                  Object(name: "Barbecue", image: #imageLiteral(resourceName: "noPhoto")),
+                  Object(name: "Sweater", image: #imageLiteral(resourceName: "noPhoto")),
+                  Object(name: "bag", image: #imageLiteral(resourceName: "noPhoto")),
+                  Object(name: "Jeans", image: #imageLiteral(resourceName: "noPhoto")),
+                  Object(name: "Stitch", image: #imageLiteral(resourceName: "noPhoto")),
+                  Object(name: "toy", image: #imageLiteral(resourceName: "noPhoto"))]
     
     
     let base = BaseCoreData()

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="En7-y2-QzL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="En7-y2-QzL">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -14,7 +15,7 @@
             <objects>
                 <viewController id="1T3-Tx-cLJ" customClass="ViewControllerShowThing" customModule="StoreRoom" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ivz-mb-rP0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="vEp-09-nUM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -33,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9uj-L2-ubU">
-                                <rect key="frame" x="16" y="104" width="382" height="31"/>
+                                <rect key="frame" x="16" y="108" width="382" height="34.5"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="SaveTestData"/>
                                 <connections>
@@ -41,7 +42,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ja7-QB-PWN">
-                                <rect key="frame" x="16" y="151" width="382" height="31"/>
+                                <rect key="frame" x="16" y="158.5" width="382" height="34.5"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="ClearBase"/>
                                 <connections>
@@ -49,7 +50,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XET-BQ-iqg">
-                                <rect key="frame" x="16" y="198" width="382" height="31"/>
+                                <rect key="frame" x="16" y="209" width="382" height="34.5"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Backup Base"/>
                                 <connections>
@@ -57,22 +58,46 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z1V-h2-89u">
-                                <rect key="frame" x="16" y="245" width="382" height="31"/>
+                                <rect key="frame" x="16" y="259.5" width="382" height="34.5"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Restore Base"/>
                                 <connections>
                                     <action selector="restoreBase:" destination="8UV-m7-Nb8" eventType="touchUpInside" id="Beh-cq-xNI"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="WxP-Fa-Qb0">
+                                <rect key="frame" x="16" y="310" width="382" height="34.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6aK-KH-Qvh">
+                                        <rect key="frame" x="0.0" y="0.0" width="183" height="34.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Load Testing"/>
+                                        <connections>
+                                            <action selector="buttonLoadTesting:" destination="8UV-m7-Nb8" eventType="touchUpInside" id="VdH-X5-Cwk"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="count object" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rDZ-Ux-lNO">
+                                        <rect key="frame" x="199" y="0.0" width="183" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W0T-Kf-Kqj">
+                                <rect key="frame" x="215" y="344.5" width="183" height="4"/>
+                            </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zGv-hj-E0e"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="WxP-Fa-Qb0" firstAttribute="leading" secondItem="zGv-hj-E0e" secondAttribute="leading" constant="16" id="1Xb-6D-Y4t"/>
                             <constraint firstItem="zGv-hj-E0e" firstAttribute="trailing" secondItem="Z1V-h2-89u" secondAttribute="trailing" constant="16" id="2Yz-6i-vCd"/>
                             <constraint firstItem="Z1V-h2-89u" firstAttribute="leading" secondItem="zGv-hj-E0e" secondAttribute="leading" constant="16" id="386-Xr-GTi"/>
                             <constraint firstItem="XET-BQ-iqg" firstAttribute="top" secondItem="Ja7-QB-PWN" secondAttribute="bottom" constant="16" id="53C-fB-VoA"/>
+                            <constraint firstItem="zGv-hj-E0e" firstAttribute="trailing" secondItem="W0T-Kf-Kqj" secondAttribute="trailing" constant="16" id="5II-Yh-QR8"/>
                             <constraint firstItem="Ja7-QB-PWN" firstAttribute="top" secondItem="9uj-L2-ubU" secondAttribute="bottom" constant="16" id="K1v-vo-GCp"/>
                             <constraint firstItem="Ja7-QB-PWN" firstAttribute="leading" secondItem="zGv-hj-E0e" secondAttribute="leading" constant="16" id="KQi-2l-J3J"/>
+                            <constraint firstItem="WxP-Fa-Qb0" firstAttribute="top" secondItem="Z1V-h2-89u" secondAttribute="bottom" constant="16" id="KUK-jw-IVZ"/>
                             <constraint firstItem="9uj-L2-ubU" firstAttribute="leading" secondItem="zGv-hj-E0e" secondAttribute="leading" constant="16" id="Poe-DY-uCy"/>
                             <constraint firstItem="XET-BQ-iqg" firstAttribute="leading" secondItem="zGv-hj-E0e" secondAttribute="leading" constant="16" id="Qdy-Kl-uBX"/>
                             <constraint firstItem="zGv-hj-E0e" firstAttribute="trailing" secondItem="XET-BQ-iqg" secondAttribute="trailing" constant="16" id="R2N-jS-ZFm"/>
@@ -80,13 +105,20 @@
                             <constraint firstItem="9uj-L2-ubU" firstAttribute="top" secondItem="zGv-hj-E0e" secondAttribute="top" constant="16" id="fXF-Et-kGo"/>
                             <constraint firstItem="zGv-hj-E0e" firstAttribute="trailing" secondItem="9uj-L2-ubU" secondAttribute="trailing" constant="16" id="g8h-oQ-Rsp"/>
                             <constraint firstItem="zGv-hj-E0e" firstAttribute="trailing" secondItem="Ja7-QB-PWN" secondAttribute="trailing" constant="16" id="jC8-NE-Dth"/>
+                            <constraint firstItem="W0T-Kf-Kqj" firstAttribute="top" secondItem="WxP-Fa-Qb0" secondAttribute="bottom" id="kQu-M8-Khg"/>
+                            <constraint firstItem="W0T-Kf-Kqj" firstAttribute="width" secondItem="rDZ-Ux-lNO" secondAttribute="width" id="m6J-CE-cln"/>
+                            <constraint firstItem="zGv-hj-E0e" firstAttribute="trailing" secondItem="WxP-Fa-Qb0" secondAttribute="trailing" constant="16" id="xl6-R4-BEn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="w0q-4K-qYD"/>
+                    <connections>
+                        <outlet property="progressView" destination="W0T-Kf-Kqj" id="Z5h-zz-tq2"/>
+                        <outlet property="textFieldCountObject" destination="rDZ-Ux-lNO" id="X0h-aT-4Pr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iyJ-6Z-dnz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2125" y="-618"/>
+            <point key="canvasLocation" x="2124.6376811594205" y="-618.08035714285711"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="eir-pj-rio">
@@ -97,7 +129,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aqY-04-Jk3">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="770"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="94t-hx-RgT">
                                     <size key="itemSize" width="128" height="128"/>
@@ -147,7 +179,7 @@
                 <navigationController storyboardIdentifier="mainNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="En7-y2-QzL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kll-0K-y8f">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
