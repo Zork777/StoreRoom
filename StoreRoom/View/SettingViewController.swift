@@ -2,7 +2,7 @@
 //  SettingViewController.swift
 //  StoreRoom
 //
-//  Created by Евгений Захаров on 03.08.2022.
+//  Created by Евгений Захаров on 03.08.2022.  
 //
 
 import UIKit
