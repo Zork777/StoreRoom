@@ -246,7 +246,7 @@ class BaseCoreData {
     
 ///Restore Base Core
     func restoreFromStore(backupName: String){
-        BaseCoreData.shared.deleteAllCoreBases()
+//        BaseCoreData.shared.deleteAllCoreBases()
         let storeFolderUrl = FileManager.default.urls(for: .applicationSupportDirectory, in:.userDomainMask).first!
         let storeUrl = storeFolderUrl.appendingPathComponent(BaseCoreData.projectName + ".sqlite")
         let backUpFolderUrl = FileManager.default.urls(for: .documentDirectory, in:.userDomainMask).first!

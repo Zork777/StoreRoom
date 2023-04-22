@@ -61,7 +61,7 @@ extension ViewController: UINavigationControllerDelegate, UIImagePickerControlle
                     self?.typeObjectForSave = .things
                 }
             }
-            self?.objectForSave.name = nameThing
+            self?.objectForSave.name = nameThing != "" ? nameThing:" "
         }
         present(vc, animated: true)
     }

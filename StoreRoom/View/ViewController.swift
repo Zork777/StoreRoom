@@ -253,11 +253,11 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     //MARK: функция добавляет новую кладовку, коробку, вещь
     @objc func buttonAddThing(){
-        dialogGetNameThing = viewGetName
-        getPhotoInCamera()
+//        dialogGetNameThing = viewGetName
+//        getPhotoInCamera()
         
-//        objectForSave.image = #imageLiteral(resourceName: "shoes6") //for test
-//        viewGetName() //for test
+        objectForSave.image = #imageLiteral(resourceName: "noPhoto") //for test
+        viewGetName() //for test
     }
     
     //MARK: функция Записывает новый объект в массив и обновляет ячейки
