@@ -1,0 +1,4 @@
+/* Bundle name */
+"CFBundleName" = "StoreRoom";
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Разрешите доступ к камере";

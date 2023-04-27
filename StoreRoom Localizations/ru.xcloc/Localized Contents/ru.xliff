@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="StoreRoom/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="ru">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.4" build-num="13F17a"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>StoreRoom</source>
+        <target>Кладовка</target>
+        <note>Bundle name</note>
+      </trans-unit>
+      <trans-unit id="NSCameraUsageDescription" xml:space="preserve">
+        <source>Разрешите доступ к камере</source>
+        <note>Privacy - Camera Usage Description</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="StoreRoom/en.lproj/Localizable.strings" datatype="plaintext" source-language="en" target-language="ru">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.4" build-num="13F17a"/>
+    </header>
+    <body>
+      <trans-unit id="Box" xml:space="preserve">
+        <source>Box</source>
+        <target>Коробка</target>
+        <note>Second segment name in dialog getNameThing</note>
+      </trans-unit>
+      <trans-unit id="Cancel" xml:space="preserve">
+        <source>Cancel</source>
+        <target>Отменить</target>
+        <note>Cancel button in dialog</note>
+      </trans-unit>
+      <trans-unit id="EnterName" xml:space="preserve">
+        <source>Enter a name</source>
+        <target>Введите название</target>
+        <note>Title in dialog getNameThing</note>
+      </trans-unit>
+      <trans-unit id="OK" xml:space="preserve">
+        <source>OK</source>
+        <target>ОК</target>
+        <note>OK button in dialog</note>
+      </trans-unit>
+      <trans-unit id="Root" xml:space="preserve">
+        <source>Root</source>
+        <target>Главный</target>
+        <note>Third segment name in dialog getNameThing</note>
+      </trans-unit>
+      <trans-unit id="RootTitleName" xml:space="preserve">
+        <source>Root</source>
+        <target>Главное</target>
+        <note>title name main window</note>
+      </trans-unit>
+      <trans-unit id="Thing" xml:space="preserve">
+        <source>Thing</source>
+        <target>Вещь</target>
+        <note>First segment name in dialog getNameThing</note>
+      </trans-unit>
+      <trans-unit id="buttonTitle" xml:space="preserve">
+        <source>Close</source>
+        <target>Закрыть</target>
+        <note>button title for close view thing</note>
+      </trans-unit>
+      <trans-unit id="errorDeleteObject" xml:space="preserve">
+        <source>Error delete - </source>
+        <target>Ошибка удаления - </target>
+        <note>message error when deleting an box/root/thing</note>
+      </trans-unit>
+      <trans-unit id="errorGetNameThingIsNil" xml:space="preserve">
+        <source>get name: name thing is nil</source>
+        <target>get name: имя вещи не найдено</target>
+        <note>message error when get name thing</note>
+      </trans-unit>
+      <trans-unit id="errorSaveObject" xml:space="preserve">
+        <source>Couldn't save a new item to the database</source>
+        <target>Ошибка записи вещи в базу</target>
+        <note>message error aboute error save in core base in var objectForSave</note>
+      </trans-unit>
+      <trans-unit id="failedDeleteCoreData" xml:space="preserve">
+        <source>failed delete in Core Data</source>
+        <target>Ошибка удаления из базы</target>
+        <note>failed delete in Core Data</note>
+      </trans-unit>
+      <trans-unit id="failedDeleteMarkOrder" xml:space="preserve">
+        <source>failed mark delete order</source>
+        <target>Ошибка удаления выделенных объектов</target>
+        <note>failed mark delete order</note>
+      </trans-unit>
+      <trans-unit id="failedSaveCoreData" xml:space="preserve">
+        <source>failed save in Core Data</source>
+        <target>Ошибка сохранения</target>
+        <note>failed save in Core Data</note>
+      </trans-unit>
+      <trans-unit id="notFoundIdRoomBox" xml:space="preserve">
+        <source>id room or box is null</source>
+        <target>Вышестоящий объект не найден</target>
+        <note>id room or box is null</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="StoreRoom/View/Base.lproj/LaunchScreen.storyboard" source-language="en" target-language="ru" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.4" build-num="13F17a"/>
+    </header>
+    <body>
+      <trans-unit id="iIq-18-3TR.text" xml:space="preserve">
+        <source>start...</source>
+        <target>старт...</target>
+        <note>Class = "UILabel"; text = "start..."; ObjectID = "iIq-18-3TR";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="StoreRoom/View/Base.lproj/Main.storyboard" source-language="en" target-language="ru" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.4" build-num="13F17a"/>
+    </header>
+    <body>
+      <trans-unit id="9uj-L2-ubU.configuration.title" xml:space="preserve">
+        <source>SaveTestData</source>
+        <target>SaveTestData</target>
+        <note>Class = "UIButton"; configuration.title = "SaveTestData"; ObjectID = "9uj-L2-ubU";</note>
+      </trans-unit>
+      <trans-unit id="9uj-L2-ubU.normalTitle" xml:space="preserve">
+        <source>Button</source>
+        <target>Button</target>
+        <note>Class = "UIButton"; normalTitle = "Button"; ObjectID = "9uj-L2-ubU";</note>
+      </trans-unit>
+      <trans-unit id="Ja7-QB-PWN.configuration.title" xml:space="preserve">
+        <source>ClearBase</source>
+        <target>ClearBase</target>
+        <note>Class = "UIButton"; configuration.title = "ClearBase"; ObjectID = "Ja7-QB-PWN";</note>
+      </trans-unit>
+      <trans-unit id="Ja7-QB-PWN.normalTitle" xml:space="preserve">
+        <source>Button</source>
+        <target>Button</target>
+        <note>Class = "UIButton"; normalTitle = "Button"; ObjectID = "Ja7-QB-PWN";</note>
+      </trans-unit>
+      <trans-unit id="w0q-4K-qYD.title" xml:space="preserve">
+        <source>Settings</source>
+        <target>Настройки</target>
+        <note>Class = "UINavigationItem"; title = "Settings"; ObjectID = "w0q-4K-qYD";</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
