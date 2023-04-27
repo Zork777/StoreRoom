@@ -39,7 +39,7 @@ class DialogConfirmDelete: UIView {
         self.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         self.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         self.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        self.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2).isActive = true
+        self.heightAnchor.constraint(equalToConstant: 200).isActive = true
         layer.cornerRadius = 10
         backgroundColor = .systemGray6
         

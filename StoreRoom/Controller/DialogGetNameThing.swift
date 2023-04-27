@@ -52,5 +52,6 @@ class DialogGetNameThing: UIView {
         selectThingOrBox.setTitle(segmentNameFirst, forSegmentAt: 0)
         selectThingOrBox.setTitle(segmentNameSecond, forSegmentAt: 1)
         selectThingOrBox.setTitle(segmentNameThird, forSegmentAt: 2)
+        layer.cornerRadius = 10
     }
 }

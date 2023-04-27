@@ -24,7 +24,7 @@ extension ViewController: UINavigationControllerDelegate, UIImagePickerControlle
         dialogGetNameThing.leftAnchor.constraint(equalTo: vc.view.leftAnchor, constant: 8).isActive = true
         dialogGetNameThing.rightAnchor.constraint(equalTo: vc.view.rightAnchor, constant: -8).isActive = true
         dialogGetNameThing.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        dialogGetNameThing.centerYAnchor.constraint(equalTo: vc.view.centerYAnchor).isActive = true
+        dialogGetNameThing.centerYAnchor.constraint(equalTo: vc.view.centerYAnchor, constant: -70).isActive = true
         dialogGetNameThing.setupInit()
         
         //настриваем кол-во выводимых типов объекта для записи
